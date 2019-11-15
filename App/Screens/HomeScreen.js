@@ -1,9 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { material } from 'react-native-typography';
 import { Metrics } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
-import Feed from '../Components/Feed'
+import Feed from '../Components/Feed';
+import firestore from '../../firebase.js';
+import firebase from 'firebase';
+
+
+const homeScreenBackgroundColor = () => {
+  return "#95B3ED";
+}
 
 export default class HomeScreen extends React.Component {
 
@@ -13,13 +20,13 @@ export default class HomeScreen extends React.Component {
     return {
       headerTitle: (
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={material.title}>Your Team</Text>
+          <Text style={material.title}>YOUR TEAM FEELS</Text>
         </View>
       ),
       headerStyle: {
-        backgroundColor: '#ECE5F8',
-      },
-      headerTintColor: '#ffffff',
+        backgroundColor: homeScreenBackgroundColor(),
+        borderBottomWidth: 0,
+      }
     };
   };
 
@@ -46,7 +53,24 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Feed onProfileRequested={this.onProfileRequested} />
+        <View style={styles.buttonRow}>
+          <TouchableOpacity
+          //onPress={() => Alert.alert('Minority Moods')}
+          >
+            <Image
+              source={require("../Images/moredatabutton.png")}
+              style={styles.buttons}
+              resizeMode='contain'
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+              source={require("../Images/whybutton.png")}
+              style={styles.buttons}
+              resizeMode='contain'
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -55,5 +79,15 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: homeScreenBackgroundColor(),
   },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  buttons: {
+    height: 75,
+    width: 150,
+    margin: 5,
+  }
 });
