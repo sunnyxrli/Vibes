@@ -65,8 +65,8 @@ const BookmarkNav = createStackNavigator({
 })
 
 const TabNav = createBottomTabNavigator({
-  FeedScreen: StackNav,
-  BookmarkScreen: BookmarkNav,
+  FeedScreen: { screen: StackNav },
+  BookmarkScreen:   { screen: BookmarkNav },
 }, {
   // Default config for all screens
   initialRouteName: 'FeedScreen',
@@ -78,7 +78,7 @@ const TabNav = createBottomTabNavigator({
 
 BookmarkNav.navigationOptions = ({ navigation }) => {
   return {
-    tabBarLabel: 'Bookmarks',
+    tabBarLabel: 'Thoughts',
     tabBarIcon: ({ tintColor }) => (
       <Entypo name="bookmark"
         size={Metrics.icons.medium}
