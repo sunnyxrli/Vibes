@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Demo",
-    "slug": "Lecture7A-Starter",
+    "name": "Vibes",
+    "slug": "Vibes",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "App/Images/loadingicon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "App/Images/loadingicon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
