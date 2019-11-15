@@ -2,7 +2,7 @@ import * as firebase from 'firebase';
 import 'firebase/firebase-firestore';
 
 var firebaseConfig = {
-  apiKey: "AIzaSyDBOKxa_X5MIJ_Jbyt4eoVI3G0ZiYUNEBI",
+  apiKey: "",
   authDomain: "vibes-smileatwork.firebaseapp.com",
   databaseURL: "https://vibes-smileatwork.firebaseio.com",
   projectId: "vibes-smileatwork",
