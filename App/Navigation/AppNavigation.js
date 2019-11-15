@@ -40,7 +40,7 @@ BookmarkNav.navigationOptions = ({ navigation }) => {
 // Manifest of possible screens
 
 
-const StackNav = createStackNavigator({
+const MajMoodNav = createStackNavigator({
   HomeScreen: {screen: HomeScreen},
   UserProfileScreen: {screen: UserProfileScreen},
 }, {
@@ -48,11 +48,10 @@ const StackNav = createStackNavigator({
   headerMode: 'float',
   tabBarOptions: {
     activeTintColor: Colors.black,
-    showLabel: true,
   },
 })
 
-const BookmarkNav = createStackNavigator({
+const ThoughtsNav = createStackNavigator({
   BookmarkScreen: {screen: BookmarkScreen},
   BookmarkViewerScreen: {screen: BookmarkViewerScreen},
 }, {
@@ -60,40 +59,80 @@ const BookmarkNav = createStackNavigator({
   headerMode: 'float',
   tabBarOptions: {
     activeTintColor: Colors.black,
-    showLabel: true,
+  },
+})
+
+const TasksNav = createStackNavigator({
+  HomeScreen: {screen: HomeScreen},
+}, {
+  initialRouteName: 'HomeScreen',
+  headerMode: 'float',
+  tabBarOptions: {
+    activeTintColor: Colors.black,
+  },
+})
+
+const CheckInNav = createStackNavigator({
+  HomeScreen: {screen: HomeScreen},
+}, {
+  initialRouteName: 'HomeScreen',
+  headerMode: 'float',
+  tabBarOptions: {
+    activeTintColor: Colors.black,
   },
 })
 
 const TabNav = createBottomTabNavigator({
-  FeedScreen: { screen: StackNav },
-  BookmarkScreen:   { screen: BookmarkNav },
+  MajMoodScreen: { screen: MajMoodNav },
+  ThoughtsScreen:   { screen: ThoughtsNav },
+  TasksScreen: { screen: TasksNav },
+  CheckInScreen: { screen: CheckInNav},
 }, {
   // Default config for all screens
-  initialRouteName: 'FeedScreen',
+  initialRouteName: 'MajMoodScreen',
   tabBarOptions: {
     activeTintColor: Colors.black,
-    showLabel: true,
+    showLabel: false,
   },
 })
 
-BookmarkNav.navigationOptions = ({ navigation }) => {
+MajMoodNav.navigationOptions = ({ navigation }) => {
   return {
-    tabBarLabel: 'Thoughts',
-    tabBarIcon: ({ tintColor }) => (
-      <Entypo name="bookmark"
-        size={Metrics.icons.medium}
-        color={tintColor} />
+    tabBarIcon: ({}) => (
+      <Image source={require('../Images/moodsIcon2x.png')}
+        style={{width: 30, height: 27.07}}
+      />
     ),
   };
 };
 
-StackNav.navigationOptions = ({ navigation }) => {
+ThoughtsNav.navigationOptions = ({ navigation }) => {
   return {
-    tabBarLabel: 'Home',
     tabBarIcon: ({ tintColor }) => (
-      <Entypo name="home"
-        size={Metrics.icons.medium}
-        color={tintColor} />
+      <Image source={require('../Images/thoughtsIcon2x.png')}
+        style={{width: 23.56, height: 27}}
+        color={tintColor}
+      />
+    ),
+  };
+};
+
+TasksNav.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarIcon: ({}) => (
+      <Image source={require('../Images/tasksIcon2x.png')}
+        style={{width: 22.27, height: 27}}
+      />
+    ),
+  };
+};
+
+CheckInNav.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarIcon: ({}) => (
+      <Image source={require('../Images/checkInIcon2x.png')}
+        style={{width: 21.71, height: 26.63}}
+      />
     ),
   };
 };
