@@ -71,57 +71,9 @@ export default class FeedItem extends React.Component {
 
     return (
       <View style={styles.container}>
-
         <View style={styles.userContainer}>
-
-          <TouchableOpacity onPress={this.profilePressed}>
-            <Image style={styles.profileImage}
-              source={{uri: profileImage.medium}}
-              defaultSource={Images.placeholder}/>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={[{flex: 1}, styles.profileName]} onPress={this.profilePressed}>
-            <Text style={material.body2}>{user.name}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{padding:5}} onPress={this.bookmarkPressed}>
-            <FontAwesome
-              name={this.state.bookmarked ? "bookmark" : "bookmark-o"}
-              size={Metrics.icons.small}
-              color={Colors.steel} />
-          </TouchableOpacity>
+          <Text>Tommy</Text>
         </View>
-
-        <View style={[styles.mainImageContainer, {width: imageDim.width, height: imageDim.height}]}>
-          <Image
-            style={{width: imageDim.width, height: imageDim.height}}
-            resizeMode='contain'
-            onLoadStart={(e) => this.setState({loading: true})}
-            onLoad={(e) => this.setState({loading: false})}
-            source={{uri: urls.full}}/>
-
-          {this.showImageLoader(imageDim.width, imageDim.height)}
-        </View>
-
-        <View style={styles.likesContainer}>
-
-          <Entypo
-            name="heart"
-            size={Metrics.icons.small}
-            color={Colors.ember} />
-
-          <Text style={[material.body1, {flex: 1, marginLeft: 5}]}>{content.likes}</Text>
-
-        </View>
-
-        <View style={styles.descContainer}>
-          <Text style={material.body1}>{content.description || 'No Description'}</Text>
-        </View>
-
-        <View style={styles.dateContainer}>
-          <Text style={material.caption}>{this.getPostedDate()}</Text>
-        </View>
-
       </View>
     );
   }

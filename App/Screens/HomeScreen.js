@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { material } from 'react-native-typography';
 import { Metrics } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
@@ -7,10 +7,16 @@ import Feed from '../Components/Feed';
 import firestore from '../../firebase.js';
 import firebase from 'firebase';
 
+var { height, width } = Dimensions.get('window');
 
 const homeScreenBackgroundColor = () => {
   return "#95B3ED";
 }
+
+const accentColor = () => {
+  return "#003498";
+}
+
 
 export default class HomeScreen extends React.Component {
 
@@ -26,6 +32,7 @@ export default class HomeScreen extends React.Component {
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(),
         borderBottomWidth: 0,
+        height: 35,
       }
     };
   };
@@ -53,24 +60,36 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.faceimage}>
+          <Text style={styles.emotiontext}>SAD</Text>
+          <Text style={styles.checkintext}> Last team check-in 4 hours ago</Text>
+          <Image
+            source={require("../Images/sadface.png")}
+            style={{margin: 50}}
+          />
+        </View>
         <View style={styles.buttonRow}>
           <TouchableOpacity
           //onPress={() => Alert.alert('Minority Moods')}
           >
             <Image
-              source={require("../Images/moredatabutton.png")}
+              source={require("../Images/group45.png")}
               style={styles.buttons}
               resizeMode='contain'
             />
           </TouchableOpacity>
           <TouchableOpacity>
             <Image
-              source={require("../Images/whybutton.png")}
+              source={require("../Images/group87.png")}
               style={styles.buttons}
               resizeMode='contain'
             />
           </TouchableOpacity>
         </View>
+        <View style={styles.tasks}>
+          <Text>Tasks Expiring Soon</Text>
+        </View>
+        <Feed/>
       </View>
     );
   }
@@ -89,5 +108,22 @@ const styles = StyleSheet.create({
     height: 75,
     width: 150,
     margin: 5,
+  },
+  faceimage: {
+    alignItems: "center",
+  },
+  emotiontext: {
+    fontSize: 34,
+    fontWeight: '800',
+    color: accentColor(),
+  },
+  checkintext: {
+    fontSize: 20,
+    fontStyle: 'italic',
+    fontWeight: '200',
+    color: 'black',
+  },
+  tasks: {
+    padding: 10,
   }
 });
