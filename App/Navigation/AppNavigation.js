@@ -10,15 +10,10 @@ import BookmarkScreen from '../Screens/BookmarkScreen'
 import BookmarkViewerScreen from '../Screens/BookmarkViewerScreen'
 import UserProfileScreen from '../Screens/UserProfileScreen'
 
-// import { createIconSetFromIcoMoon } from '@expo/vector-icons';
-// import icoMoonConfig from '../../selection.json';
-// const expoAssetId = require("../../assets/fonts/icomoon.ttf");
-// const CustomIcon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon', expoAssetId);
-
-import { createIconSetFromFontello } from '@expo/vector-icons';
-import fontelloConfig from '../../config.json';
-const CustomIcon = createIconSetFromFontello(fontelloConfig, 'vibes-nav-bar', "../../assets/fonts/vibes-nav-bar.ttf");
-
+import { createIconSetFromIcoMoon } from '@expo/vector-icons';
+import icoMoonConfig from '../../selection.json';
+const expoAssetId = require("../../assets/fonts/icomoon.ttf");
+const CustomIcon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon', expoAssetId);
 
 
 /* PART 1: Create a StackNavigator that contains the HomeScreen, and the UserProfileScreen */
@@ -127,7 +122,7 @@ ThoughtsNav.navigationOptions = ({ navigation }) => {
 TasksNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="task-list" size={27} color={tintColor}/>
+      <CustomIcon name="taskList" size={27} color={tintColor}/>
     ),
   };
 };
@@ -135,7 +130,7 @@ TasksNav.navigationOptions = ({ navigation }) => {
 CheckInNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({tintColor}) => (
-      <CustomIcon name="check-in" size={27} color={tintColor}/>
+      <CustomIcon name="checkIn" size={27} color={tintColor}/>
     ),
   };
 };

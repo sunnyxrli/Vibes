@@ -15,7 +15,7 @@ export default class App extends React.Component {
 
     async componentDidMount() {
         await Font.loadAsync({
-          'vibes-nav-bar': require('./assets/fonts/vibes-nav-bar.ttf'),
+          'icomoon': require('./assets/fonts/icomoon.ttf'),
         });
     
         this.setState({ fontLoaded: true });
