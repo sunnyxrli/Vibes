@@ -9,6 +9,7 @@ import HomeScreen from '../Screens/HomeScreen'
 import BookmarkScreen from '../Screens/BookmarkScreen'
 import BookmarkViewerScreen from '../Screens/BookmarkViewerScreen'
 import UserProfileScreen from '../Screens/UserProfileScreen'
+import CheckInScreen from '../Screens/CheckInScreen'
 
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import icoMoonConfig from '../../selection.json';
@@ -44,7 +45,6 @@ BookmarkNav.navigationOptions = ({ navigation }) => {
 // Manifest of possible screens
 const MajMoodNav = createStackNavigator({
   HomeScreen: {screen: HomeScreen},
-  UserProfileScreen: {screen: UserProfileScreen},
 }, {
   initialRouteName: 'HomeScreen',
   headerMode: 'float',
@@ -78,9 +78,9 @@ const TasksNav = createStackNavigator({
 })
 
 const CheckInNav = createStackNavigator({
-  HomeScreen: {screen: HomeScreen},
+  CheckInScreen: {screen: CheckInScreen}
 }, {
-  initialRouteName: 'HomeScreen',
+  initialRouteName: 'CheckInScreen',
   headerMode: 'float',
   tabBarOptions: {
     activeTintColor: '#79A2F1',
@@ -92,10 +92,10 @@ const TabNav = createBottomTabNavigator({
   MajMoodScreen: { screen: MajMoodNav },
   ThoughtsScreen:   { screen: ThoughtsNav },
   TasksScreen: { screen: TasksNav },
-  CheckInScreen: { screen: CheckInNav},
+  CheckInScreen: { screen: CheckInScreen},
 }, {
   // Default config for all screens
-  initialRouteName: 'MajMoodScreen',
+  initialRouteName: 'CheckInScreen',
   tabBarOptions: {
     activeTintColor: '#79A2F1',
     inactiveTintColor: '#DADADA',
@@ -127,7 +127,7 @@ TasksNav.navigationOptions = ({ navigation }) => {
   };
 };
 
-CheckInNav.navigationOptions = ({ navigation }) => {
+CheckInScreen.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({tintColor}) => (
       <CustomIcon name="checkIn" size={27} color={tintColor}/>
