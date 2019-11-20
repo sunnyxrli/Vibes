@@ -10,6 +10,7 @@ import BookmarkScreen from '../Screens/BookmarkScreen'
 import BookmarkViewerScreen from '../Screens/BookmarkViewerScreen'
 import ThoughtsScreen from '../Screens/ThoughtsScreen'
 import CheckInScreen from '../Screens/CheckInScreen'
+import TasksScreen from '../Screens/TasksScreen'
 
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import icoMoonConfig from '../../selection.json';
@@ -66,7 +67,7 @@ const ThoughtsNav = createStackNavigator({
 })
 
 const TasksNav = createStackNavigator({
-  HomeScreen: {screen: HomeScreen},
+  HomeScreen: {screen: TasksScreen},
 }, {
   initialRouteName: 'HomeScreen',
   headerMode: 'float',

@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Image, Dimensions } from 'react-native';
 import { material } from 'react-native-typography';
 import { Metrics } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
 import Feed from '../Components/Feed';
 import firestore from '../../firebase.js';
 import firebase from 'firebase';
+import {Overlay} from "react-native-elements";
 
 var { height, width } = Dimensions.get('window');
 
@@ -19,6 +20,10 @@ const accentColor = () => {
 
 
 export default class HomeScreen extends React.Component {
+
+  state = {
+    moodsOverlayVisible: false,
+  };
 
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
@@ -41,60 +46,96 @@ export default class HomeScreen extends React.Component {
     console.log("Requested: " + username);
     let {navigate} = this.props.navigation;
     navigate('UserProfileScreen', {username: username});
+  }
 
-    /* PART 1: you will want to call the navigate function here */
-    /* this function will be inside of this.props.navigation */
-    /* think of destructing the function "navigate" from inside of your navigation props*/
-
-    /* We can only call the navigate function from here because AppNavigation only explicitly defines this as a screen (under the stack that you created). */
-    /* The Feed.js and FeedItem.js are invisible to the app's navigation, therefore they cannot be used to navigate. We must pass everything back to here. */
-
-    /* PART 2: Navigate to your UserProfileScreen.js file */
-    /* Go to AppNavigation.js and see how you declared your UserProfileScreen, then navigate to it by passing it */
-    /* as the first parameter of the navigate function */
-
-    /* PART 3: pass the username on this function as a parameter to the navigate function, below is a prototype*/
-    //navigate('UserProfileScreen' /* make sure name matches what is inside of AppNavigation*/, { username: username });
+  setMoodsOverlayVisible(visible: boolean) {
+    this.setState({moodsOverlayVisible: visible});
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.faceimage}>
-          <Text style={styles.emotiontext}>SAD</Text>
-          <Text style={styles.checkintext}> Last team check-in 4 hours ago</Text>
-          <Image
-            source={require("../Images/sadface.png")}
-            style={{margin: 50}}
-          />
-        </View>
-        <View style={styles.buttonRow}>
-          <TouchableOpacity
-          //onPress={() => Alert.alert('Minority Moods')}
-          >
+        <View style={styles.container}>
+          <View style={styles.faceimage}>
+            <Text style={styles.emotiontext}>SAD</Text>
+            <Text style={styles.checkintext}> Last team check-in 4 hours ago</Text>
             <Image
-              source={require("../Images/group45.png")}
-              style={styles.buttons}
-              resizeMode='contain'
+              source={require("../Images/sadface.png")}
+              style={{marginTop: 50, marginBottom: 40, width: width * 0.4, height: 150}}
             />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('ThoughtsScreen')}
+          </View>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity
+              onPress={() => this.setMoodsOverlayVisible(true)}
+            >
+              <Image
+                source={require("../Images/group45.png")}
+                style={styles.buttons}
+                resizeMode='contain'
+              />
+            </TouchableOpacity>
+              <Overlay
+                  isVisible={this.state.moodsOverlayVisible}
+                  height="75%"
+                  width="auto"
+                  overlayStyle={styles.moodsOverlay}
+                  animationType="slide"
+                  windowBackgroundColor="rgba(0, 0, 0, 0)"
+                  onBackdropPress={() => this.setMoodsOverlayVisible(false)}
+              >
+                  <Image
+                    source={require("../Images/moredatapopup.png")}
+                    style={{width: width, height: height * 0.90}}
+                    resizeMode='contain'
+                  />
+              </Overlay>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('ThoughtsScreen')}
+            >
+              <Image
+                source={require("../Images/group87.png")}
+                style={styles.buttons}
+                resizeMode='contain'
+              />
+            </TouchableOpacity>
+          </View>
+          <View>
+            <Text style={styles.taskstext}>Tasks Expiring Soon</Text>
+          </View>
+          <View
+            style={styles.tasksColumn}
           >
-            <Image
-              source={require("../Images/group87.png")}
-              style={styles.buttons}
-              resizeMode='contain'
-            />
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('TasksScreen')}
+            >
+              <Image
+                source={require("../Images/task1.png")}
+                style={styles.tasks}
+                resizeMode='contain'
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('TasksScreen')}
+            >
+              <Image
+                source={require("../Images/task2.png")}
+                style={styles.tasks}
+                resizeMode='contain'
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('TasksScreen')}
+            >
+              <Image
+                source={require("../Images/task3.png")}
+                style={styles.tasks}
+                resizeMode='contain'
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.tasks}>
-          <Text>Tasks Expiring Soon</Text>
-        </View>
-        <Feed/>
-      </View>
     );
   }
+
 }
 
 const styles = StyleSheet.create({
@@ -105,6 +146,10 @@ const styles = StyleSheet.create({
   buttonRow: {
     flexDirection: "row",
     justifyContent: "center",
+  },
+  tasksColumn: {
+    flexDirection: "column",
+    alignItems: "center",
   },
   buttons: {
     height: 75,
@@ -125,7 +170,18 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     color: 'black',
   },
-  tasks: {
+  taskstext: {
+    fontSize: 20,
     padding: 10,
-  }
+  },
+  tasks: {
+    height: 70,
+    width: width * 0.95,
+  },
+  displayText: {
+    fontSize: 40,
+    fontStyle: 'italic',
+    fontWeight: '200',
+    color: 'black',
+  },
 });
