@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, AppRegistry, Alert, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import CircularSlider from '../Components/CircularSlider';
-import Svg, { SvgXml, Path, Circle, G } from 'react-native-svg'
+import GLOBAL from './../global.js'
+
 
 
 const homeScreenBackgroundColor = () => {
@@ -45,7 +46,7 @@ export default class CheckInScreen extends React.Component {
     } else if (value > 175 && value < 185) {
       this.setState({ mood: 'CONTENT' })
     }
-    this.forceUpdate();
+    GLOBAL.mood.setState = this.state.mood;
   }
 
   getMoodColor() {
@@ -115,7 +116,7 @@ export default class CheckInScreen extends React.Component {
       return 165
     } else {
       return 153
-    } 
+    }
   }
 
   getMouthHOffset() {
@@ -133,6 +134,8 @@ export default class CheckInScreen extends React.Component {
   }
 
   render() {
+    GLOBAL.mood = this.state.mood
+    console.log(GLOBAL.mood)
     return (
       <LinearGradient
         colors={this.getBackgroundColor()}
@@ -151,7 +154,7 @@ export default class CheckInScreen extends React.Component {
             textColor='black'
             value={this.state.slider1}
             moodFace={this.getMoodImage()}
-            holeColors ={this.getHoleColors()}
+            holeColors={this.getHoleColors()}
             mouthW={this.getMouthW()}
             mouthHOffset={this.getMouthHOffset()}
             onValueChange={(value) => this.setMood(value)}>
@@ -162,7 +165,10 @@ export default class CheckInScreen extends React.Component {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => this.props.navigation.navigate('HomeScreen')}
+            onPress={() => {
+              this.props.navigation.navigate('HomeScreen');
+              
+            }}
           >
             <Text style={styles.buttonText}> Check In </Text>
           </TouchableOpacity>
@@ -211,7 +217,7 @@ const styles = StyleSheet.create({
   sliderAndButton: {
     flexDirection: "column",
     justifyContent: "center",
-    top:-10
+    top: -10
   },
 })
 

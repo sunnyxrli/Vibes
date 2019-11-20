@@ -6,10 +6,9 @@ import { Images, Colors, Metrics } from '../Themes'
 import { StyleSheet, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import HomeScreen from '../Screens/HomeScreen'
-import BookmarkScreen from '../Screens/BookmarkScreen'
-import BookmarkViewerScreen from '../Screens/BookmarkViewerScreen'
 import ThoughtsScreen from '../Screens/ThoughtsScreen'
 import CheckInScreen from '../Screens/CheckInScreen'
+import GLOBAL from './../global.js'
 
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import icoMoonConfig from '../../selection.json';
@@ -42,50 +41,66 @@ BookmarkNav.navigationOptions = ({ navigation }) => {
 
 */
 
+const activeColor = () => {
+  console.log ("in nav bar")
+  console.log(GLOBAL.mood)
+  if (GLOBAL.mood == 'BORED') {
+    return "#FAC474";
+  } else if (GLOBAL.mood == 'EXICTED') {
+    return '#F291C7'
+  } else if (GLOBAL.mood == 'CONTENT') {
+    return '#F8DD53'
+  } else if (GLOBAL.mood == 'STRESSED') {
+    return '#8EDA80'
+  } else {
+    return '#79A2F1'
+  }
+}
+
 // Manifest of possible screens
 const MajMoodNav = createStackNavigator({
-  HomeScreen: {screen: HomeScreen},
+  HomeScreen: { screen: HomeScreen },
 }, {
   initialRouteName: 'HomeScreen',
   headerMode: 'float',
   tabBarOptions: {
-    activeTintColor: '#79A2F1',
+    activeTintColor: activeColor(),
     inactiveTintColor: '#DADADA',
   },
 })
 
 const ThoughtsNav = createStackNavigator({
-  ThoughtsScreen: {screen: ThoughtsScreen},
+  ThoughtsScreen: { screen: ThoughtsScreen },
 }, {
   initialRouteName: 'ThoughtsScreen',
   headerMode: 'float',
   tabBarOptions: {
-    activeTintColor: '#79A2F1',
+    activeTintColor: activeColor(),
     inactiveTintColor: '#DADADA',
   },
 })
 
 const TasksNav = createStackNavigator({
-  HomeScreen: {screen: HomeScreen},
+  HomeScreen: { screen: HomeScreen },
 }, {
   initialRouteName: 'HomeScreen',
   headerMode: 'float',
   tabBarOptions: {
-    activeTintColor: '#79A2F1',
+    activeTintColor: activeColor(),
     inactiveTintColor: '#DADADA',
   },
 })
 
 const TabNav = createBottomTabNavigator({
-  CheckInScreen: { screen: CheckInScreen},
+  CheckInScreen: { screen: CheckInScreen },
   MajMoodScreen: { screen: MajMoodNav },
-  ThoughtsScreen:   { screen: ThoughtsNav },
+  ThoughtsScreen: { screen: ThoughtsNav },
   TasksScreen: { screen: TasksNav },
 }, {
   // Default config for all screens
   initialRouteName: 'CheckInScreen',
   tabBarOptions: {
-    activeTintColor: '#79A2F1',
+    activeTintColor: activeColor(),
     inactiveTintColor: '#DADADA',
     showLabel: false,
   },
@@ -93,8 +108,8 @@ const TabNav = createBottomTabNavigator({
 
 MajMoodNav.navigationOptions = ({ navigation }) => {
   return {
-    tabBarIcon: ({tintColor}) => (
-      <CustomIcon name="moods" size={27} color={tintColor}/>
+    tabBarIcon: ({ tintColor }) => (
+      <CustomIcon name="moods" size={27} color={tintColor} />
     ),
   };
 };
@@ -102,7 +117,7 @@ MajMoodNav.navigationOptions = ({ navigation }) => {
 ThoughtsNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="thoughts" size={27} color={tintColor}/>
+      <CustomIcon name="thoughts" size={27} color={tintColor} />
     ),
   };
 };
@@ -110,15 +125,15 @@ ThoughtsNav.navigationOptions = ({ navigation }) => {
 TasksNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="taskList" size={27} color={tintColor}/>
+      <CustomIcon name="taskList" size={27} color={tintColor} />
     ),
   };
 };
 
 CheckInScreen.navigationOptions = ({ navigation }) => {
   return {
-    tabBarIcon: ({tintColor}) => (
-      <CustomIcon name="checkIn" size={27} color={tintColor}/>
+    tabBarIcon: ({ tintColor }) => (
+      <CustomIcon name="checkIn" size={27} color={tintColor} />
     ),
   };
 };

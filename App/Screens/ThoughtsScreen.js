@@ -2,11 +2,23 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { material } from 'react-native-typography';
 import Feed from '../Components/Feed';
+import GLOBAL from './../global.js';
 
 var { height, width } = Dimensions.get('window');
 
-const homeScreenBackgroundColor = () => {
-    return "#95B3ED";
+var homeScreenBackgroundColor = () => {
+    console.log(GLOBAL.mood=='EXCITED');
+    if (GLOBAL.mood == 'BORED') {
+        return "#FAC474";
+    } else if (GLOBAL.mood == 'EXICTED') {
+        return '#F291C7';
+    } else if (GLOBAL.mood == 'CONTENT') {
+        return '#F8DD53';
+    } else if (GLOBAL.mood == 'STRESSED') {
+        return '#8EDA80';
+    } else {
+        return '#79A2F1';
+    }
 }
 
 const accentColor = () => {
@@ -29,7 +41,7 @@ export default class HomeScreen extends React.Component {
         return {
             headerTitle: (
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={styles.heading}>Team Thoughts</Text>
+                    <Text style={styles.heading}>Team Thoughts {GLOBAL.mood}</Text>
                 </View>
             ),
             headerStyle: {
