@@ -78,7 +78,9 @@ export default class HomeScreen extends React.Component {
               resizeMode='contain'
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('ThoughtsScreen')}
+          >
             <Image
               source={require("../Images/group87.png")}
               style={styles.buttons}

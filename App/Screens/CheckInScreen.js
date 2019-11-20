@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Alert, TouchableOpacity, Image, Dimensions } from 'react-native';
-import {Button} from 'react-native-elements'
 import CircularSlider from 'react-circular-slider-bar';
 
 const homeScreenBackgroundColor = () => {
@@ -43,17 +42,17 @@ export default class CheckInScreen extends React.Component {
     };
   };
 
-    render() {
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: homeScreenBackgroundColor()}}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => this.props.navigation.navigate('HomeScreen')}
-          >
-            <Text style={styles.buttonText}> Check In </Text>
-          </TouchableOpacity>
-        </View>
-      )
-    };
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: homeScreenBackgroundColor() }}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate('HomeScreen')}
+        >
+          <Text style={styles.buttonText}> Check In </Text>
+        </TouchableOpacity>
+      </View>
+    )
+  };
 }
 

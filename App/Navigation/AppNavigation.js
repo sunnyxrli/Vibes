@@ -8,7 +8,7 @@ import { Entypo } from '@expo/vector-icons';
 import HomeScreen from '../Screens/HomeScreen'
 import BookmarkScreen from '../Screens/BookmarkScreen'
 import BookmarkViewerScreen from '../Screens/BookmarkViewerScreen'
-import UserProfileScreen from '../Screens/UserProfileScreen'
+import ThoughtsScreen from '../Screens/ThoughtsScreen'
 import CheckInScreen from '../Screens/CheckInScreen'
 
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
@@ -55,10 +55,9 @@ const MajMoodNav = createStackNavigator({
 })
 
 const ThoughtsNav = createStackNavigator({
-  BookmarkScreen: {screen: BookmarkScreen},
-  BookmarkViewerScreen: {screen: BookmarkViewerScreen},
+  ThoughtsScreen: {screen: ThoughtsScreen},
 }, {
-  initialRouteName: 'BookmarkScreen',
+  initialRouteName: 'ThoughtsScreen',
   headerMode: 'float',
   tabBarOptions: {
     activeTintColor: '#79A2F1',
@@ -77,22 +76,11 @@ const TasksNav = createStackNavigator({
   },
 })
 
-const CheckInNav = createStackNavigator({
-  CheckInScreen: {screen: CheckInScreen}
-}, {
-  initialRouteName: 'CheckInScreen',
-  headerMode: 'float',
-  tabBarOptions: {
-    activeTintColor: '#79A2F1',
-    inactiveTintColor: '#DADADA',
-  },
-})
-
 const TabNav = createBottomTabNavigator({
+  CheckInScreen: { screen: CheckInScreen},
   MajMoodScreen: { screen: MajMoodNav },
   ThoughtsScreen:   { screen: ThoughtsNav },
   TasksScreen: { screen: TasksNav },
-  CheckInScreen: { screen: CheckInScreen},
 }, {
   // Default config for all screens
   initialRouteName: 'CheckInScreen',
