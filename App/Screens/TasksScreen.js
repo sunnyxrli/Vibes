@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
 
 export default class HomeScreen extends React.Component {
 
-
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
     mood = navigation.getParam('mood', 'EXCITED');
@@ -42,7 +41,7 @@ export default class HomeScreen extends React.Component {
     return {
       headerTitle: (
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={material.title}>TEAM THOUGHTS</Text>
+          <Text style={material.title}>TASKS</Text>
         </View>
       ),
       headerStyle: {
@@ -56,12 +55,12 @@ export default class HomeScreen extends React.Component {
 
     render() {
         return (
-          <Text style={thoughtsStyles.displayText}>Check back soon.</Text>
+          <Text style={TasksStyles.displayText}>Check back soon.</Text>
         );
     }
 }
 
-const thoughtsStyles = StyleSheet.create({
+const TasksStyles = StyleSheet.create({
   displayText: {
     flex: 1,
     fontSize: 40,

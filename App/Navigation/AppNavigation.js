@@ -8,7 +8,7 @@ import { Entypo } from '@expo/vector-icons';
 import HomeScreen from '../Screens/HomeScreen'
 import ThoughtsScreen from '../Screens/ThoughtsScreen'
 import CheckInScreen from '../Screens/CheckInScreen'
-import GLOBAL from './../global.js'
+import TasksScreen from '../Screens/TasksScreen'
 
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import icoMoonConfig from '../../selection.json';
@@ -42,19 +42,8 @@ BookmarkNav.navigationOptions = ({ navigation }) => {
 */
 
 const activeColor = () => {
-  console.log ("in nav bar")
-  console.log(GLOBAL.mood)
-  if (GLOBAL.mood == 'BORED') {
-    return "#FAC474";
-  } else if (GLOBAL.mood == 'EXICTED') {
-    return '#F291C7'
-  } else if (GLOBAL.mood == 'CONTENT') {
-    return '#F8DD53'
-  } else if (GLOBAL.mood == 'STRESSED') {
-    return '#8EDA80'
-  } else {
-    return '#79A2F1'
-  }
+    // return '#F291C7'
+    return '#000000'
 }
 
 // Manifest of possible screens
@@ -81,7 +70,7 @@ const ThoughtsNav = createStackNavigator({
 })
 
 const TasksNav = createStackNavigator({
-  HomeScreen: { screen: HomeScreen },
+  HomeScreen: {screen: TasksScreen},
 }, {
   initialRouteName: 'HomeScreen',
   headerMode: 'float',

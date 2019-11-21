@@ -2,8 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, AppRegistry, Alert, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import CircularSlider from '../Components/CircularSlider';
-import GLOBAL from './../global.js'
-
 
 
 const homeScreenBackgroundColor = () => {
@@ -46,7 +44,6 @@ export default class CheckInScreen extends React.Component {
     } else if (value > 175 && value < 185) {
       this.setState({ mood: 'CONTENT' })
     }
-    GLOBAL.mood.setState = this.state.mood;
   }
 
   getMoodColor() {
@@ -134,8 +131,6 @@ export default class CheckInScreen extends React.Component {
   }
 
   render() {
-    GLOBAL.mood = this.state.mood
-    console.log(GLOBAL.mood)
     return (
       <LinearGradient
         colors={this.getBackgroundColor()}
@@ -166,7 +161,8 @@ export default class CheckInScreen extends React.Component {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
+              console.log(this.state.mood)
+              this.props.navigation.navigate('HomeScreen', {mood: this.state.mood});
               
             }}
           >

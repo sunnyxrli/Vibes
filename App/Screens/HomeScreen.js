@@ -1,36 +1,61 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Image, Dimensions } from 'react-native';
 import { material } from 'react-native-typography';
 import { Metrics } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
 import Feed from '../Components/Feed';
 import firestore from '../../firebase.js';
 import firebase from 'firebase';
+import { Overlay } from "react-native-elements";
 
 var { height, width } = Dimensions.get('window');
 
-const homeScreenBackgroundColor = () => {
-  return "#95B3ED";
+var homeScreenBackgroundColor = (mood) => {
+  if (mood == 'EXCITED') {
+    return '#F291C7'
+  } else if (mood == 'CONTENT') {
+    return '#FCE781'
+  } else if (mood == 'BORED') {
+    return '#FEBB58'
+  } else if (mood == 'STRESSED') {
+    return '#8EDA80'
+  } else {
+    return '#95B3ED'
+  }
 }
 
-const accentColor = () => {
-  return "#003498";
+var accentColor = (mood) => {
+  if (mood == 'EXCITED') {
+    return '#C50A7A'
+  } else if (mood == 'CONTENT') {
+    return '#E78B00'
+  } else if (mood == 'BORED') {
+    return '#DD5D00'
+  } else if (mood == 'STRESSED') {
+    return '#167904'
+  } else {
+    return '#003498'
+  }
 }
 
 
 export default class HomeScreen extends React.Component {
+
+  state = {
+    moodsOverlayVisible: false,
+  };
 
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
 
     return {
       headerTitle: (
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Text style={material.title}>YOUR TEAM FEELS</Text>
         </View>
       ),
       headerStyle: {
-        backgroundColor: homeScreenBackgroundColor(),
+        backgroundColor: homeScreenBackgroundColor(navigation.getParam('mood', 'EXCITED')),
         borderBottomWidth: 0,
         height: 35,
       }
@@ -39,62 +64,133 @@ export default class HomeScreen extends React.Component {
 
   onProfileRequested = (username) => {
     console.log("Requested: " + username);
-    let {navigate} = this.props.navigation;
-    navigate('UserProfileScreen', {username: username});
+    let { navigate } = this.props.navigation;
+    navigate('UserProfileScreen', { username: username });
+  }
 
-    /* PART 1: you will want to call the navigate function here */
-    /* this function will be inside of this.props.navigation */
-    /* think of destructing the function "navigate" from inside of your navigation props*/
+  setMoodsOverlayVisible(visible) {
+    this.setState({ moodsOverlayVisible: visible });
+  }
 
-    /* We can only call the navigate function from here because AppNavigation only explicitly defines this as a screen (under the stack that you created). */
-    /* The Feed.js and FeedItem.js are invisible to the app's navigation, therefore they cannot be used to navigate. We must pass everything back to here. */
-
-    /* PART 2: Navigate to your UserProfileScreen.js file */
-    /* Go to AppNavigation.js and see how you declared your UserProfileScreen, then navigate to it by passing it */
-    /* as the first parameter of the navigate function */
-
-    /* PART 3: pass the username on this function as a parameter to the navigate function, below is a prototype*/
-    //navigate('UserProfileScreen' /* make sure name matches what is inside of AppNavigation*/, { username: username });
+  getMoodImage(mood) {
+    if (mood == 'EXCITED') {
+      return require('../Images/excitedface.png')
+    } else if (mood == 'CONTENT') {
+      return require('../Images/happyface.png')
+    } else if (mood == 'BORED') {
+      return require('../Images/boredface.png')
+    } else if (mood == 'STRESSED') {
+      return require('../Images/stressedface.png')
+    } else {
+      return require('../Images/sadface.png')
+    }
   }
 
   render() {
+    const { navigation } = this.props;
+    mood = navigation.getParam('mood', 'EXCITED');
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
         <View style={styles.faceimage}>
-          <Text style={styles.emotiontext}>SAD</Text>
-          <Text style={styles.checkintext}> Last team check-in 4 hours ago</Text>
+          <Text style={{ fontSize: 34, fontWeight: '800', color: accentColor(mood) }}>{mood}</Text>
+          <Text style={styles.checkintext}> Last team check-in 1 min ago</Text>
           <Image
-            source={require("../Images/sadface.png")}
-            style={{margin: 50}}
+            source={this.getMoodImage(mood)}
+            style={{ marginTop: 50, marginBottom: 40, width: width * 0.4, height: 150 }}
           />
         </View>
         <View style={styles.buttonRow}>
           <TouchableOpacity
-          //onPress={() => Alert.alert('Minority Moods')}
+            style={{
+              backgroundColor: '#FFFFFF',
+              paddingVertical: 21,
+              opacity: 0.7,
+              borderRadius: 214,
+              width: 160,
+              height: 63,
+              alignSelf: "center",
+            }}
+            onPress={() => this.setMoodsOverlayVisible(true)}
+          >
+            <Text style={{
+              fontFamily:'Lato-Bold',
+              fontSize: 15,
+              textAlign: 'center'
+            }}> MORE DATA </Text>
+          </TouchableOpacity>
+          <Overlay
+            isVisible={this.state.moodsOverlayVisible}
+            height="75%"
+            width="auto"
+            overlayStyle={styles.moodsOverlay}
+            animationType="slide"
+            windowBackgroundColor="rgba(0, 0, 0, 0)"
+            onBackdropPress={() => this.setMoodsOverlayVisible(false)}
           >
             <Image
-              source={require("../Images/group45.png")}
-              style={styles.buttons}
+              source={require("../Images/moredatapopup.png")}
+              style={{ width: width, height: height * 0.90 }}
+              resizeMode='contain'
+            />
+          </Overlay>
+          <TouchableOpacity
+          style={{
+            backgroundColor: accentColor(mood),
+            paddingVertical: 21,
+            opacity: 0.7,
+            borderRadius: 214,
+            width: 160,
+            height: 63,
+            alignSelf: "center",
+          }}
+            onPress={() => this.props.navigation.navigate('ThoughtsScreen', {mood: mood})}
+          >
+            <Text style={{
+              fontFamily:'Lato-Bold',
+              fontSize: 15,
+              textAlign: 'center',
+              color: '#FFFFFF'
+            }}> WHY? </Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={styles.taskstext}>Tasks Expiring Soon</Text>
+        </View>
+        <View
+          style={styles.tasksColumn}
+        >
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('TasksScreen', {mood: mood})}
+          >
+            <Image
+              source={require("../Images/task1.png")}
+              style={styles.tasks}
               resizeMode='contain'
             />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('ThoughtsScreen')}
+            onPress={() => this.props.navigation.navigate('TasksScreen', {mood: mood})}
           >
             <Image
-              source={require("../Images/group87.png")}
-              style={styles.buttons}
+              source={require("../Images/task2.png")}
+              style={styles.tasks}
+              resizeMode='contain'
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('TasksScreen', {mood: mood})}
+          >
+            <Image
+              source={require("../Images/task3.png")}
+              style={styles.tasks}
               resizeMode='contain'
             />
           </TouchableOpacity>
         </View>
-        <View style={styles.tasks}>
-          <Text>Tasks Expiring Soon</Text>
-        </View>
-        <Feed/>
       </View>
     );
   }
+
 }
 
 const styles = StyleSheet.create({
@@ -105,6 +201,10 @@ const styles = StyleSheet.create({
   buttonRow: {
     flexDirection: "row",
     justifyContent: "center",
+  },
+  tasksColumn: {
+    flexDirection: "column",
+    alignItems: "center",
   },
   buttons: {
     height: 75,
@@ -125,7 +225,18 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     color: 'black',
   },
-  tasks: {
+  taskstext: {
+    fontSize: 20,
     padding: 10,
-  }
+  },
+  tasks: {
+    height: 70,
+    width: width * 0.95,
+  },
+  displayText: {
+    fontSize: 40,
+    fontStyle: 'italic',
+    fontWeight: '200',
+    color: 'black',
+  },
 });
