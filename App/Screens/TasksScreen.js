@@ -35,9 +35,6 @@ const styles = StyleSheet.create({
 export default class HomeScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
-    const params = navigation.state.params || {};
-    mood = navigation.getParam('mood', 'EXCITED');
-
     return {
       headerTitle: (
         <View style={{justifyContent: 'center', alignItems: 'center'}}>

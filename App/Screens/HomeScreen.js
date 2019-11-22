@@ -46,7 +46,6 @@ export default class HomeScreen extends React.Component {
   };
 
   static navigationOptions = ({ navigation }) => {
-    const params = navigation.state.params || {};
 
     return {
       headerTitle: (
@@ -55,18 +54,12 @@ export default class HomeScreen extends React.Component {
         </View>
       ),
       headerStyle: {
-        backgroundColor: homeScreenBackgroundColor(navigation.getParam('mood', 'EXCITED')),
+        backgroundColor: homeScreenBackgroundColor(navigation.getParam('mood')),
         borderBottomWidth: 0,
         height: 35,
       }
     };
   };
-
-  onProfileRequested = (username) => {
-    console.log("Requested: " + username);
-    let { navigate } = this.props.navigation;
-    navigate('UserProfileScreen', { username: username });
-  }
 
   setMoodsOverlayVisible(visible) {
     this.setState({ moodsOverlayVisible: visible });
@@ -88,33 +81,34 @@ export default class HomeScreen extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    mood = navigation.getParam('mood', 'EXCITED');
+    mood = navigation.getParam('mood');
     return (
       <View style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
         <View style={styles.faceimage}>
           <Text style={{ fontSize: 34, fontWeight: '800', color: accentColor(mood) }}>{mood}</Text>
-          <Text style={styles.checkintext}> Last team check-in 1 min ago</Text>
+          <Text style={styles.checkintext}> Last team check-in a few seconds ago</Text>
           <Image
             source={this.getMoodImage(mood)}
-            style={{ marginTop: 50, marginBottom: 40, width: width * 0.4, height: 150 }}
+            style={{ marginTop: 50, marginBottom: 20, height: 150 }}
+            resizeMode='contain'
           />
         </View>
         <View style={styles.buttonRow}>
           <TouchableOpacity
             style={{
               backgroundColor: '#FFFFFF',
-              paddingVertical: 21,
+              paddingTop: 18,
               opacity: 0.7,
-              borderRadius: 214,
+              borderRadius: 100,
               width: 160,
-              height: 63,
+              height: 56,
               alignSelf: "center",
             }}
             onPress={() => this.setMoodsOverlayVisible(true)}
           >
             <Text style={{
               fontFamily:'Lato-Bold',
-              fontSize: 15,
+              fontSize: 16,
               textAlign: 'center'
             }}> MORE DATA </Text>
           </TouchableOpacity>
@@ -136,19 +130,20 @@ export default class HomeScreen extends React.Component {
           <TouchableOpacity
           style={{
             backgroundColor: accentColor(mood),
-            paddingVertical: 21,
             opacity: 0.7,
-            borderRadius: 214,
-            width: 160,
-            height: 63,
-            alignSelf: "center",
+            paddingTop: 18,
+            borderRadius: 100,
+            width: 150,
+            height: 56,
           }}
-            onPress={() => this.props.navigation.navigate('ThoughtsScreen', {mood: mood})}
+            onPress={() => {
+              this.props.navigation.navigate('ThoughtsScreen', {mood: mood});
+            }}
           >
             <Text style={{
               fontFamily:'Lato-Bold',
-              fontSize: 15,
-              textAlign: 'center',
+              fontSize: 16,
+              alignSelf: 'center',
               color: '#FFFFFF'
             }}> WHY? </Text>
           </TouchableOpacity>
@@ -160,7 +155,9 @@ export default class HomeScreen extends React.Component {
           style={styles.tasksColumn}
         >
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('TasksScreen', {mood: mood})}
+            onPress={() => {
+              this.props.navigation.navigate('TasksScreen', {mood: mood});
+            }}
           >
             <Image
               source={require("../Images/task1.png")}
@@ -169,7 +166,9 @@ export default class HomeScreen extends React.Component {
             />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('TasksScreen', {mood: mood})}
+            onPress={() => {
+              this.props.navigation.navigate('TasksScreen', {mood: mood});
+            }}
           >
             <Image
               source={require("../Images/task2.png")}
@@ -178,7 +177,9 @@ export default class HomeScreen extends React.Component {
             />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('TasksScreen', {mood: mood})}
+            onPress={() => {
+              this.props.navigation.navigate('TasksScreen', {mood: mood});
+            }}
           >
             <Image
               source={require("../Images/task3.png")}
@@ -200,7 +201,9 @@ const styles = StyleSheet.create({
   },
   buttonRow: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    margin: 25,
+    marginBottom: 15,
   },
   tasksColumn: {
     flexDirection: "column",
