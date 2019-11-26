@@ -43,9 +43,9 @@ const ThoughtsNav = createStackNavigator({
 })
 
 const TasksNav = createStackNavigator({
-  HomeScreen: {screen: TasksScreen},
+  TasksScreen: {screen: TasksScreen},
 }, {
-  initialRouteName: 'HomeScreen',
+  initialRouteName: 'TasksScreen',
   headerMode: 'float',
   tabBarOptions: {
     activeTintColor: activeColor(),

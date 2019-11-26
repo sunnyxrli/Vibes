@@ -20,41 +20,73 @@ var homeScreenBackgroundColor = (mood) => {
   }
 }
 
-const accentColor = () => {
-    return "#003498";
+var accentColorMuted = (mood) => {
+  if (mood == 'EXCITED') {
+    return 'rgba(181, 0, 108, 0.5)'
+  } else if (mood == 'CONTENT') {
+    return 'rgba(231, 139, 0, 0.5)'
+  } else if (mood == 'BORED') {
+    return 'rgba(221, 93, 0, 0.5)'
+  } else if (mood == 'STRESSED') {
+    return 'rgba(22, 121, 4, 0.5)'
+  } else {
+    return 'rgba(0, 52, 152, 0.5)'
+  }
 }
 
-const styles = StyleSheet.create({
-    heading: {
-        fontFamily: 'Lato-Black',
-        fontSize: 22,
-        textAlign: "center"
-    }
-})
+var accentColor = (mood) => {
+  if (mood == 'EXCITED') {
+    return '#C50A7A'
+  } else if (mood == 'CONTENT') {
+    return '#E78B00'
+  } else if (mood == 'BORED') {
+    return '#DD5D00'
+  } else if (mood == 'STRESSED') {
+    return '#167904'
+  } else {
+    return '#003498'
+  }
+}
 
-export default class HomeScreen extends React.Component {
+export default class TasksScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
+    mood = navigation.getParam('mood');
     return {
       headerTitle: (
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={material.title}>TASKS</Text>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={TasksStyles.heading}>Team Tasks</Text>
         </View>
       ),
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
-        borderBottomWidth: 0,
-        height: 35,
+        borderBottomWidth: 1,
+        borderBottomColor: accentColorMuted(mood),
       }
     };
   };
 
 
-    render() {
-        return (
-          <Text style={TasksStyles.displayText}>Check back soon.</Text>
-        );
-    }
+  render() {
+    const { navigation } = this.props;
+    mood = navigation.getParam('mood');
+    console.log("TASKS")
+    console.log(mood)
+    return (
+      <View style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
+        <Text style={[TasksStyles.title, { left: 15, top: 25 }]}>Tasks You’ve Joined</Text>
+        <TouchableOpacity
+          style={TasksStyles.button}
+          onPress={() => { }}
+        >
+          <Text style={{ top: 20, left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Miami Trip</Text>
+          <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', color: accentColor(mood), left: 22, top: 23 }}> Expires in 1 day </Text>
+        </TouchableOpacity>
+        <Text style={[TasksStyles.title, {left: 15, top: 95}]}>All Tasks</Text>
+
+      </View>
+    );
+  }
 }
 
 const TasksStyles = StyleSheet.create({
@@ -67,4 +99,21 @@ const TasksStyles = StyleSheet.create({
     padding: '15%',
     justifyContent: 'center',
   },
+  heading: {
+    fontFamily: 'Lato-Black',
+    fontSize: 22,
+    textAlign: "center"
+  },
+  title: {
+    fontFamily: 'Lato-Bold',
+    fontSize: 20
+  },
+  button: {
+    width: 345,
+    height: 89,
+    left: 15,
+    top: 43,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+  }
 });
