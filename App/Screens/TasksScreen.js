@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
 import { material } from 'react-native-typography';
 import Feed from '../Components/Feed';
 import Home from '../Screens/HomeScreen';
@@ -74,16 +74,61 @@ export default class TasksScreen extends React.Component {
     console.log(mood)
     return (
       <View style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
-        <Text style={[TasksStyles.title, { left: 15, top: 25 }]}>Tasks You’ve Joined</Text>
-        <TouchableOpacity
-          style={TasksStyles.button}
-          onPress={() => { }}
-        >
-          <Text style={{ top: 20, left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Miami Trip</Text>
-          <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', color: accentColor(mood), left: 22, top: 23 }}> Expires in 1 day </Text>
-        </TouchableOpacity>
-        <Text style={[TasksStyles.title, {left: 15, top: 95}]}>All Tasks</Text>
-
+        <ScrollView>
+          <Text style={[TasksStyles.title, { paddingTop: 25, paddingLeft: 15, paddingBottom: 19 }]}>Tasks You’ve Joined</Text>
+          <TouchableOpacity
+            style={TasksStyles.button}
+            onPress={() => { }}
+          >
+            <Text style={{ top: 20, left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Miami Trip</Text>
+            <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', color: accentColor(mood), left: 22, top: 23 }}> Expires in 1 day </Text>
+          </TouchableOpacity>
+          <Text style={[TasksStyles.title, { paddingTop: 48, paddingLeft: 15, paddingBottom: 8.5 }]}>All Tasks</Text>
+          <View style={TasksStyles.categoryContainer}>
+            <TouchableOpacity
+              onPress={() => { }}
+            >
+              <Image
+                source={require("../Images/TaskCategories/offsites.png")}
+                style={TasksStyles.categoryItem} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => { }}
+            >
+              <Image
+                source={require("../Images/TaskCategories/officeEvents.png")}
+                style={TasksStyles.categoryItem} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => { }}
+            >
+              <Image
+                source={require("../Images/TaskCategories/officeSpace.png")}
+                style={TasksStyles.categoryItem} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => { }}
+            >
+              <Image
+                source={require("../Images/TaskCategories/inclusivity.png")}
+                style={TasksStyles.categoryItem} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => { }}
+            >
+              <Image
+                source={require("../Images/TaskCategories/food.png")}
+                style={TasksStyles.categoryItem} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => { }}
+            >
+              <Image
+                source={require("../Images/TaskCategories/other.png")}
+                style={TasksStyles.categoryItem} />
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -112,8 +157,20 @@ const TasksStyles = StyleSheet.create({
     width: 345,
     height: 89,
     left: 15,
-    top: 43,
     backgroundColor: '#FFFFFF',
     borderRadius: 8,
+  },
+  categoryContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    left: 4.5,
+  },
+  categoryItem: {
+    alignItems: 'center',
+    height: 162,
+    width: 162,
+    margin: 10.5
+    // flex: 1,
+    // margin: 1,
   }
 });

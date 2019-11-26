@@ -103,3 +103,16 @@ CheckInScreen.navigationOptions = ({ navigation }) => {
 
 const AppContainer = createAppContainer(TabNav);
 export default AppContainer;
+
+// export default class AppNavigation extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {mood: 'EXCITED'};
+//   }
+//   componentDidMount() {
+//     this.onLoadMood().then((mood) => this.setState({ mood: mood }));
+//   }
+//   render() {
+//     return(<AppContainer screenProps={{ mood: this.state.mood}} />)
+//   }
+// }
