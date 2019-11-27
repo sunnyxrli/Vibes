@@ -51,7 +51,6 @@ var accentColor = (mood) => {
 export default class TasksScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
-    mood = navigation.getParam('mood');
     return {
       headerTitle: (
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -68,10 +67,6 @@ export default class TasksScreen extends React.Component {
 
 
   render() {
-    const { navigation } = this.props;
-    mood = navigation.getParam('mood');
-    console.log("TASKS")
-    console.log(mood)
     return (
       <View style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
         <ScrollView>
