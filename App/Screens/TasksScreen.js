@@ -81,7 +81,7 @@ export default class TasksScreen extends React.Component {
           <View style={TasksStyles.categoryContainer}>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { }}
+              onPress={() => {this.props.navigation.navigate('OffsitesScreen')}}
             >
               <Image
                 source={require("../Images/TaskCategories/offsites.png")}
@@ -92,7 +92,7 @@ export default class TasksScreen extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { }}
+              onPress={() => {this.props.navigation.navigate('OfficeEventsScreen')}}
             >
               <Image
                 source={require("../Images/TaskCategories/officeEvents.png")}
@@ -103,7 +103,7 @@ export default class TasksScreen extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { }}
+              onPress={() => {this.props.navigation.navigate('OfficeSpaceScreen')}}
             >
               <Image
                 source={require("../Images/TaskCategories/officeSpace.png")}
@@ -114,7 +114,7 @@ export default class TasksScreen extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { }}
+              onPress={() => {this.props.navigation.navigate('InclusivityScreen')}}
             >
               <Image
                 source={require("../Images/TaskCategories/inclusivity.png")}
@@ -125,7 +125,7 @@ export default class TasksScreen extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { }}
+              onPress={() => {this.props.navigation.navigate('FoodScreen')}}
             >
               <Image
                 source={require("../Images/TaskCategories/food.png")}
@@ -136,7 +136,7 @@ export default class TasksScreen extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { }}
+              onPress={() => {this.props.navigation.navigate('OtherScreen')}}
             >
               <Image
                 source={require("../Images/TaskCategories/other.png")}
@@ -178,7 +178,6 @@ const TasksStyles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     borderColor: '#BDBDBD'
-    
   },
   categoryContainer: {
     flexDirection: 'row',

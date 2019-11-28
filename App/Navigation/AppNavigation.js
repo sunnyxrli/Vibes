@@ -9,6 +9,12 @@ import HomeScreen from '../Screens/HomeScreen'
 import ThoughtsScreen from '../Screens/ThoughtsScreen'
 import CheckInScreen from '../Screens/CheckInScreen'
 import TasksScreen from '../Screens/TasksScreen'
+import OffsitesScreen from '../Screens/TaskCategoryScreens/OffsitesScreen'
+import OfficeEventsScreen from '../Screens/TaskCategoryScreens/OfficeEventsScreen'
+import OfficeSpaceScreen from '../Screens/TaskCategoryScreens/OfficeSpaceScreen'
+import InclusivityScreen from '../Screens/TaskCategoryScreens/InclusivityScreen'
+import OtherScreen from '../Screens/TaskCategoryScreens/OtherScreen'
+import FoodScreen from '../Screens/TaskCategoryScreens/FoodScreen'
 
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import icoMoonConfig from '../../selection.json';
@@ -44,6 +50,12 @@ const ThoughtsNav = createStackNavigator({
 
 const TasksNav = createStackNavigator({
   TasksScreen: {screen: TasksScreen},
+  OffsitesScreen: {screen: OffsitesScreen},
+  OfficeEventsScreen: {screen: OfficeEventsScreen},
+  OfficeSpaceScreen: {screen: OfficeSpaceScreen},
+  InclusivityScreen: {screen: InclusivityScreen},
+  FoodScreen: {screen: FoodScreen},
+  OtherScreen: {screen: OtherScreen}
 }, {
   initialRouteName: 'TasksScreen',
   headerMode: 'float',
