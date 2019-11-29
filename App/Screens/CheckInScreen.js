@@ -136,11 +136,11 @@ export default class CheckInScreen extends React.Component {
         colors={this.getBackgroundColor()}
         style={styles.root}
       >
-        <View width={296} top={-30}>
-          <Text style={{ fontFamily: 'Lato-Regular', fontSize: 31.5, textAlign: 'center' }}>
+        {/* //<View width={296} top={-30}> */}
+          <Text style={{ width: 296, fontFamily: 'Lato-Regular', fontSize: 31.5, textAlign: 'center' }}>
             How have you been feeling this morning?
           </Text>
-        </View>
+        {/* </View> */}
         <View style={styles.sliderAndButton}>
           <CircularSlider
             width={381}
@@ -154,7 +154,7 @@ export default class CheckInScreen extends React.Component {
             mouthHOffset={this.getMouthHOffset()}
             onValueChange={(value) => this.setMood(value)}>
           </CircularSlider>
-          <Text style={{ fontFamily: 'Lato-Black', fontSize: 45, textAlign: 'center' }}>
+          <Text style={{ fontFamily: 'Lato-Black', fontSize: 45, textAlign: 'center', top: -20}}>
             {this.state.mood}
           </Text>
 
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     width: 220,
     height: 63,
     alignSelf: "center",
-    top: 55
+    top: 25
   },
   buttonText: {
     fontFamily: 'Lato-Black',
@@ -212,7 +212,6 @@ const styles = StyleSheet.create({
   sliderAndButton: {
     flexDirection: "column",
     justifyContent: "center",
-    top: -10
   },
 })
 

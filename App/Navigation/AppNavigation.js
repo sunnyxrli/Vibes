@@ -9,6 +9,12 @@ import HomeScreen from '../Screens/HomeScreen'
 import ThoughtsScreen from '../Screens/ThoughtsScreen'
 import CheckInScreen from '../Screens/CheckInScreen'
 import TasksScreen from '../Screens/TasksScreen'
+import OffsitesScreen from '../Screens/TaskCategoryScreens/OffsitesScreen'
+import OfficeEventsScreen from '../Screens/TaskCategoryScreens/OfficeEventsScreen'
+import OfficeSpaceScreen from '../Screens/TaskCategoryScreens/OfficeSpaceScreen'
+import InclusivityScreen from '../Screens/TaskCategoryScreens/InclusivityScreen'
+import OtherScreen from '../Screens/TaskCategoryScreens/OtherScreen'
+import FoodScreen from '../Screens/TaskCategoryScreens/FoodScreen'
 
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import icoMoonConfig from '../../selection.json';
@@ -43,9 +49,15 @@ const ThoughtsNav = createStackNavigator({
 })
 
 const TasksNav = createStackNavigator({
-  HomeScreen: {screen: TasksScreen},
+  TasksScreen: {screen: TasksScreen},
+  OffsitesScreen: {screen: OffsitesScreen},
+  OfficeEventsScreen: {screen: OfficeEventsScreen},
+  OfficeSpaceScreen: {screen: OfficeSpaceScreen},
+  InclusivityScreen: {screen: InclusivityScreen},
+  FoodScreen: {screen: FoodScreen},
+  OtherScreen: {screen: OtherScreen}
 }, {
-  initialRouteName: 'HomeScreen',
+  initialRouteName: 'TasksScreen',
   headerMode: 'float',
   tabBarOptions: {
     activeTintColor: activeColor(),
@@ -103,3 +115,16 @@ CheckInScreen.navigationOptions = ({ navigation }) => {
 
 const AppContainer = createAppContainer(TabNav);
 export default AppContainer;
+
+// export default class AppNavigation extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {mood: 'EXCITED'};
+//   }
+//   componentDidMount() {
+//     this.onLoadMood().then((mood) => this.setState({ mood: mood }));
+//   }
+//   render() {
+//     return(<AppContainer screenProps={{ mood: this.state.mood}} />)
+//   }
+// }
