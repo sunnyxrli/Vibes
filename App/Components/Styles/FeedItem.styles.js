@@ -10,23 +10,22 @@ export default StyleSheet.create({
   },
   item: {
     borderWidth: 1,
-    borderColor: 'blue',
     margin: 5,
-    padding: 5,
-    borderRadius: 4,
+    marginTop: 3,
+    padding: 2,
+    borderRadius: 6,
   },
   upperRow: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginLeft: Metrics.marginHorizontal,
-    marginRight: Metrics.marginHorizontal,
+    padding: 5,
   },
   lowerRow: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginLeft: Metrics.marginHorizontal,
+    marginTop: 15,
+    marginLeft: 40,
     marginRight: Metrics.marginHorizontal,
   },
   mainImageContainer: {
@@ -36,7 +35,6 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    //alignItems: 'center',
     marginTop: Metrics.marginVertical,
     marginLeft: 200,
     marginRight: Metrics.marginHorizontal,
@@ -44,6 +42,10 @@ export default StyleSheet.create({
   descContainer: {
     marginLeft: Metrics.marginHorizontal,
     marginRight: Metrics.marginHorizontal,
+  },
+  textContainer: {
+    marginLeft: Metrics.marginHorizontal,
+    marginRight: 50,
   },
   dateContainer: {
     marginLeft: Metrics.marginHorizontal,

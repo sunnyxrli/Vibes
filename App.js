@@ -29,15 +29,6 @@ export default class App extends React.Component {
         this.setState({ fontLoaded: true });
     }
 
-    // save = async (name) => {
-    //     try {
-    //         await AsyncStorage.setItem(STORAGE_KEY, name)
-    //         this.setState({ name })
-    //     } catch (e) {
-    //         console.error('Failed to save name.')
-    //     }
-    // }
-
     render() {
         if (this.state.fontLoaded) {
             return <AppNavigation />

@@ -14,7 +14,7 @@ var homeScreenBackgroundColor = (mood) => {
   } else if (mood == 'BORED') {
     return '#FEBB58'
   } else if (mood == 'STRESSED') {
-    return '#8EDA80'
+    return '#81CE63'
   } else {
     return '#95B3ED'
   }
@@ -34,12 +34,33 @@ const styles = StyleSheet.create({
 
 export default class HomeScreen extends React.Component {
 
-
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: (
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{flexDirection: 'row', flex: 1, justifyContent: "space-evenly", alignItems: "center"}}>
+          <Image
+            source={require("../Images/write.png")}
+            style={{ width: 25, height: 25, opacity: 0}}
+          />
+          <Image
+            source={require("../Images/write.png")}
+            style={{ width: 25, height: 25, opacity: 0}}
+          />
           <Text style={material.title}>TEAM THOUGHTS</Text>
+          <Image
+            source={require("../Images/write.png")}
+            style={{ width: 25, height: 25, opacity: 0}}
+          />
+          <TouchableOpacity
+          style={{marginRight: 0}}
+          onPress={() => {
+            this.props.navigation.navigate('ThoughtsScreen', {mood: mood});
+          }}>
+            <Image
+              source={require("../Images/write.png")}
+              style={{ width: 25, height: 25, justifyContent: "center"}}
+            />
+          </TouchableOpacity>
         </View>
       ),
       headerStyle: {
@@ -49,6 +70,22 @@ export default class HomeScreen extends React.Component {
       }
     };
   };
+
+  state = {
+    moodColor: homeScreenBackgroundColor(mood),
+  };
+
+
+
+  componentDidMount(){
+    setInterval(() => (
+      this.state.moodColor != homeScreenBackgroundColor(mood) ?
+        this.setState(moodColor => (
+          { moodColor: homeScreenBackgroundColor(mood) }
+        )) : ""
+    ), 500);
+  }
+
 
   onProfileRequested = (username) => {
     let {navigate} = this.props.navigation;
@@ -63,7 +100,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={thoughtsStyles.container}>
-        <ThoughtsFeed onProfileRequested={this.onProfileRequested}/>
+        <ThoughtsFeed onProfileRequested={this.onProfileRequested} accentColor={this.state.moodColor}/>
       </View>
     );
   }

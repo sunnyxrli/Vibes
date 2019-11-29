@@ -161,10 +161,9 @@ export default class CheckInScreen extends React.Component {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              this.props.navigation.navigate('HomeScreen', {mood: this.state.mood});
-
+              this.props.navigation.navigate('HomeScreen', {mood: this.state.mood})
             }}
-          >
+            >
             <Text style={styles.buttonText}> Check In </Text>
           </TouchableOpacity>
         </View>

@@ -14,25 +14,44 @@ import OfficeEventsScreen from '../Screens/TaskCategoryScreens/OfficeEventsScree
 import OfficeSpaceScreen from '../Screens/TaskCategoryScreens/OfficeSpaceScreen'
 import InclusivityScreen from '../Screens/TaskCategoryScreens/InclusivityScreen'
 import OtherScreen from '../Screens/TaskCategoryScreens/OtherScreen'
-import FoodScreen from '../Screens/TaskCategoryScreens/FoodScreen'
+import FoodScreen from '../Screens/TaskCategoryScreens/FoodScreen';
+
+import firestore from '../../firebase.js';
+import firebase from 'firebase';
 
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import icoMoonConfig from '../../selection.json';
 const expoAssetId = require("../../assets/fonts/icomoon.ttf");
 const CustomIcon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon', expoAssetId);
 
-const activeColor = () => {
-    return '#000000'
+const activeColor = async () => {
+  var maxColorRef = firestore.collection('currentMaxColor').doc('currentMaxColor');
+  let oneColor = await maxColorRef.get();
+  console.log(oneColor.data().color);
+  ready = true;
+  return('green');
 }
 
-// Manifest of possible screens
+
+const getColor = () => {
+  var maxColorRef = firestore.collection('currentMaxColor').doc('currentMaxColor');
+  var currentMaxColor = "";
+  maxColorRef.get().then(function(maxColorRef) {
+      if (maxColorRef.exists) {
+          currentMaxColor = maxColorRef.data().color;
+          console.log(currentMaxColor);
+          return currentMaxColor;
+      }
+  });
+}
+
 const MajMoodNav = createStackNavigator({
   HomeScreen: { screen: HomeScreen },
 }, {
   initialRouteName: 'HomeScreen',
   headerMode: 'float',
   tabBarOptions: {
-    activeTintColor: activeColor(),
+    activeTintColor: '',
     inactiveTintColor: '#DADADA',
   },
 })
@@ -43,7 +62,7 @@ const ThoughtsNav = createStackNavigator({
   initialRouteName: 'ThoughtsScreen',
   headerMode: 'float',
   tabBarOptions: {
-    activeTintColor: activeColor(),
+    activeTintColor: 'red',
     inactiveTintColor: '#DADADA',
   },
 })
@@ -60,25 +79,24 @@ const TasksNav = createStackNavigator({
   initialRouteName: 'TasksScreen',
   headerMode: 'float',
   tabBarOptions: {
-    activeTintColor: activeColor(),
+    activeTintColor: 'green',
     inactiveTintColor: '#DADADA',
   },
 })
 
 const TabNav = createBottomTabNavigator({
-  CheckInScreen: { screen: CheckInScreen },
-  MajMoodScreen: { screen: MajMoodNav },
-  ThoughtsScreen: { screen: ThoughtsNav },
-  TasksScreen: { screen: TasksNav },
-}, {
-  // Default config for all screens
-  initialRouteName: 'CheckInScreen',
-  tabBarOptions: {
-    activeTintColor: activeColor(),
-    inactiveTintColor: '#DADADA',
-    showLabel: false,
-  },
-})
+    CheckInScreen: { screen: CheckInScreen },
+    MajMoodScreen: { screen: MajMoodNav },
+    ThoughtsScreen: { screen: ThoughtsNav },
+    TasksScreen: { screen: TasksNav },
+  }, {
+    initialRouteName: 'CheckInScreen',
+    tabBarOptions: {
+      activeTintColor: '#222',
+      inactiveTintColor: '#DADADA',
+      showLabel: false,
+    },
+  })
 
 MajMoodNav.navigationOptions = ({ navigation }) => {
   return {
@@ -111,7 +129,6 @@ CheckInScreen.navigationOptions = ({ navigation }) => {
     ),
   };
 };
-
 
 const AppContainer = createAppContainer(TabNav);
 export default AppContainer;

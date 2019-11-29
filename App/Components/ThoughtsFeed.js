@@ -16,6 +16,8 @@ export default class ThoughtsFeed extends React.Component {
   state = {
     loading: true,
     feedEntries: [],
+    moodColor: "",
+    new: true,
   }
 
   componentDidMount(){
@@ -24,22 +26,30 @@ export default class ThoughtsFeed extends React.Component {
     } else {
       this.getFeedData();
     }
+    setInterval(() => (
+      this.state.moodColor != this.props.accentColor ?
+        this.getFeedData() : ""
+    ), 500);
   }
 
   getFeedData = async () => {
+      this.setState({loading: true});
       try {
-        this.setState({loading: true});
         let feedEntriesRef = firestore.collection('Thoughts');
         let allEntries = await feedEntriesRef.get();
-        allEntries.forEach((thought) => {
-          this.state.feedEntries.push(thought.data());  // Dont forget to do .data()....
-        })
+        if(this.state.new) {
+          allEntries.forEach((thought) => {
+            this.state.feedEntries.push(thought.data());
+          })
+        }
       } catch (error) {
         console.log(error);
       }
       this.setState({loading: false});
+      this.setState({moodColor: this.props.accentColor});
+      this.setState({new: false})
       return ([]);
-    }
+  }
 
   onProfilePressed = (username) => {
     if(username) {
@@ -52,6 +62,7 @@ export default class ThoughtsFeed extends React.Component {
       <ThoughtsFeedItem
         content={item}
         onProfilePressed={this.onProfilePressed}
+        accentColor={this.props.accentColor}
       />
     );
   }
