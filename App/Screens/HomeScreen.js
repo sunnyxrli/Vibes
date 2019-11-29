@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Ima
 import { material } from 'react-native-typography';
 import { Metrics } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
-import Feed from '../Components/Feed';
 import firestore from '../../firebase.js';
 import firebase from 'firebase';
 import { Overlay } from "react-native-elements";
@@ -151,9 +150,7 @@ export default class HomeScreen extends React.Component {
         <View>
           <Text style={styles.taskstext}>Tasks Expiring Soon</Text>
         </View>
-        <View
-          style={styles.tasksColumn}
-        >
+        <View style={styles.tasksColumn}>
           <TouchableOpacity
             onPress={() => {
               this.props.navigation.navigate('TasksScreen', {mood: mood});

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { material } from 'react-native-typography';
-import Feed from '../Components/Feed';
+import ThoughtsFeed from '../Components/ThoughtsFeed';
 import Home from '../Screens/HomeScreen';
 
 var { height, width } = Dimensions.get('window');
@@ -50,15 +50,30 @@ export default class HomeScreen extends React.Component {
     };
   };
 
-
-    render() {
-        return (
-          <Text style={thoughtsStyles.displayText}>Check back soon.</Text>
-        );
+  onProfileRequested = (username) => {
+    let {navigate} = this.props.navigation;
+    if(username == "create") {
+      navigate('UserProfileScreen', {username: username});
     }
+    else {
+      navigate('UserProfileScreen', {username: username});
+    }
+  }
+
+  render() {
+    return (
+      <View style={thoughtsStyles.container}>
+        <ThoughtsFeed onProfileRequested={this.onProfileRequested}/>
+      </View>
+    );
+  }
 }
 
 const thoughtsStyles = StyleSheet.create({
+  container: {
+    marginTop: 10,
+    flex: 1,
+  },
   displayText: {
     flex: 1,
     fontSize: 40,

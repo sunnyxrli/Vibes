@@ -4,13 +4,25 @@ import { Metrics, Images, Colors } from '../../Themes';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'column',
     backgroundColor: Colors.white,
-    paddingTop: Metrics.doubleBaseMargin,
-    paddingBottom: Metrics.doubleBaseMargin,
+    marginTop: 5,
   },
-  userContainer: {
+  item: {
+    borderWidth: 1,
+    borderColor: 'blue',
+    margin: 5,
+    padding: 5,
+    borderRadius: 4,
+  },
+  upperRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginLeft: Metrics.marginHorizontal,
+    marginRight: Metrics.marginHorizontal,
+  },
+  lowerRow: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
