@@ -53,7 +53,11 @@ export default class HomeScreen extends React.Component {
 
     render() {
         return (
-          <Text style={thoughtsStyles.displayText}>Check back soon.</Text>
+          <TouchableOpacity
+            onPress={() => {this.props.navigation.navigate('CreateTaskOne')}}
+          >
+            <Text style={thoughtsStyles.displayText}>Go to Create Task Page</Text>
+          </TouchableOpacity>
         );
     }
 }
