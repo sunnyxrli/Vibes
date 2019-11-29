@@ -29,10 +29,10 @@ export default class ThoughtsFeedItem extends React.Component {
 
     return (
       <View style={styles.item}>
-        <View style={style.upperRow}>
+        <View style={styles.upperRow}>
           <Text style={material.headline}>{content.text}</Text>
         </View>
-        <View style={style.lowerRow}>
+        <View style={styles.lowerRow}>
           <Entypo
             name="heart"
             size={Metrics.icons.small}
