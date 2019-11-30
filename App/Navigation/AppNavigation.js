@@ -14,10 +14,10 @@ import OfficeEventsScreen from '../Screens/TaskCategoryScreens/OfficeEventsScree
 import OfficeSpaceScreen from '../Screens/TaskCategoryScreens/OfficeSpaceScreen'
 import InclusivityScreen from '../Screens/TaskCategoryScreens/InclusivityScreen'
 import OtherScreen from '../Screens/TaskCategoryScreens/OtherScreen'
-import FoodScreen from '../Screens/TaskCategoryScreens/FoodScreen';
-
-import firestore from '../../firebase.js';
-import firebase from 'firebase';
+import FoodScreen from '../Screens/TaskCategoryScreens/FoodScreen'
+import CreateTaskOne from '../Screens/CreateTaskOne'
+import CreateTaskTwo from '../Screens/CreateTaskTwo'
+import CreateTaskThree from '../Screens/CreateTaskThree'
 
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import icoMoonConfig from '../../selection.json';
@@ -58,6 +58,9 @@ const MajMoodNav = createStackNavigator({
 
 const ThoughtsNav = createStackNavigator({
   ThoughtsScreen: { screen: ThoughtsScreen },
+  CreateTaskOne: { screen: CreateTaskOne },
+  CreateTaskTwo: { screen: CreateTaskTwo },
+  CreateTaskThree: { screen: CreateTaskThree },
 }, {
   initialRouteName: 'ThoughtsScreen',
   headerMode: 'float',
