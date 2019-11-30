@@ -54,7 +54,7 @@ export default class HomeScreen extends React.Component {
           <TouchableOpacity
           style={{marginRight: 0}}
           onPress={() => {
-            this.props.navigation.navigate('ThoughtsScreen', {mood: mood});
+            navigation.navigate('AddThoughtScreen', {mood: mood});
           }}>
             <Image
               source={require("../Images/write.png")}

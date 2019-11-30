@@ -7,6 +7,7 @@ import { StyleSheet, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import HomeScreen from '../Screens/HomeScreen'
 import ThoughtsScreen from '../Screens/ThoughtsScreen'
+import AddThoughtScreen from '../Screens/AddThoughtScreen.js'
 import CheckInScreen from '../Screens/CheckInScreen'
 import TasksScreen from '../Screens/TasksScreen'
 import OffsitesScreen from '../Screens/TaskCategoryScreens/OffsitesScreen'
@@ -61,6 +62,7 @@ const ThoughtsNav = createStackNavigator({
   CreateTaskOne: { screen: CreateTaskOne },
   CreateTaskTwo: { screen: CreateTaskTwo },
   CreateTaskThree: { screen: CreateTaskThree },
+  AddThoughtScreen: { screen: AddThoughtScreen}
 }, {
   initialRouteName: 'ThoughtsScreen',
   headerMode: 'float',

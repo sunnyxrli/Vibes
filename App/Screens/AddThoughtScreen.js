@@ -80,7 +80,7 @@ export default class ThoughtsScreen extends React.Component {
         profile: this.state.anonymous ? "anon" : "charlie",
         text: this.state.thoughtText,
     })
-    this.props.navigation.navigate('ThoughtsScreen', {getFeedData()});
+    this.props.navigation.navigate('ThoughtsScreen', {mood: true});
   }
 
   componentDidMount(){

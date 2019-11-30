@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
 import { material } from 'react-native-typography';
-import Feed from '../Components/Feed';
 import Home from '../Screens/HomeScreen';
 
 var { height, width } = Dimensions.get('window');
