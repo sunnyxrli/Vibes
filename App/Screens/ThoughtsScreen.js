@@ -20,6 +20,20 @@ var homeScreenBackgroundColor = (mood) => {
   }
 }
 
+var thoughtsBackgroundColor = (mood) => {
+  if (mood == 'EXCITED') {
+    return '#F291C7'
+  } else if (mood == 'CONTENT') {
+    return '#EDC63C'
+  } else if (mood == 'BORED') {
+    return '#FEBB58'
+  } else if (mood == 'STRESSED') {
+    return '#81CE63'
+  } else {
+    return '#95B3ED'
+  }
+}
+
 const accentColor = () => {
     return "#003498";
 }
@@ -46,7 +60,7 @@ export default class HomeScreen extends React.Component {
             source={require("../Images/write.png")}
             style={{ width: 25, height: 25, opacity: 0}}
           />
-          <Text style={material.title}>TEAM THOUGHTS</Text>
+          <Text style={{fontSize: 20, fontWeight: "500"}}>TEAM THOUGHTS</Text>
           <Image
             source={require("../Images/write.png")}
             style={{ width: 25, height: 25, opacity: 0}}
@@ -72,16 +86,16 @@ export default class HomeScreen extends React.Component {
   };
 
   state = {
-    moodColor: homeScreenBackgroundColor(mood),
+    moodColor: thoughtsBackgroundColor(mood),
   };
 
 
 
   componentDidMount(){
     setInterval(() => (
-      this.state.moodColor != homeScreenBackgroundColor(mood) ?
+      this.state.moodColor != thoughtsBackgroundColor(mood) ?
         this.setState(moodColor => (
-          { moodColor: homeScreenBackgroundColor(mood) }
+          { moodColor: thoughtsBackgroundColor(mood) }
         )) : ""
     ), 500);
   }
@@ -98,9 +112,12 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
+    const params = this.props.navigation.state.params || {};
+    const getnew = params.getnew;
+    const text = params.text;
     return (
       <View style={thoughtsStyles.container}>
-        <ThoughtsFeed onProfileRequested={this.onProfileRequested} accentColor={this.state.moodColor}/>
+        <ThoughtsFeed onProfileRequested={this.onProfileRequested} accentColor={this.state.moodColor} getNewData={getnew} text={text}/>
       </View>
     );
   }

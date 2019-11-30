@@ -12,8 +12,8 @@ import ProfileImages from './ProfileImageCollection.js';
 var textAccentColor = (color) => {
   if (color == '#F291C7') {
     return '#C50A7A'
-  } else if (color == '#FCE781') {
-    return '#E78B00'
+  } else if (color == '#EDC63C') {
+    return '#E7A600'
   } else if (color == '#FEBB58') {
     return '#DD5D00'
   } else if (color == '#81CE63') {

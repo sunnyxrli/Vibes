@@ -7,6 +7,7 @@ import firestore from '../../firebase.js';
 import firebase from 'firebase';
 import { Overlay } from "react-native-elements";
 import TaskImages from '../../App/Components/TaskImageCollection.js';
+import OverlayImages from '../../App/Components/OverlayImageCollection.js';
 
 var { height, width } = Dimensions.get('window');
 
@@ -28,7 +29,7 @@ var accentColor = (mood) => {
   if (mood == 'EXCITED') {
     return '#C50A7A'
   } else if (mood == 'CONTENT') {
-    return '#E78B00'
+    return '#E7A600'
   } else if (mood == 'BORED') {
     return '#DD5D00'
   } else if (mood == 'STRESSED') {
@@ -49,15 +50,21 @@ export default class HomeScreen extends React.Component {
 
     return {
       headerTitle: (
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={material.title}>YOUR TEAM FEELS</Text>
-        </View>
+        <Text style={{fontSize: 20, fontWeight: "500", alignSelf: "center",
+          marginLeft: "auto",
+          marginRight: "auto"}}>YOUR TEAM FEELS</Text>
       ),
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(navigation.getParam('mood')),
         borderBottomWidth: 0,
         height: 35,
-      }
+      },
+      headerTitleStyle: {
+        flex: 1,
+        alignSelf: "center",
+        marginLeft: "auto",
+        marginRight: "auto"
+      },
     };
   };
 
@@ -122,8 +129,8 @@ export default class HomeScreen extends React.Component {
             onBackdropPress={() => this.setMoodsOverlayVisible(false)}
           >
             <Image
-              source={require("../Images/moredatapopup.png")}
-              style={{ width: width, height: height}}
+              source={OverlayImages[mood]}
+              style={{ width: width, height: height * 0.95}}
               resizeMode='contain'
             />
           </Overlay>
@@ -186,13 +193,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     margin: 25,
-    marginLeft: height<800 ? 45 : 25,
-    marginRight: height<800 ? 45 : 25,
+    marginLeft: (height<800 && height>700) ? 45 : 25,
+    marginRight: (height<800 && height>700)? 45 : 25,
     marginBottom: 15,
   },
   tasksColumn: {
-    flexDirection: "column",
-    alignItems: "center",
+    flex: 1,
+    alignItems: "center"
   },
   faceimage: {
     alignItems: "center",
@@ -213,9 +220,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   tasks: {
-    height: 70,
+    height: height * 0.1,
     width: width * 0.95,
-    margin: height<800 ? 2: 0,
+    margin: (height<800) ? 1: 0,
   },
   displayText: {
     fontSize: 40,

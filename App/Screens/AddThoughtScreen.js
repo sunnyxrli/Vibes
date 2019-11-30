@@ -28,7 +28,7 @@ var accentColor = (mood) => {
   if (mood == 'EXCITED') {
     return '#B5006C'
   } else if (mood == 'CONTENT') {
-    return '#E78B00'
+    return '#E7A600'
   } else if (mood == 'BORED') {
     return '#DD5D00'
   } else if (mood == 'STRESSED') {
@@ -53,10 +53,11 @@ export default class ThoughtsScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
+      headerRight:<View style={{padding:6}}></View>,
       headerTitle: (
-        <View style={{flexDirection: 'row', flex: 1, justifyContent: "center"}}>
-          <Text style={material.title}>ADD THOUGHT</Text>
-        </View>
+        <Text style={{fontSize: 20, fontWeight: "500", alignSelf: "center",
+          marginLeft: "auto",
+          marginRight: "auto"}}>ADD THOUGHT</Text>
       ),
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
@@ -72,15 +73,16 @@ export default class ThoughtsScreen extends React.Component {
   };
 
   postThought(){
-    var date = new Date();
-    console.log(date);
+    var tempDate = new Date();
+    var date = tempDate.getFullYear() + '' + (tempDate.getMonth()+1) + '' + tempDate.getDate() + '' + tempDate.getHours() + '' + tempDate.getMinutes() + '' + tempDate.getSeconds();
+    date = 120191231245959 - date;
     firestore.collection("Thoughts").doc(date.toString()).set({
         action: "create",
         favs: "",
         profile: this.state.anonymous ? "anon" : "charlie",
         text: this.state.thoughtText,
     })
-    this.props.navigation.navigate('ThoughtsScreen', {mood: true});
+    this.props.navigation.navigate('ThoughtsScreen', {getnew: true, text: this.state.thoughtText});
   }
 
   componentDidMount(){
@@ -136,7 +138,6 @@ export default class ThoughtsScreen extends React.Component {
   }
 
   getTabContent = () => {
-    console.log(this.state.anonymous)
     return (
       <View style={{marginTop: 10, alignSelf: "center", flexDirection: "row"}}>
         <View style={{opacity: this.state.anonymous ? 1 : 0.2}}>

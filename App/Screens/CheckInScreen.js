@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, AppRegistry, Alert, TouchableOpacity, Image, Di
 import { LinearGradient } from 'expo-linear-gradient';
 import CircularSlider from '../Components/CircularSlider';
 
+var { height, width } = Dimensions.get('window');
+
 
 const homeScreenBackgroundColor = () => {
   return "#95B3ED";
@@ -200,7 +202,7 @@ const styles = StyleSheet.create({
     width: 220,
     height: 63,
     alignSelf: "center",
-    top: 25
+    top: height * 0.02,
   },
   buttonText: {
     fontFamily: 'Lato-Black',
