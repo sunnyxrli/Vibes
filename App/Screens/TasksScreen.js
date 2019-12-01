@@ -59,7 +59,7 @@ export default class TasksScreen extends React.Component {
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
-        height: height * 0.04,
+        height: height * 0.05,
       },
     };
   };
@@ -162,14 +162,9 @@ const TasksStyles = StyleSheet.create({
     padding: '15%',
     justifyContent: 'center',
   },
-  heading: {
-    fontFamily: 'Lato-Black',
-    fontSize: 22,
-    textAlign: "center"
-  },
   title: {
     fontFamily: 'Lato-Bold',
-    fontSize: 20
+    fontSize: height * 0.025
   },
   task: {
     width: 345,
@@ -196,10 +191,10 @@ const TasksStyles = StyleSheet.create({
     justifyContent: 'center'
   },
   headerText: {
-    fontSize: height * 0.03,
-    fontWeight: "500",
+    fontSize: height * 0.025,
     alignSelf: "center",
     marginLeft: "auto",
-    marginRight: "auto"
+    marginRight: "auto",
+    fontFamily: 'Lato-Black'
   }
 });

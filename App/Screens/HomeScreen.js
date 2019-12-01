@@ -51,7 +51,7 @@ export default class HomeScreen extends React.Component {
 
     return {
       headerTitle: (
-        <Text style={styles.headerText}>YOUR TEAM FEELS</Text>
+        <Text style={styles.headerText}>Your team feels</Text>
       ),
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(navigation.getParam('mood')),
@@ -80,7 +80,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
         <View style={styles.faceimage}>
-          <Text style={{ fontSize: height * 0.05, fontWeight: '800', color: accentColor(mood) }}>{mood}</Text>
+          <Text style={{ fontSize: height * 0.05, fontFamily: 'Lato-Black', color: accentColor(mood) }}>{mood}</Text>
           <Text style={styles.checkintext}> Last team check-in a few seconds ago</Text>
           <Image
             source={FaceImages[mood]}
@@ -203,8 +203,8 @@ const styles = StyleSheet.create({
     color: accentColor(),
   },
   checkintext: {
-    fontSize: height * 0.025,
-    fontStyle: 'italic',
+    fontSize: height * 0.024,
+    fontFamily: 'Lato-Italic',
     fontWeight: '200',
     color: 'black',
   },
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: height * 0.03,
-    fontWeight: "500",
+    fontFamily: 'Lato-Regular',
     alignSelf: "center",
     marginLeft: "auto",
     marginRight: "auto"

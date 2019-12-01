@@ -72,7 +72,7 @@ export default class HomeScreen extends React.Component {
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
-        height: height * 0.04,
+        height: height * 0.05,
       }
     };
   };
@@ -136,10 +136,10 @@ const thoughtsStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerText: {
-    fontSize: height * 0.03,
-    fontWeight: "500",
+    fontSize: height * 0.025,
     alignSelf: "center",
     marginLeft: "auto",
-    marginRight: "auto"
+    marginRight: "auto",
+    fontFamily: 'Lato-Black'
   }
 });
