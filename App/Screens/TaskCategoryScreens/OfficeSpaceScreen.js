@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
-
+import TaskHoliday  from '../../Screens/TaskHoliday.js';
+import TaskCreativeSpace  from '../../Screens/TaskCreativeSpace.js';
 var { height, width } = Dimensions.get('window');
 
 var homeScreenBackgroundColor = (mood) => {
@@ -57,7 +58,7 @@ export default class OfficeSpaceScreen extends React.Component {
             <View style={OfficeSpaceStyles.tasksContainer}>
                 <TouchableOpacity
                     style={[OfficeSpaceStyles.task, { justifyContent: 'center', marginTop: 20 }]}
-                    onPress={() => { }}
+                    onPress={() => { this.props.navigation.navigate('TaskCreativeSpace', {mood: mood});}}
                 >
                     <Text style={{ left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Creative Office Space!</Text>
                     <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', color: accentColor(mood), left: 22 }}> Expires in 2 days </Text>
@@ -65,7 +66,7 @@ export default class OfficeSpaceScreen extends React.Component {
 
                 <TouchableOpacity
                     style={[OfficeSpaceStyles.task, { justifyContent: 'center'}]}
-                    onPress={() => { }}
+                    onPress={() => { this.props.navigation.navigate('TaskHoliday', {mood: mood});}}
                 >
                     <Text style={{ left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Decorate for the Holidays</Text>
                     <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', left: 22 }}> Expires Dec 19th, 2019 </Text>
