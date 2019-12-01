@@ -1,12 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Image, Dimensions } from 'react-native';
+import { FlatList, StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Image, Dimensions } from 'react-native';
 import { material } from 'react-native-typography';
 import { Metrics } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
-import Feed from '../Components/Feed';
 import firestore from '../../firebase.js';
 import firebase from 'firebase';
 import { Overlay } from "react-native-elements";
+import TaskImages from '../../App/Components/TaskImageCollection.js';
+import OverlayImages from '../../App/Components/OverlayImageCollection.js';
+import FaceImages from '../../App/Components/FaceImageCollection.js';
 
 var { height, width } = Dimensions.get('window');
 
@@ -28,7 +30,7 @@ var accentColor = (mood) => {
   if (mood == 'EXCITED') {
     return '#C50A7A'
   } else if (mood == 'CONTENT') {
-    return '#E78B00'
+    return '#E7A600'
   } else if (mood == 'BORED') {
     return '#DD5D00'
   } else if (mood == 'STRESSED') {
@@ -49,15 +51,19 @@ export default class HomeScreen extends React.Component {
 
     return {
       headerTitle: (
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={material.title}>YOUR TEAM FEELS</Text>
-        </View>
+        <Text style={styles.headerText}>Your team feels</Text>
       ),
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(navigation.getParam('mood')),
         borderBottomWidth: 0,
-        height: 35,
-      }
+        height: height * 0.04,
+      },
+      headerTitleStyle: {
+        flex: 1,
+        alignSelf: "center",
+        marginLeft: "auto",
+        marginRight: "auto"
+      },
     };
   };
 
@@ -65,76 +71,67 @@ export default class HomeScreen extends React.Component {
     this.setState({ moodsOverlayVisible: visible });
   }
 
-  getMoodImage(mood) {
-    if (mood == 'EXCITED') {
-      return require('../Images/excitedface.png')
-    } else if (mood == 'CONTENT') {
-      return require('../Images/happyface.png')
-    } else if (mood == 'BORED') {
-      return require('../Images/boredface.png')
-    } else if (mood == 'STRESSED') {
-      return require('../Images/stressedface.png')
-    } else {
-      return require('../Images/sadface.png')
-    }
-  }
-
   render() {
     const { navigation } = this.props;
     mood = navigation.getParam('mood');
+    if(mood == undefined) {
+      mood = "SAD";
+    }
     return (
       <View style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
         <View style={styles.faceimage}>
-          <Text style={{ fontSize: 34, fontWeight: '800', color: accentColor(mood) }}>{mood}</Text>
+          <Text style={{ fontSize: height * 0.05, fontFamily: 'Lato-Black', color: accentColor(mood) }}>{mood}</Text>
           <Text style={styles.checkintext}> Last team check-in a few seconds ago</Text>
           <Image
-            source={this.getMoodImage(mood)}
-            style={{ marginTop: 50, marginBottom: 20, height: 150 }}
-            resizeMode='contain'
+            source={FaceImages[mood]}
+            style={{ marginTop: 50, marginBottom: 20, height: height * 0.2, width: height * 0.2}}
           />
         </View>
         <View style={styles.buttonRow}>
           <TouchableOpacity
             style={{
               backgroundColor: '#FFFFFF',
-              paddingTop: 18,
-              opacity: 0.7,
+              opacity: 0.8,
+              paddingTop: height * 0.028,
               borderRadius: 100,
-              width: 160,
-              height: 56,
-              alignSelf: "center",
+              width: height * 0.2,
+              height: height * 0.08,
+              marginRight: height * 0.02,
             }}
             onPress={() => this.setMoodsOverlayVisible(true)}
           >
             <Text style={{
               fontFamily:'Lato-Bold',
-              fontSize: 16,
+              fontSize: height * 0.02,
               textAlign: 'center'
             }}> MORE DATA </Text>
           </TouchableOpacity>
           <Overlay
             isVisible={this.state.moodsOverlayVisible}
-            height="75%"
-            width="auto"
+            fullScreen={true}
             overlayStyle={styles.moodsOverlay}
             animationType="slide"
             windowBackgroundColor="rgba(0, 0, 0, 0)"
             onBackdropPress={() => this.setMoodsOverlayVisible(false)}
           >
-            <Image
-              source={require("../Images/moredatapopup.png")}
-              style={{ width: width, height: height * 0.90 }}
-              resizeMode='contain'
-            />
+            <TouchableOpacity
+            onPress={() => this.setMoodsOverlayVisible(false)}>
+              <Image
+                source={OverlayImages[mood]}
+                style={{ width: width, height: height * 0.95}}
+                resizeMode='contain'
+              />
+            </TouchableOpacity>
           </Overlay>
           <TouchableOpacity
           style={{
             backgroundColor: accentColor(mood),
-            opacity: 0.7,
-            paddingTop: 18,
+            opacity: 0.9,
+            paddingTop: height * 0.028,
             borderRadius: 100,
-            width: 150,
-            height: 56,
+            width: height * 0.2,
+            height: height * 0.08,
+            marginLeft: height * 0.02,
           }}
             onPress={() => {
               this.props.navigation.navigate('ThoughtsScreen', {mood: mood});
@@ -142,7 +139,7 @@ export default class HomeScreen extends React.Component {
           >
             <Text style={{
               fontFamily:'Lato-Bold',
-              fontSize: 16,
+              fontSize: height * 0.02,
               alignSelf: 'center',
               color: '#FFFFFF'
             }}> WHY? </Text>
@@ -151,42 +148,27 @@ export default class HomeScreen extends React.Component {
         <View>
           <Text style={styles.taskstext}>Tasks Expiring Soon</Text>
         </View>
-        <View
-          style={styles.tasksColumn}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('TasksScreen', {mood: mood});
-            }}
-          >
-            <Image
-              source={require("../Images/task1.png")}
-              style={styles.tasks}
-              resizeMode='contain'
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('TasksScreen', {mood: mood});
-            }}
-          >
-            <Image
-              source={require("../Images/task2.png")}
-              style={styles.tasks}
-              resizeMode='contain'
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('TasksScreen', {mood: mood});
-            }}
-          >
-            <Image
-              source={require("../Images/task3.png")}
-              style={styles.tasks}
-              resizeMode='contain'
-            />
-          </TouchableOpacity>
+        <View style={styles.tasksColumn}>
+         <FlatList
+         data={[
+            {key: '1', link: "TasksScreen"},
+            {key: '2', link: "TasksScreen"},
+            {key: '3', link: "TasksScreen"}
+          ]}
+         renderItem={({item}) => <TouchableOpacity
+           onPress={() => {
+             this.props.navigation.navigate(item.link, {mood: mood});
+           }}>
+           <View style={{backgroundColor: 'white', width: width * 0.95, height: height * 0.1, borderRadius: 15, marginBottom: height * 0.01, alignItems: "center", justifyContent: "center"}}>
+             <Image
+               source={TaskImages[item.key]}
+               style={styles.tasks}
+               resizeMode="contain"
+             />
+           </View>
+         </TouchableOpacity>}
+         keyExtractor={ (item, index) => index.toString()}
+         />
         </View>
       </View>
     );
@@ -201,18 +183,15 @@ const styles = StyleSheet.create({
   },
   buttonRow: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     margin: 25,
+    marginLeft: (height<800 && height>700) ? 45 : 25,
+    marginRight: (height<800 && height>700)? 45 : 25,
     marginBottom: 15,
   },
   tasksColumn: {
-    flexDirection: "column",
+    flex: 1,
     alignItems: "center",
-  },
-  buttons: {
-    height: 75,
-    width: 150,
-    margin: 5,
   },
   faceimage: {
     alignItems: "center",
@@ -223,18 +202,18 @@ const styles = StyleSheet.create({
     color: accentColor(),
   },
   checkintext: {
-    fontSize: 20,
-    fontStyle: 'italic',
+    fontSize: height * 0.024,
+    fontFamily: 'Lato-Italic',
     fontWeight: '200',
     color: 'black',
   },
   taskstext: {
-    fontSize: 20,
-    padding: 10,
+    fontSize: height * 0.03,
+    padding: height * 0.02,
   },
   tasks: {
-    height: 70,
-    width: width * 0.95,
+    width:width * 0.82,
+    alignSelf: "center"
   },
   displayText: {
     fontSize: 40,
@@ -242,4 +221,11 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     color: 'black',
   },
+  headerText: {
+    fontSize: height * 0.03,
+    fontFamily: 'Lato-Regular',
+    alignSelf: "center",
+    marginLeft: "auto",
+    marginRight: "auto"
+  }
 });

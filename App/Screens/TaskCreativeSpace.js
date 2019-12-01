@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType } from 'react-native';
 import { material } from 'react-native-typography';
-import Feed from '../Components/Feed';
+// import Feed from '../Components/Feed';
 import Home from '../Screens/HomeScreen';
 import ActionItemsCreativeSpace from '../Screens/ActionItemsCreativeSpace';
 import { Colors } from '../Themes';

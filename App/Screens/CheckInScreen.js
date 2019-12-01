@@ -1,7 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, AppRegistry, Alert, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, View, AppRegistry, Alert, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import CircularSlider from '../Components/CircularSlider';
+
+var { height, width } = Dimensions.get('window');
 
 
 const homeScreenBackgroundColor = () => {
@@ -132,44 +134,41 @@ export default class CheckInScreen extends React.Component {
 
   render() {
     return (
-      <LinearGradient
-        colors={this.getBackgroundColor()}
-        style={styles.root}
-      >
-        {/* //<View width={296} top={-30}> */}
-          <Text style={{ width: 296, fontFamily: 'Lato-Regular', fontSize: 31.5, textAlign: 'center' }}>
-            How have you been feeling this morning?
-          </Text>
-        {/* </View> */}
-        <View style={styles.sliderAndButton}>
-          <CircularSlider
-            width={381}
-            height={381}
-            meterColor={this.getMoodColor()}
-            textColor='black'
-            value={this.state.slider1}
-            moodFace={this.getMoodImage()}
-            holeColors={this.getHoleColors()}
-            mouthW={this.getMouthW()}
-            mouthHOffset={this.getMouthHOffset()}
-            onValueChange={(value) => this.setMood(value)}>
-          </CircularSlider>
-          <Text style={{ fontFamily: 'Lato-Black', fontSize: 45, textAlign: 'center', top: -20}}>
-            {this.state.mood}
-          </Text>
+        <LinearGradient
+          colors={this.getBackgroundColor()}
+          style={styles.root}
+        >
+          <SafeAreaView style={styles.container}>
+            <Text style={{ width: height * 0.4, fontFamily: 'Lato-Regular', fontSize: height * 0.04, textAlign: "center"}}>
+              How have you been feeling this morning?
+            </Text>
+              <CircularSlider
+                width={380}
+                height={380}
+                meterColor={this.getMoodColor()}
+                textColor='black'
+                value={this.state.slider1}
+                moodFace={this.getMoodImage()}
+                holeColors={this.getHoleColors()}
+                mouthW={this.getMouthW()}
+                mouthHOffset={this.getMouthHOffset()}
+                onValueChange={(value) => this.setMood(value)}>
+              </CircularSlider>
+              <Text style={{ fontFamily: 'Lato-Black', fontSize: 45, textAlign: 'center', top: -20}}>
+                {this.state.mood}
+              </Text>
 
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen', {mood: this.state.mood});
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => {
+                  this.props.navigation.navigate('HomeScreen', {mood: this.state.mood})
+                }}
+                >
+                <Text style={styles.buttonText}> Check In </Text>
+              </TouchableOpacity>
+          </SafeAreaView>
 
-            }}
-          >
-            <Text style={styles.buttonText}> Check In </Text>
-          </TouchableOpacity>
-        </View>
-
-      </LinearGradient>
+        </LinearGradient>
     )
   };
 }
@@ -182,9 +181,9 @@ const styles = StyleSheet.create({
     backgroundColor: homeScreenBackgroundColor(),
   },
   container: {
-    position: 'relative',
-    width: 286,
-    height: 286
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: "center",
   },
   slider1: {
     position: 'absolute',
@@ -194,20 +193,20 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    paddingHorizontal: 68,
-    paddingVertical: 21,
+    paddingHorizontal: height * 0.025,
+    paddingVertical: height * 0.025,
     opacity: 0.8,
     borderRadius: 214,
-    width: 220,
-    height: 63,
+    width: height * 0.3,
+    height: height * 0.09,
     alignSelf: "center",
-    top: 25
+    top: height * 0.02,
   },
   buttonText: {
     fontFamily: 'Lato-Black',
-    fontSize: 20,
-    lineHeight: 22,
-    textAlign: "center"
+    fontSize: height * 0.03,
+    alignItems: "center",
+    justifyContent: "center"
   },
   sliderAndButton: {
     flexDirection: "column",

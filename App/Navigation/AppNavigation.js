@@ -3,10 +3,11 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import React from 'react';
 import { Images, Colors, Metrics } from '../Themes'
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, Dimensions, View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import HomeScreen from '../Screens/HomeScreen'
 import ThoughtsScreen from '../Screens/ThoughtsScreen'
+import AddThoughtScreen from '../Screens/AddThoughtScreen.js'
 import CheckInScreen from '../Screens/CheckInScreen'
 import TasksScreen from '../Screens/TasksScreen'
 import OffsitesScreen from '../Screens/TaskCategoryScreens/OffsitesScreen'
@@ -25,34 +26,39 @@ import ActionItemsMisbahBdayScreen from '../Screens/ActionItemsMisbahBday';
 import ActionItemsMiamiTripScreen from '../Screens/ActionItemsMiamiTrip';
 import ActionItemsHolidayScreen from '../Screens/ActionItemsHoliday';
 import ActionItemsWeeklyLunchesScreen from '../Screens/ActionItemsWeeklyLunches';
+import CreateTaskOne from '../Screens/CreateTaskOne'
+import CreateTaskTwo from '../Screens/CreateTaskTwo'
+import CreateTaskThree from '../Screens/CreateTaskThree'
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import icoMoonConfig from '../../selection.json';
 const expoAssetId = require("../../assets/fonts/icomoon.ttf");
 const CustomIcon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon', expoAssetId);
 
-const activeColor = () => {
-    return '#000000'
-}
+var { height, width } = Dimensions.get('window');
 
-// Manifest of possible screens
 const MajMoodNav = createStackNavigator({
   HomeScreen: { screen: HomeScreen },
 }, {
   initialRouteName: 'HomeScreen',
   headerMode: 'float',
   tabBarOptions: {
-    activeTintColor: activeColor(),
+    activeTintColor: '',
     inactiveTintColor: '#DADADA',
   },
 })
 
 const ThoughtsNav = createStackNavigator({
   ThoughtsScreen: { screen: ThoughtsScreen },
+  CreateTaskOne: { screen: CreateTaskOne },
+  CreateTaskTwo: { screen: CreateTaskTwo },
+  CreateTaskThree: { screen: CreateTaskThree },
+  AddThoughtScreen: { screen: AddThoughtScreen}
 }, {
   initialRouteName: 'ThoughtsScreen',
   headerMode: 'float',
+  lazy: false,
   tabBarOptions: {
-    activeTintColor: activeColor(),
+    activeTintColor: '',
     inactiveTintColor: '#DADADA',
   },
 })
@@ -77,32 +83,49 @@ const TasksNav = createStackNavigator({
   ActionItemsWeeklyLunches:{screen: ActionItemsWeeklyLunchesScreen}
 }, {
   initialRouteName: 'TasksScreen',
+  initialRouteParams: {mood: "mood"},
+  lazy: false,
   headerMode: 'float',
   tabBarOptions: {
-    activeTintColor: activeColor(),
+    activeTintColor: 'green',
     inactiveTintColor: '#DADADA',
   },
 })
 
-const TabNav = createBottomTabNavigator({
+const CheckInNav = createStackNavigator({
   CheckInScreen: { screen: CheckInScreen },
-  MajMoodScreen: { screen: MajMoodNav },
-  ThoughtsScreen: { screen: ThoughtsNav },
-  TasksScreen: { screen: TasksNav },
 }, {
-  // Default config for all screens
   initialRouteName: 'CheckInScreen',
+  header: "none",
   tabBarOptions: {
-    activeTintColor: activeColor(),
+    activeTintColor: '',
     inactiveTintColor: '#DADADA',
-    showLabel: false,
   },
-})
+});
+
+const TabNav = createBottomTabNavigator({
+    CheckInScreen: { screen: CheckInScreen },
+    MajMoodScreen: { screen: MajMoodNav },
+    ThoughtsScreen: { screen: ThoughtsNav },
+    TasksScreen: { screen: TasksNav },
+  }, {
+    initialRouteName: 'CheckInScreen',
+    defaultavigationOptions: ({ navigation }) => ({
+      tabBarVisible: false
+    }),
+    tabBarOptions: {
+      activeTintColor: '#222',
+      inactiveTintColor: '#DADADA',
+      showLabel: false,
+    },
+  })
 
 MajMoodNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="moods" size={27} color={tintColor} />
+      <View style={{width: height * 0.05}}>
+        <CustomIcon name="moods" size={height * 0.03} color={tintColor} />
+      </View>
     ),
   };
 };
@@ -110,7 +133,9 @@ MajMoodNav.navigationOptions = ({ navigation }) => {
 ThoughtsNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="thoughts" size={27} color={tintColor} />
+      <View style={{width: height * 0.05}}>
+        <CustomIcon name="thoughts" size={height * 0.03} color={tintColor} />
+      </View>
     ),
   };
 };
@@ -118,7 +143,9 @@ ThoughtsNav.navigationOptions = ({ navigation }) => {
 TasksNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="taskList" size={27} color={tintColor} />
+      <View style={{width: height * 0.05}}>
+        <CustomIcon name="taskList" size={height * 0.03} color={tintColor} />
+      </View>
     ),
   };
 };
@@ -130,27 +157,31 @@ TasksNav.navigationOptions = ({ navigation }) => {
 //   };
 // };
 
+CheckInNav.navigationOptions = ({ navigation }) => {
+  tabBarVisible = false;
+  return {
+    tabBarVisible,
+    headerStyle: {
+      height: 0,
+      opacity: 0.1
+    },
+    tabBarIcon: ({ tintColor }) => (
+      <View style={{width: height * 0.05}}>
+        <CustomIcon name="checkIn" size={height * 0.03} color={tintColor} />
+      </View>
+    )
+  };
+};
+
 CheckInScreen.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="checkIn" size={27} color={tintColor} />
+      <View style={{width: height * 0.05}}>
+        <CustomIcon name="checkIn" size={height * 0.03} color={tintColor} />
+      </View>
     ),
   };
 };
 
-
 const AppContainer = createAppContainer(TabNav);
 export default AppContainer;
-
-// export default class AppNavigation extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {mood: 'EXCITED'};
-//   }
-//   componentDidMount() {
-//     this.onLoadMood().then((mood) => this.setState({ mood: mood }));
-//   }
-//   render() {
-//     return(<AppContainer screenProps={{ mood: this.state.mood}} />)
-//   }
-// }

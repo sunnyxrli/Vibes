@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
 import { material } from 'react-native-typography';
-import Feed from '../Components/Feed';
 import Home from '../Screens/HomeScreen';
 import TaskMiami from '../Screens/TaskMiami';
 
@@ -56,13 +55,14 @@ export default class TasksScreen extends React.Component {
     return {
       headerTitle: (
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={TasksStyles.heading}>Team Tasks</Text>
+          <Text style={TasksStyles.headerText}>Team Tasks</Text>
         </View>
       ),
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
-      }
+        height: height * 0.05,
+      },
     };
   };
 
@@ -165,14 +165,9 @@ const TasksStyles = StyleSheet.create({
     padding: '15%',
     justifyContent: 'center',
   },
-  heading: {
-    fontFamily: 'Lato-Black',
-    fontSize: 22,
-    textAlign: "center"
-  },
   title: {
     fontFamily: 'Lato-Bold',
-    fontSize: 20
+    fontSize: height * 0.025
   },
   task: {
     width: 345,
@@ -197,7 +192,12 @@ const TasksStyles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center'
-    // flex: 1,
-    // margin: 1,
+  },
+  headerText: {
+    fontSize: height * 0.025,
+    alignSelf: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
+    fontFamily: 'Lato-Black'
   }
 });

@@ -5,7 +5,6 @@ import { getPhotosForUser } from '../API/Unsplash.js';
 import { material } from 'react-native-typography';
 import { Metrics, Colors } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
-import Feed from '../Components/Feed'
 
 export default class UserProfileScreen extends React.Component {
 

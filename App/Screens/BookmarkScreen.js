@@ -4,7 +4,6 @@ import { material } from 'react-native-typography';
 import { Metrics, Colors } from '../Themes';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
 import AppConfig from '../Config/AppConfig';
-import FeedItem from '../Components/FeedItem'
 import styles from './Styles/BookmarkScreen.styles'
 
 export default class BookmarkScreen extends React.Component {
