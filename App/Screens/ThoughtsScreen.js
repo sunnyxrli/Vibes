@@ -38,13 +38,6 @@ const accentColor = () => {
     return "#003498";
 }
 
-const styles = StyleSheet.create({
-    heading: {
-        fontFamily: 'Lato-Black',
-        fontSize: 22,
-        textAlign: "center"
-    }
-})
 
 export default class HomeScreen extends React.Component {
 
@@ -64,7 +57,7 @@ export default class HomeScreen extends React.Component {
           }}>
             <Image
               source={require("../Images/write.png")}
-              style={{ width: height * 0.03, height: height * 0.03, justifyContent: "center"}}
+              style={{ width: height * 0.04, height: height * 0.04, justifyContent: "center"}}
             />
           </TouchableOpacity>
         </View>
