@@ -24,11 +24,11 @@ export default StyleSheet.create({
   },
   lowerRow: {
     flexDirection: 'row',
+    flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 15,
-    marginLeft: height * 0.055,
-    marginRight: Metrics.marginHorizontal,
+    marginLeft: height * 0.065,
   },
   descContainer: {
     marginLeft: Metrics.marginHorizontal,

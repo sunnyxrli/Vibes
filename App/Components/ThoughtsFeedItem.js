@@ -69,7 +69,7 @@ export default class ThoughtsFeedItem extends React.Component {
       actionText = "Needs 5 likes to become a Task";
       actionFontWeight = "400";
       actionFontColor = "grey";
-      actionFontSize = height * 0.015;
+      actionFontSize = height * 0.02;
     } else {
       actionText = "VIEW TASK";
       actionFontWeight = "500";
@@ -88,7 +88,7 @@ export default class ThoughtsFeedItem extends React.Component {
           </View>
         </View>
         <View style={styles.lowerRow}>
-          <TouchableOpacity style={styles.textContainer}>
+          <TouchableOpacity>
             <Text style={{fontSize: actionFontSize, fontWeight: actionFontWeight, color: actionFontColor}}>{actionText}</Text>
           </TouchableOpacity>
           <TouchableOpacity
