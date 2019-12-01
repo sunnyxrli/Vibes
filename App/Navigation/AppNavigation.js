@@ -46,7 +46,6 @@ const ThoughtsNav = createStackNavigator({
   AddThoughtScreen: { screen: AddThoughtScreen}
 }, {
   initialRouteName: 'ThoughtsScreen',
-  initialRouteParams: {mood: ""},
   headerMode: 'float',
   lazy: false,
   tabBarOptions: {
@@ -65,7 +64,7 @@ const TasksNav = createStackNavigator({
   OtherScreen: {screen: OtherScreen}
 }, {
   initialRouteName: 'TasksScreen',
-  initialRouteParams: {mood: ""},
+  initialRouteParams: {mood: "mood"},
   lazy: false,
   headerMode: 'float',
   tabBarOptions: {
@@ -74,6 +73,17 @@ const TasksNav = createStackNavigator({
   },
 })
 
+const CheckInNav = createStackNavigator({
+  CheckInScreen: { screen: CheckInScreen },
+}, {
+  initialRouteName: 'CheckInScreen',
+  header: "none",
+  tabBarOptions: {
+    activeTintColor: '',
+    inactiveTintColor: '#DADADA',
+  },
+});
+
 const TabNav = createBottomTabNavigator({
     CheckInScreen: { screen: CheckInScreen },
     MajMoodScreen: { screen: MajMoodNav },
@@ -81,6 +91,9 @@ const TabNav = createBottomTabNavigator({
     TasksScreen: { screen: TasksNav },
   }, {
     initialRouteName: 'CheckInScreen',
+    defaultavigationOptions: ({ navigation }) => ({
+      tabBarVisible: false
+    }),
     tabBarOptions: {
       activeTintColor: '#222',
       inactiveTintColor: '#DADADA',
@@ -105,12 +118,6 @@ ThoughtsNav.navigationOptions = ({ navigation }) => {
         <CustomIcon name="thoughts" size={height * 0.03} color={tintColor} />
       </View>
     ),
-    tabBarOnPress: ({navigation, defaultHandler }) => {
-        if(navigation.state.params == undefined) {
-          navigation.navigate("TasksScreen")
-        }
-        defaultHandler();
-      }
   };
 };
 
@@ -121,6 +128,22 @@ TasksNav.navigationOptions = ({ navigation }) => {
         <CustomIcon name="taskList" size={height * 0.03} color={tintColor} />
       </View>
     ),
+  };
+};
+
+CheckInNav.navigationOptions = ({ navigation }) => {
+  tabBarVisible = false;
+  return {
+    tabBarVisible,
+    headerStyle: {
+      height: 0,
+      opacity: 0.1
+    },
+    tabBarIcon: ({ tintColor }) => (
+      <View style={{width: height * 0.05}}>
+        <CustomIcon name="checkIn" size={height * 0.03} color={tintColor} />
+      </View>
+    )
   };
 };
 
@@ -136,16 +159,3 @@ CheckInScreen.navigationOptions = ({ navigation }) => {
 
 const AppContainer = createAppContainer(TabNav);
 export default AppContainer;
-
-// export default class AppNavigation extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {mood: 'EXCITED'};
-//   }
-//   componentDidMount() {
-//     this.onLoadMood().then((mood) => this.setState({ mood: mood }));
-//   }
-//   render() {
-//     return(<AppContainer screenProps={{ mood: this.state.mood}} />)
-//   }
-// }

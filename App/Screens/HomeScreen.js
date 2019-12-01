@@ -96,7 +96,7 @@ export default class HomeScreen extends React.Component {
               borderRadius: 100,
               width: height * 0.2,
               height: height * 0.08,
-              marginRight: height * 0.03,
+              marginRight: height * 0.02,
             }}
             onPress={() => this.setMoodsOverlayVisible(true)}
           >
@@ -131,7 +131,7 @@ export default class HomeScreen extends React.Component {
             borderRadius: 100,
             width: height * 0.2,
             height: height * 0.08,
-            marginLeft: height * 0.03,
+            marginLeft: height * 0.02,
           }}
             onPress={() => {
               this.props.navigation.navigate('ThoughtsScreen', {mood: mood});
@@ -192,7 +192,6 @@ const styles = StyleSheet.create({
   tasksColumn: {
     flex: 1,
     alignItems: "center",
-    flexShrink: 5
   },
   faceimage: {
     alignItems: "center",

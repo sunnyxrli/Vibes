@@ -68,12 +68,12 @@ export default class ThoughtsFeedItem extends React.Component {
             style={{ width: height * 0.05, height: height * 0.05, marginTop: 5}}
           />
           <View style={styles.textContainer}>
-            <Text style={{fontSize: height * 0.02}}>{content.text}</Text>
+            <Text style={{fontSize: height * 0.03}}>{content.text}</Text>
           </View>
         </View>
         <View style={styles.lowerRow}>
           <TouchableOpacity style={styles.textContainer}>
-            <Text style={{fontSize: height * 0.02, fontWeight: actionFontWeight, color: actionFontColor}}>{actionText}</Text>
+            <Text style={{fontSize: height * 0.025, fontWeight: actionFontWeight, color: actionFontColor}}>{actionText}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: "center"}}
@@ -81,9 +81,9 @@ export default class ThoughtsFeedItem extends React.Component {
           >
             <Entypo
             name={this.state.liked ? "heart" : "heart-outlined"}
-            size={height * 0.02}
+            size={height * 0.03}
             color={this.state.liked ? Colors.ember : Colors.coal} />
-            <Text style={{fontSize: height * 0.02}}>{this.state.favs}</Text>
+            <Text style={{fontSize: height * 0.03}}>{this.state.favs}</Text>
           </TouchableOpacity>
         </View>
       </View>
