@@ -55,14 +55,12 @@ export default class ThoughtsScreen extends React.Component {
     return {
       headerRight:<View style={{padding:6}}></View>,
       headerTitle: (
-        <Text style={{fontSize: 20, fontWeight: "500", alignSelf: "center",
-          marginLeft: "auto",
-          marginRight: "auto"}}>ADD THOUGHT</Text>
+        <Text style={thoughtsStyles.headerText}>Add Thought</Text>
       ),
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
-        height: 35,
+        height: height * 0.04,
       }
     };
   };
@@ -113,21 +111,20 @@ export default class ThoughtsScreen extends React.Component {
             <TouchableOpacity
             style={{
               backgroundColor: accentColor(mood),
-              opacity: 0.9,
-              paddingTop: 17,
+              opacity: 0.8,
+              paddingTop: height * 0.028,
               borderRadius: 100,
-              width: 150,
-              height: 56,
+              width: height * 0.2,
+              height: height * 0.08,
               alignSelf: "center",
-              marginTop: 20,
+              marginTop: height * 0.028,
             }}
               onPress={() => {
                 this.postThought()
-              }}
-            >
+              }}>
               <Text style={{
                 fontFamily:'Lato-Bold',
-                fontSize: 18,
+                fontSize: height * 0.02,
                 alignSelf: 'center',
                 color: '#FFFFFF'
               }}> POST </Text>
@@ -145,7 +142,7 @@ export default class ThoughtsScreen extends React.Component {
           onPress={() => this.toggleAnonymous(true)}>
             <Image
               source={require("../../App/Images/ProfileImages/anon-icon.png")}
-              style={{height: 70, width: 70, alignSelf: "center", borderColor: this.state.anonymous ? accentColor(mood) : "white", borderWidth: 3, borderRadius: 35}}
+              style={{height: height * 0.1, width: height * 0.1, alignSelf: "center", borderColor: this.state.anonymous ? accentColor(mood) : "white", borderWidth: height * 0.003, borderRadius: height * 0.05}}
             />
             <Text style={{color: this.state.anonymous ? accentColor(mood) : "#000", alignSelf: "center"}}>ANONYMOUS</Text>
           </TouchableOpacity>
@@ -155,13 +152,13 @@ export default class ThoughtsScreen extends React.Component {
         onPress={() => this.toggleAnonymous(false)}>
             <Image
               source={require("../../App/Images/ProfileImages/charlie.png")}
-              style={{height: 70,
-              width: 70,
+              style={{height: height * 0.1,
+              width: height * 0.1,
               alignSelf: "center",
               marginBottom: 1,
               borderColor: this.state.anonymous ? "white" : accentColor(mood),
-              borderWidth: 3,
-              borderRadius: 35}}
+              borderWidth: height * 0.003,
+              borderRadius: height * 0.05}}
             />
             <Text style={{color: this.state.anonymous ? "#000" : accentColor(mood), alignSelf: "center"}}>CHARLIE</Text>
         </TouchableOpacity>
@@ -192,12 +189,19 @@ const thoughtsStyles = StyleSheet.create({
     marginTop: 10,
     borderColor: '#AAA',
     borderWidth: 1.5,
-    fontSize: 20,
+    fontSize: height * 0.03,
     color: '#555',
   },
   Image: {
     justifyContent: 'flex-end',
     marginEnd: 10,
     flex: 2,
+  },
+  headerText: {
+    fontSize: height * 0.03,
+    fontWeight: "500",
+    alignSelf: "center",
+    marginLeft: "auto",
+    marginRight: "auto"
   }
 });

@@ -83,7 +83,7 @@ export default class ThoughtsFeed extends React.Component {
     const { loading } = this.state;
     if (loading) {
       return (
-        <ActivityIndicator />
+        <ActivityIndicator size="large"/>
       );
     } else {
     return (

@@ -54,25 +54,17 @@ export default class HomeScreen extends React.Component {
         <View style={{flexDirection: 'row', flex: 1, justifyContent: "space-evenly", alignItems: "center"}}>
           <Image
             source={require("../Images/write.png")}
-            style={{ width: 25, height: 25, opacity: 0}}
+            style={{ width: height * 0.03, height: height * 0.03, opacity: 0, marginLeft: height * 0.02}}
           />
-          <Image
-            source={require("../Images/write.png")}
-            style={{ width: 25, height: 25, opacity: 0}}
-          />
-          <Text style={{fontSize: 20, fontWeight: "500"}}>TEAM THOUGHTS</Text>
-          <Image
-            source={require("../Images/write.png")}
-            style={{ width: 25, height: 25, opacity: 0}}
-          />
+          <Text style={thoughtsStyles.headerText}>Team Thoughts</Text>
           <TouchableOpacity
-          style={{marginRight: 0}}
+          style={{marginRight: height * 0.02}}
           onPress={() => {
             navigation.navigate('AddThoughtScreen', {mood: mood});
           }}>
             <Image
               source={require("../Images/write.png")}
-              style={{ width: 25, height: 25, justifyContent: "center"}}
+              style={{ width: height * 0.03, height: height * 0.03, justifyContent: "center"}}
             />
           </TouchableOpacity>
         </View>
@@ -80,7 +72,7 @@ export default class HomeScreen extends React.Component {
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
-        height: 35,
+        height: height * 0.04,
       }
     };
   };
@@ -89,14 +81,20 @@ export default class HomeScreen extends React.Component {
     moodColor: thoughtsBackgroundColor(mood),
   };
 
-
+  updateMood = () => {
+    this.setState(moodColor => (
+      { moodColor: thoughtsBackgroundColor(mood) }
+    ));
+    if(!this.props.navigation) {
+      return;
+    }
+    this.props.navigation.setParams(mood)
+  }
 
   componentDidMount(){
     setInterval(() => (
       this.state.moodColor != thoughtsBackgroundColor(mood) ?
-        this.setState(moodColor => (
-          { moodColor: thoughtsBackgroundColor(mood) }
-        )) : ""
+      this.updateMood() : ""
     ), 500);
   }
 
@@ -137,4 +135,11 @@ const thoughtsStyles = StyleSheet.create({
     padding: '15%',
     justifyContent: 'center',
   },
+  headerText: {
+    fontSize: height * 0.03,
+    fontWeight: "500",
+    alignSelf: "center",
+    marginLeft: "auto",
+    marginRight: "auto"
+  }
 });

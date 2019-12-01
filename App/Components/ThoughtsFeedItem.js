@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, Image, ActivityIndicator, TouchableOpacity, Share, AsyncStorage } from 'react-native';
+import { Text, View, Image, ActivityIndicator, TouchableOpacity, Share, AsyncStorage, Dimensions } from 'react-native';
 import { Metrics, Images, Colors } from '../Themes';
 import { material } from 'react-native-typography';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
 import styles from './Styles/FeedItem.styles';
 import AppConfig from '../Config/AppConfig';
 import ProfileImages from './ProfileImageCollection.js';
+var { height, width } = Dimensions.get('window');
 
 
 var textAccentColor = (color) => {
@@ -64,25 +65,25 @@ export default class ThoughtsFeedItem extends React.Component {
         <View style={styles.upperRow}>
           <Image
             source={ProfileImages[content.profile]}
-            style={{ width: 35, height: 35, marginTop: 5}}
+            style={{ width: height * 0.05, height: height * 0.05, marginTop: 5}}
           />
           <View style={styles.textContainer}>
-            <Text style={{fontSize: 18}}>{content.text}</Text>
+            <Text style={{fontSize: height * 0.02}}>{content.text}</Text>
           </View>
         </View>
         <View style={styles.lowerRow}>
           <TouchableOpacity style={styles.textContainer}>
-            <Text style={{fontSize: 18, fontWeight: actionFontWeight, color: actionFontColor}}>{actionText}</Text>
+            <Text style={{fontSize: height * 0.02, fontWeight: actionFontWeight, color: actionFontColor}}>{actionText}</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{flexDirection: 'row', justifyContent: 'space-between'}}
+            style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: "center"}}
             onPress={this.likeThis}
           >
             <Entypo
             name={this.state.liked ? "heart" : "heart-outlined"}
-            size={Metrics.icons.small}
+            size={height * 0.02}
             color={this.state.liked ? Colors.ember : Colors.coal} />
-            <Text style={{fontSize: 18}}>{this.state.favs}</Text>
+            <Text style={{fontSize: height * 0.02}}>{this.state.favs}</Text>
           </TouchableOpacity>
         </View>
       </View>

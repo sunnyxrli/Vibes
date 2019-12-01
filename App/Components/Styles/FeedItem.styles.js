@@ -1,6 +1,8 @@
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Metrics, Images, Colors } from '../../Themes';
+
+var { height, width } = Dimensions.get('window');
 
 export default StyleSheet.create({
   container: {
@@ -25,7 +27,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 15,
-    marginLeft: 40,
+    marginLeft: height * 0.05,
     marginRight: Metrics.marginHorizontal,
   },
   mainImageContainer: {
@@ -47,25 +49,4 @@ export default StyleSheet.create({
     marginLeft: Metrics.marginHorizontal,
     marginRight: 50,
   },
-  dateContainer: {
-    marginLeft: Metrics.marginHorizontal,
-    marginRight: Metrics.marginHorizontal,
-  },
-  profileImage: {
-    height: Metrics.icons.medium,
-    width: Metrics.icons.medium,
-    borderRadius: Metrics.icons.medium * 0.5
-  },
-  profileName: {
-    paddingLeft: Metrics.marginHorizontal,
-    paddingRight: Metrics.marginHorizontal,
-  },
-  mainImage: {
-    width: Metrics.screenWidth,
-  },
-  mainImageLoader: {
-    position: 'absolute',
-    justifyContent: 'center',
-    backgroundColor: Colors.black,
-  }
 });

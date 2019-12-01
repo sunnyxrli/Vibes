@@ -3,7 +3,7 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import React from 'react';
 import { Images, Colors, Metrics } from '../Themes'
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, Dimensions, View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import HomeScreen from '../Screens/HomeScreen'
 import ThoughtsScreen from '../Screens/ThoughtsScreen'
@@ -25,26 +25,7 @@ import icoMoonConfig from '../../selection.json';
 const expoAssetId = require("../../assets/fonts/icomoon.ttf");
 const CustomIcon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon', expoAssetId);
 
-const activeColor = async () => {
-  var maxColorRef = firestore.collection('currentMaxColor').doc('currentMaxColor');
-  let oneColor = await maxColorRef.get();
-  console.log(oneColor.data().color);
-  ready = true;
-  return('green');
-}
-
-
-const getColor = () => {
-  var maxColorRef = firestore.collection('currentMaxColor').doc('currentMaxColor');
-  var currentMaxColor = "";
-  maxColorRef.get().then(function(maxColorRef) {
-      if (maxColorRef.exists) {
-          currentMaxColor = maxColorRef.data().color;
-          console.log(currentMaxColor);
-          return currentMaxColor;
-      }
-  });
-}
+var { height, width } = Dimensions.get('window');
 
 const MajMoodNav = createStackNavigator({
   HomeScreen: { screen: HomeScreen },
@@ -65,9 +46,11 @@ const ThoughtsNav = createStackNavigator({
   AddThoughtScreen: { screen: AddThoughtScreen}
 }, {
   initialRouteName: 'ThoughtsScreen',
+  initialRouteParams: {mood: ""},
   headerMode: 'float',
+  lazy: false,
   tabBarOptions: {
-    activeTintColor: 'red',
+    activeTintColor: '',
     inactiveTintColor: '#DADADA',
   },
 })
@@ -82,6 +65,8 @@ const TasksNav = createStackNavigator({
   OtherScreen: {screen: OtherScreen}
 }, {
   initialRouteName: 'TasksScreen',
+  initialRouteParams: {mood: ""},
+  lazy: false,
   headerMode: 'float',
   tabBarOptions: {
     activeTintColor: 'green',
@@ -106,7 +91,9 @@ const TabNav = createBottomTabNavigator({
 MajMoodNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="moods" size={27} color={tintColor} />
+      <View style={{width: height * 0.05}}>
+        <CustomIcon name="moods" size={height * 0.03} color={tintColor} />
+      </View>
     ),
   };
 };
@@ -114,15 +101,25 @@ MajMoodNav.navigationOptions = ({ navigation }) => {
 ThoughtsNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="thoughts" size={27} color={tintColor} />
+      <View style={{width: height * 0.05}}>
+        <CustomIcon name="thoughts" size={height * 0.03} color={tintColor} />
+      </View>
     ),
+    tabBarOnPress: ({navigation, defaultHandler }) => {
+        if(navigation.state.params == undefined) {
+          navigation.navigate("TasksScreen")
+        }
+        defaultHandler();
+      }
   };
 };
 
 TasksNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="taskList" size={27} color={tintColor} />
+      <View style={{width: height * 0.05}}>
+        <CustomIcon name="taskList" size={height * 0.03} color={tintColor} />
+      </View>
     ),
   };
 };
@@ -130,7 +127,9 @@ TasksNav.navigationOptions = ({ navigation }) => {
 CheckInScreen.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="checkIn" size={27} color={tintColor} />
+      <View style={{width: height * 0.05}}>
+        <CustomIcon name="checkIn" size={height * 0.03} color={tintColor} />
+      </View>
     ),
   };
 };

@@ -53,13 +53,14 @@ export default class TasksScreen extends React.Component {
     return {
       headerTitle: (
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={TasksStyles.heading}>Team Tasks</Text>
+          <Text style={TasksStyles.headerText}>Team Tasks</Text>
         </View>
       ),
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
-      }
+        height: height * 0.04,
+      },
     };
   };
 
@@ -193,7 +194,12 @@ const TasksStyles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center'
-    // flex: 1,
-    // margin: 1,
+  },
+  headerText: {
+    fontSize: height * 0.03,
+    fontWeight: "500",
+    alignSelf: "center",
+    marginLeft: "auto",
+    marginRight: "auto"
   }
 });
