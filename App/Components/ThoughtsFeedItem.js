@@ -81,9 +81,9 @@ export default class ThoughtsFeedItem extends React.Component {
           >
             <Entypo
             name={this.state.liked ? "heart" : "heart-outlined"}
-            size={height * 0.03}
+            size={height * 0.035}
             color={this.state.liked ? Colors.ember : Colors.coal} />
-            <Text style={{fontSize: height * 0.03}}>{this.state.favs}</Text>
+            <Text style={{fontSize: height * 0.02}}>{this.state.favs}</Text>
           </TouchableOpacity>
         </View>
       </View>
