@@ -42,6 +42,7 @@ const accentColor = () => {
 export default class HomeScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
+    console.log(navigation)
     return {
       headerTitle: (
         <View style={{flexDirection: 'row', flex: 1, justifyContent: "space-evenly", alignItems: "center"}}>

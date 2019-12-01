@@ -91,8 +91,8 @@ const TabNav = createBottomTabNavigator({
     TasksScreen: { screen: TasksNav },
   }, {
     initialRouteName: 'CheckInScreen',
-    defaultavigationOptions: ({ navigation }) => ({
-      tabBarVisible: false
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarVisible: (navigation.state.params || navigation.state.routeName === "MajMoodScreen" || navigation.state.routeName === "TasksScreen" || navigation.state.routeName === "ThoughtsScreen") ? true : false,
     }),
     tabBarOptions: {
       activeTintColor: '#222',
@@ -135,15 +135,6 @@ CheckInNav.navigationOptions = ({ navigation }) => {
   tabBarVisible = false;
   return {
     tabBarVisible,
-    headerStyle: {
-      height: 0,
-      opacity: 0.1
-    },
-    tabBarIcon: ({ tintColor }) => (
-      <View style={{width: height * 0.05}}>
-        <CustomIcon name="checkIn" size={height * 0.03} color={tintColor} />
-      </View>
-    )
   };
 };
 

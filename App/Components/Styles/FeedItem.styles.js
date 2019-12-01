@@ -27,18 +27,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 15,
-    marginLeft: height * 0.05,
-    marginRight: Metrics.marginHorizontal,
-  },
-  mainImageContainer: {
-    marginTop: Metrics.marginVertical,
-  },
-  likesContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    marginTop: Metrics.marginVertical,
-    marginLeft: 200,
+    marginLeft: height * 0.055,
     marginRight: Metrics.marginHorizontal,
   },
   descContainer: {
