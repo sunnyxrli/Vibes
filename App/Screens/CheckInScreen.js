@@ -17,11 +17,13 @@ const accentColor = () => {
 export default class CheckInScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
+    console.log(navigation)
     return {
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(),
         borderBottomWidth: 0,
-      }
+      },
+      tabBarVisible: true,
     };
   };
 
@@ -132,6 +134,11 @@ export default class CheckInScreen extends React.Component {
     }
   }
 
+  moveToHome() {
+    this.props.navigation.setParams({firstCheckIn: false});
+    this.props.navigation.navigate("HomeScreen", {mood: this.state.mood});
+  }
+
   render() {
     return (
         <LinearGradient
@@ -161,7 +168,7 @@ export default class CheckInScreen extends React.Component {
               <TouchableOpacity
                 style={styles.button}
                 onPress={() => {
-                  this.props.navigation.navigate('HomeScreen', {mood: this.state.mood})
+                  this.moveToHome()
                 }}
                 >
                 <Text style={styles.buttonText}> Check In </Text>

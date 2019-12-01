@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
 import { material } from 'react-native-typography';
 import Home from '../Screens/HomeScreen';
+import TaskMiami from '../Screens/TaskMiami';
 
 var { height, width } = Dimensions.get('window');
 
@@ -48,8 +49,10 @@ var accentColor = (mood) => {
 }
 
 export default class TasksScreen extends React.Component {
+  
 
   static navigationOptions = ({ navigation }) => {
+    console.log(navigation)
     return {
       headerTitle: (
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -73,7 +76,7 @@ export default class TasksScreen extends React.Component {
           <View style={{alignItems: 'center'}}>
             <TouchableOpacity
               style={[TasksStyles.task, {justifyContent: 'center'}]}
-              onPress={() => { }}
+              onPress={() => {this.props.navigation.navigate('TaskMiami', {mood: mood})}}
             >
               <Text style={{ left: height * 0.03, fontFamily: 'Lato-Regular', fontSize: height * 0.03 }}>Miami Trip</Text>
               <Text style={{ fontSize: height * 0.02, fontFamily: 'Lato-Italic', color: accentColor(mood), left: height * 0.027 }}> Expires in 1 day </Text>

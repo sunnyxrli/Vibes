@@ -75,7 +75,7 @@ export default class ThoughtsScreen extends React.Component {
     var date = tempDate.getFullYear() + '' + (tempDate.getMonth()+1) + '' + tempDate.getDate() + '' + tempDate.getHours() + '' + tempDate.getMinutes() + '' + tempDate.getSeconds();
     date = 120191231245959 - date;
     firestore.collection("Thoughts").doc(date.toString()).set({
-        action: "create",
+        action: "waiting",
         favs: "",
         profile: this.state.anonymous ? "anon" : "charlie",
         text: this.state.thoughtText,

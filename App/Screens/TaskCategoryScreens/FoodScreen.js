@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
+import TasksWeeklyLunches from '../../Screens/TasksWeeklyLunches.js';
 
 var homeScreenBackgroundColor = (mood) => {
     if (mood == 'EXCITED') {
@@ -55,7 +56,7 @@ export default class FoodScreen extends React.Component {
             <View style={FoodStyles.tasksContainer}>
                 <TouchableOpacity
                     style={[FoodStyles.task, { justifyContent: 'center', marginTop: 20 }]}
-                    onPress={() => { }}
+                    onPress={() => { this.props.navigation.navigate('TasksWeeklyLunches', {mood: mood});}}
                 >
                     <Text style={{ left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Weekly Team Lunches!</Text>
                     <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', left: 24 }}>Expires Dec 31st, 2019</Text>

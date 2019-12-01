@@ -16,10 +16,19 @@ import OfficeSpaceScreen from '../Screens/TaskCategoryScreens/OfficeSpaceScreen'
 import InclusivityScreen from '../Screens/TaskCategoryScreens/InclusivityScreen'
 import OtherScreen from '../Screens/TaskCategoryScreens/OtherScreen'
 import FoodScreen from '../Screens/TaskCategoryScreens/FoodScreen'
+import TasksWeeklyLunchesScreen from '../Screens/TasksWeeklyLunches';
+import TasksBdayScreen  from '../Screens/TaskBday';
+import TasksMiamiScreen  from '../Screens/TaskMiami';
+import TasksHolidayScreen  from '../Screens/TaskHoliday';
+import TasksCreativeSpaceScreen  from '../Screens/TaskCreativeSpace';
+import ActionItemsCreativeSpaceScreen  from '../Screens/ActionItemsCreativeSpace';
+import ActionItemsMisbahBdayScreen from '../Screens/ActionItemsMisbahBday';
+import ActionItemsMiamiTripScreen from '../Screens/ActionItemsMiamiTrip';
+import ActionItemsHolidayScreen from '../Screens/ActionItemsHoliday';
+import ActionItemsWeeklyLunchesScreen from '../Screens/ActionItemsWeeklyLunches';
 import CreateTaskOne from '../Screens/CreateTaskOne'
 import CreateTaskTwo from '../Screens/CreateTaskTwo'
 import CreateTaskThree from '../Screens/CreateTaskThree'
-
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import icoMoonConfig from '../../selection.json';
 const expoAssetId = require("../../assets/fonts/icomoon.ttf");
@@ -61,7 +70,17 @@ const TasksNav = createStackNavigator({
   OfficeSpaceScreen: {screen: OfficeSpaceScreen},
   InclusivityScreen: {screen: InclusivityScreen},
   FoodScreen: {screen: FoodScreen},
-  OtherScreen: {screen: OtherScreen}
+  OtherScreen: {screen: OtherScreen},
+  TasksWeeklyLunches: {screen: TasksWeeklyLunchesScreen},
+  TaskBday:{screen: TasksBdayScreen},
+  TaskMiami:{screen: TasksMiamiScreen},
+  TaskHoliday:{screen: TasksHolidayScreen},
+  TaskCreativeSpace:{screen: TasksCreativeSpaceScreen},
+  ActionItemsCreativeSpace:{screen: ActionItemsCreativeSpaceScreen},
+  ActionItemsMisbahBday:{screen: ActionItemsMisbahBdayScreen},
+  ActionItemsMiamiTrip:{screen: ActionItemsMiamiTripScreen},
+  ActionItemsHoliday:{screen: ActionItemsHolidayScreen},
+  ActionItemsWeeklyLunches:{screen: ActionItemsWeeklyLunchesScreen}
 }, {
   initialRouteName: 'TasksScreen',
   initialRouteParams: {mood: "mood"},
@@ -91,8 +110,8 @@ const TabNav = createBottomTabNavigator({
     TasksScreen: { screen: TasksNav },
   }, {
     initialRouteName: 'CheckInScreen',
-    defaultavigationOptions: ({ navigation }) => ({
-      tabBarVisible: false
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarVisible: (navigation.state.params || navigation.state.routeName === "MajMoodScreen" || navigation.state.routeName === "TasksScreen" || navigation.state.routeName === "ThoughtsScreen") ? true : false,
     }),
     tabBarOptions: {
       activeTintColor: '#222',
@@ -130,20 +149,18 @@ TasksNav.navigationOptions = ({ navigation }) => {
     ),
   };
 };
+// TasksOfficeEventsNav.navigationOptions = ({ navigation }) => {
+//   return {
+//     tabBarIcon: ({ tintColor }) => (
+//       <CustomIcon name="taskList" size={27} color={tintColor} />
+//     ),
+//   };
+// };
 
 CheckInNav.navigationOptions = ({ navigation }) => {
   tabBarVisible = false;
   return {
     tabBarVisible,
-    headerStyle: {
-      height: 0,
-      opacity: 0.1
-    },
-    tabBarIcon: ({ tintColor }) => (
-      <View style={{width: height * 0.05}}>
-        <CustomIcon name="checkIn" size={height * 0.03} color={tintColor} />
-      </View>
-    )
   };
 };
 

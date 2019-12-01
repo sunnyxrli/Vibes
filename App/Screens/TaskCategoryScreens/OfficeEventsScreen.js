@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
-
+import TaskBday  from '../../Screens/TaskBday.js';
 var { height, width } = Dimensions.get('window');
 
 var homeScreenBackgroundColor = (mood) => {
@@ -57,7 +57,7 @@ export default class OfficeEventsScreen extends React.Component {
             <View style={OfficeEventsStyles.tasksContainer}>
                 <TouchableOpacity
                     style={[OfficeEventsStyles.task, { justifyContent: 'center', marginTop: 20 }]}
-                    onPress={() => { }}
+                    onPress={() => { this.props.navigation.navigate('TaskBday', {mood: mood});}}
                 >
                     <Text style={{ left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Misbah Bday Party</Text>
                     <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', color: accentColor(mood), left: 22 }}>Expires in 3 days</Text>
