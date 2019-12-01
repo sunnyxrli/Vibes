@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { material } from 'react-native-typography';
+import TaskMiami from '../../Screens/TaskMiami.js';
 
 var { height, width } = Dimensions.get('window');
 
@@ -58,7 +59,7 @@ export default class OffsitesScreen extends React.Component {
             <View style={OffsitesSyles.tasksContainer}>
                 <TouchableOpacity
                     style={[OffsitesSyles.task, { justifyContent: 'center', marginTop: 20 }]}
-                    onPress={() => { }}
+                    onPress={() => { this.props.navigation.navigate('TaskMiami', {mood: mood});}}
                 >
                     <Text style={{ left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Miami Trip</Text>
                     <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', color: accentColor(mood), left: 22 }}>Expires in 1 day</Text>
