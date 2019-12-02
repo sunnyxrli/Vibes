@@ -103,11 +103,11 @@ export default class ThoughtsFeedItem extends React.Component {
             style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: "center"}}
             onPress={this.likeThis}
           >
+            <Text style={{fontSize: height * 0.02, alignItems: "center"}}>{this.state.favs}</Text>
             <Entypo
             name={this.state.liked ? "heart" : "heart-outlined"}
             size={height * 0.035}
-            color={this.state.liked ? Colors.ember : Colors.coal} />
-            <Text style={{fontSize: height * 0.02}}>{this.state.favs}</Text>
+            color={this.state.liked ? Colors.ember : "#828282"} />
           </TouchableOpacity>
         </View>
       </View>
