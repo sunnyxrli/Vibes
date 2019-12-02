@@ -103,7 +103,7 @@ export default class ThoughtsScreen extends React.Component {
                 multiline={true}
             />
             <View style={{marginTop: 10, alignSelf: "center"}}>
-              <Text style={human.title2}>Post as</Text>
+              <Text style={{fontSize: height * 0.025}}>Post as</Text>
             </View>
             <View>
               {this.getTabContent()}
@@ -144,7 +144,7 @@ export default class ThoughtsScreen extends React.Component {
               source={require("../../App/Images/ProfileImages/anon-icon.png")}
               style={{height: height * 0.1, width: height * 0.1, alignSelf: "center", borderColor: this.state.anonymous ? accentColor(mood) : "white", borderWidth: height * 0.003, borderRadius: height * 0.05}}
             />
-            <Text style={{color: this.state.anonymous ? accentColor(mood) : "#000", alignSelf: "center"}}>ANONYMOUS</Text>
+            <Text style={{fontSize: height * 0.018, color: this.state.anonymous ? accentColor(mood) : "#000", alignSelf: "center"}}>ANONYMOUS</Text>
           </TouchableOpacity>
         </View>
         <View style={{opacity: this.state.anonymous ? 0.2 : 1}}>
@@ -160,7 +160,7 @@ export default class ThoughtsScreen extends React.Component {
               borderWidth: height * 0.003,
               borderRadius: height * 0.05}}
             />
-            <Text style={{color: this.state.anonymous ? "#000" : accentColor(mood), alignSelf: "center"}}>CHARLIE</Text>
+            <Text style={{fontSize: height * 0.018, color: this.state.anonymous ? "#000" : accentColor(mood), alignSelf: "center"}}>CHARLIE</Text>
         </TouchableOpacity>
         </View>
       </View>

@@ -49,7 +49,7 @@ var accentColor = (mood) => {
 }
 
 export default class TasksScreen extends React.Component {
-  
+
 
   static navigationOptions = ({ navigation }) => {
     console.log(navigation)
@@ -66,6 +66,20 @@ export default class TasksScreen extends React.Component {
       },
     };
   };
+
+  updateMood = () => {
+    if(!this.props.navigation) {
+      return;
+    }
+    this.props.navigation.setParams(mood)
+  }
+
+  componentDidMount(){
+    setInterval(() => (
+      this.props.navigation.state.params.mood != homeScreenBackgroundColor(mood) ?
+      this.updateMood() : ""
+    ), 500);
+  }
 
 
   render() {
