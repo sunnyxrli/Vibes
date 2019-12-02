@@ -56,10 +56,26 @@ export default class ThoughtsFeedItem extends React.Component {
 
   render() {
     const { content = {} } = this.props;
-    const actionText = content.action === "create" ? "CREATE TASK" : "VIEW TASK";
-    const actionFontWeight = content.action === "create" ? "600" : "500";
-    const actionFontColor = content.action === "create" ? textAccentColor(this.props.accentColor) : this.props.accentColor;
-
+    var actionText = "";
+    var actionFontWeight = 0;
+    var actionFontColor = "black";
+    var actionFontSize = 0;
+    if(content.action === "create") {
+      actionText = "CREATE TASK";
+      actionFontWeight = "600";
+      actionFontColor = textAccentColor(this.props.accentColor);
+      actionFontSize = height * 0.025;
+    } else if(content.action === "waiting") {
+      actionText = "Needs 5 likes to become a Task";
+      actionFontWeight = "400";
+      actionFontColor = "grey";
+      actionFontSize = height * 0.02;
+    } else {
+      actionText = "VIEW TASK";
+      actionFontWeight = "500";
+      actionFontColor = this.props.accentColor;
+      actionFontSize = height * 0.025;
+    }
     return (
       <View style={{borderColor: this.props.accentColor, borderWidth: 1.5, margin: 5, marginTop: 3, padding: 2, borderRadius: 6}}>
         <View style={styles.upperRow}>
@@ -72,8 +88,8 @@ export default class ThoughtsFeedItem extends React.Component {
           </View>
         </View>
         <View style={styles.lowerRow}>
-          <TouchableOpacity style={styles.textContainer}>
-            <Text style={{fontSize: height * 0.025, fontWeight: actionFontWeight, color: actionFontColor}}>{actionText}</Text>
+          <TouchableOpacity>
+            <Text style={{fontSize: actionFontSize, fontWeight: actionFontWeight, color: actionFontColor}}>{actionText}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: "center"}}

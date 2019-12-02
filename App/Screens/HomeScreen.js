@@ -48,7 +48,7 @@ export default class HomeScreen extends React.Component {
   };
 
   static navigationOptions = ({ navigation }) => {
-
+    console.log(navigation.state.routeName)
     return {
       headerTitle: (
         <Text style={styles.headerText}>Your team feels</Text>
@@ -96,7 +96,7 @@ export default class HomeScreen extends React.Component {
               borderRadius: 100,
               width: height * 0.2,
               height: height * 0.08,
-              marginRight: height * 0.02,
+              marginRight: height * 0.01,
             }}
             onPress={() => this.setMoodsOverlayVisible(true)}
           >
@@ -131,7 +131,7 @@ export default class HomeScreen extends React.Component {
             borderRadius: 100,
             width: height * 0.2,
             height: height * 0.08,
-            marginLeft: height * 0.02,
+            marginLeft: height * 0.01,
           }}
             onPress={() => {
               this.props.navigation.navigate('ThoughtsScreen', {mood: mood});

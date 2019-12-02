@@ -52,6 +52,7 @@ export default class TasksScreen extends React.Component {
   
 
   static navigationOptions = ({ navigation }) => {
+    console.log(navigation)
     return {
       headerTitle: (
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -71,81 +72,83 @@ export default class TasksScreen extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <ScrollView>
-          <Text style={[TasksStyles.title, { paddingTop: 25, paddingLeft: 15, paddingBottom: 19 }]}>Tasks You’ve Joined</Text>
-          <TouchableOpacity
-            style={[TasksStyles.task, {justifyContent: 'center'}]}
-            
-            onPress={() => { this.props.navigation.navigate('TaskMiami', {mood: mood});}}
-          >
-            <Text style={{ left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Miami Trip</Text>
-            <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', color: accentColor(mood), left: 22 }}> Expires in 1 day </Text>
-          </TouchableOpacity>
-          <Text style={[TasksStyles.title, { paddingTop: 48, paddingLeft: 15, paddingBottom: 8.5 }]}>All Tasks</Text>
+          <Text style={[TasksStyles.title, { paddingTop: height * 0.03, paddingLeft: height * 0.018, paddingBottom: height * 0.023 }]}>Tasks You’ve Joined</Text>
+          <View style={{alignItems: 'center'}}>
+            <TouchableOpacity
+              style={[TasksStyles.task, {justifyContent: 'center'}]}
+              onPress={() => {this.props.navigation.navigate('TaskMiami', {mood: mood})}}
+            >
+              <Text style={{ left: height * 0.03, fontFamily: 'Lato-Regular', fontSize: height * 0.03 }}>Miami Trip</Text>
+              <Text style={{ fontSize: height * 0.02, fontFamily: 'Lato-Italic', color: accentColor(mood), left: height * 0.027 }}> Expires in 1 day </Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={[TasksStyles.title, { paddingTop: height * 0.06, paddingLeft: height * 0.018, paddingBottom: height * 0.01 }]}>All Tasks</Text>
           <View style={TasksStyles.categoryContainer}>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => {this.props.navigation.navigate('OffsitesScreen')}}
+              onPress={() => { this.props.navigation.navigate('OffsitesScreen') }}
             >
               <Image
                 source={require("../Images/TaskCategories/offsites.png")}
                 style={{
-                  height: 93.65,
-                  width: 91, justifyContent: 'center'
+                  height: height * 0.115,
+                  width: height * 0.11, justifyContent: 'center'
                 }} />
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => {this.props.navigation.navigate('OfficeEventsScreen')}}
+              onPress={() => { this.props.navigation.navigate('OfficeEventsScreen') }}
             >
               <Image
                 source={require("../Images/TaskCategories/officeEvents.png")}
                 style={{
-                  height: 113.82,
-                  width: 76, justifyContent: 'center'
+                  height: height * 0.14,
+                  width: height * 0.09, justifyContent: 'center'
                 }} />
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => {this.props.navigation.navigate('OfficeSpaceScreen')}}
+              onPress={() => { this.props.navigation.navigate('OfficeSpaceScreen') }}
             >
               <Image
                 source={require("../Images/TaskCategories/officeSpace.png")}
                 style={{
-                  height: 114.82,
-                  width: 70, justifyContent: 'center'
+                  height: height * 0.14,
+                  width: height * 0.085, justifyContent: 'center'
                 }} />
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => {this.props.navigation.navigate('InclusivityScreen')}}
+              onPress={() => { this.props.navigation.navigate('InclusivityScreen') }}
             >
               <Image
                 source={require("../Images/TaskCategories/inclusivity.png")}
                 style={{
-                  height: 91.06,
-                  width: 122, justifyContent: 'center'
+                  height: height * 0.115,
+                  width: height * 0.15, justifyContent: 'center'
                 }} />
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => {this.props.navigation.navigate('FoodScreen')}}
+              onPress={() => { this.props.navigation.navigate('FoodScreen') }}
             >
               <Image
                 source={require("../Images/TaskCategories/food.png")}
                 style={{
-                  height: 90.06,
-                  width: 59, justifyContent: 'center'
+                  height: height * 0.11,
+                  width: height * 0.072, justifyContent: 'center'
                 }} />
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => {this.props.navigation.navigate('OtherScreen')}}
+              onPress={() => { this.props.navigation.navigate('OtherScreen') }}
             >
               <Image
                 source={require("../Images/TaskCategories/other.png")}
                 style={{
-                  height: 72.06,
-                  width: 86.82, justifyContent: 'center'
+                  height: height * 0.088,
+                  width: height * 0.106, justifyContent: 'center'
                 }} />
             </TouchableOpacity>
           </View>
@@ -156,40 +159,29 @@ export default class TasksScreen extends React.Component {
 }
 
 const TasksStyles = StyleSheet.create({
-  displayText: {
-    flex: 1,
-    fontSize: 40,
-    fontStyle: 'italic',
-    fontWeight: '200',
-    color: 'black',
-    padding: '15%',
-    justifyContent: 'center',
-  },
   title: {
     fontFamily: 'Lato-Bold',
     fontSize: height * 0.025
   },
   task: {
-    width: 345,
-    height: 89,
-    left: 15,
+    width: height * 0.422,
+    height: height * 0.109,
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: height * 0.01,
     borderColor: '#BDBDBD'
   },
   categoryContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // left: 4.5,
     alignItems: 'center',
     justifyContent: 'center'
   },
   categoryItem: {
     alignItems: 'center',
-    height: 162,
-    width: 162,
-    margin: 10.5,
-    borderRadius: 10,
+    height: height * 0.2,
+    width: height * 0.2,
+    margin: height * 0.013,
+    borderRadius: height * 0.012,
     alignItems: 'center',
     justifyContent: 'center'
   },
