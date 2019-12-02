@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType } from 'react-native';
 import { material } from 'react-native-typography';
 // import Feed from '../Components/Feed';
+import { AsyncStorage } from 'react-native';
 import Home from '../Screens/HomeScreen';
 import { Colors } from '../Themes';
 var { height, width } = Dimensions.get('window');
@@ -71,10 +72,65 @@ export default class ActionItemsWeeklyLunches extends React.Component {
         hasHitAddButton: false,
     }
 
-    // constructor(props) {
-    //   super(props);
-    //   console.log("toggle");
-    // }
+    async componentDidMount() {
+        this._isMounted = true;
+        try {
+            this.setState({ button1: ((await AsyncStorage.getItem('Weeklybutton1') || false) === "true") });
+            this.setState({ button2: ((await AsyncStorage.getItem('Weeklybutton2') || false) === "true") });
+            this.setState({ button3: ((await AsyncStorage.getItem('Weeklybutton3') || false) === "true") });
+            this.setState({ button4: ((await AsyncStorage.getItem('Weeklybutton4') || false) === "true") });
+
+            this.setState({ textValue1: (await AsyncStorage.getItem('WeeklytextValue1') || 'CLAIM') });
+            this.setState({ textValue2: (await AsyncStorage.getItem('WeeklytextValue2') || 'CLAIM') });
+            this.setState({ textValue3: (await AsyncStorage.getItem('WeeklytextValue3') || 'CLAIM') });
+            this.setState({ textValue4: (await AsyncStorage.getItem('WeeklytextValue4') || 'CLAIM') });
+
+
+            this.setState({ claim1: (await AsyncStorage.getItem('Weeklyclaim1') || '') });
+            this.setState({ claim2: (await AsyncStorage.getItem('Weeklyclaim2') || '') });
+            this.setState({ claim3: (await AsyncStorage.getItem('Weeklyclaim3') || '') });
+            this.setState({ claim4: (await AsyncStorage.getItem('Weeklyclaim4') || '') });
+
+            this.setState({ completedButton1: ((await AsyncStorage.getItem('WeeklycompletedButton1') || false) === "true") });
+            this.setState({ completedButton2: ((await AsyncStorage.getItem('WeeklycompletedButton2') || false) === "true") });
+            this.setState({ completedButton3: ((await AsyncStorage.getItem('WeeklycompletedButton3') || false) === "true") });
+            this.setState({ completedButton4: ((await AsyncStorage.getItem('WeeklycompletedButton4') || false) === "true") });
+
+            this.setState({ hasHitAddButton: ((await AsyncStorage.getItem('WeeklyhasHitAddButton') || false) === "true") });
+        } catch (error) {
+            // Error retrieving data
+            console.log("Async storage error in retreival");
+        }
+    }
+
+    async componentWillUnmount() {
+        this._isMounted = false;
+        try {
+            await AsyncStorage.setItem('Weeklybutton1', this.state.button1.toString());
+            await AsyncStorage.setItem('Weeklybutton2', this.state.button2.toString());
+            await AsyncStorage.setItem('Weeklybutton3', this.state.button3.toString());
+            await AsyncStorage.setItem('Weeklybutton4', this.state.button4.toString());
+
+            await AsyncStorage.setItem('WeeklytextValue1', this.state.textValue1);
+            await AsyncStorage.setItem('WeeklytextValue2', this.state.textValue2);
+            await AsyncStorage.setItem('WeeklytextValue3', this.state.textValue3);
+            await AsyncStorage.setItem('WeeklytextValue4', this.state.textValue4);
+
+            await AsyncStorage.setItem('Weeklyclaim1', this.state.claim1);
+            await AsyncStorage.setItem('Weeklyclaim2', this.state.claim2);
+            await AsyncStorage.setItem('Weeklyclaim3', this.state.claim3);
+            await AsyncStorage.setItem('Weeklyclaim4', this.state.claim4);
+
+            await AsyncStorage.setItem('WeeklycompletedButton1', this.state.completedButton1.toString());
+            await AsyncStorage.setItem('WeeklycompletedButton2', this.state.completedButton2.toString());
+            await AsyncStorage.setItem('WeeklycompletedButton3', this.state.completedButton3.toString());
+            await AsyncStorage.setItem('WeeklycompletedButton4', this.state.completedButton4.toString());
+            await AsyncStorage.setItem('WeeklyhasHitAddButton', this.state.hasHitAddButton.toString());
+        } catch (error) {
+            // Error saving data
+            console.warn("async storage had a problem storying the data on unmount");
+        }
+    }
 
 
     getClaimStatus(type) {

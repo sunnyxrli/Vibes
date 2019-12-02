@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType } from 'react-native';
 import { material } from 'react-native-typography';
 // import Feed from '../Components/Feed';
+import { AsyncStorage } from 'react-native';
 import Home from '../Screens/HomeScreen';
 import { Colors } from '../Themes';
 var { height, width } = Dimensions.get('window');
@@ -71,11 +72,65 @@ export default class ActionItemsMisbahBday extends React.Component {
         hasHitAddButton: false,
     }
 
-    // constructor(props) {
-    //   super(props);
-    //   console.log("toggle");
-    // }
+    async componentDidMount() {
+        this._isMounted = true;
+        try {
+            this.setState({ button1: ((await AsyncStorage.getItem('Miamibutton1') || false) === "true") });
+            this.setState({ button2: ((await AsyncStorage.getItem('Miamibutton2') || false) === "true") });
+            this.setState({ button3: ((await AsyncStorage.getItem('Miamibutton3') || false) === "true") });
+            this.setState({ button4: ((await AsyncStorage.getItem('Miamibutton4') || false) === "true") });
 
+            this.setState({ textValue1: (await AsyncStorage.getItem('MiamitextValue1') || 'CLAIM') });
+            this.setState({ textValue2: (await AsyncStorage.getItem('MiamitextValue2') || 'CLAIM') });
+            this.setState({ textValue3: (await AsyncStorage.getItem('MiamitextValue3') || 'CLAIM') });
+            this.setState({ textValue4: (await AsyncStorage.getItem('MiamitextValue4') || 'CLAIM') });
+
+
+            this.setState({ claim1: (await AsyncStorage.getItem('Miamiclaim1') || '') });
+            this.setState({ claim2: (await AsyncStorage.getItem('Miamiclaim2') || '') });
+            this.setState({ claim3: (await AsyncStorage.getItem('Miamiclaim3') || '') });
+            this.setState({ claim4: (await AsyncStorage.getItem('Miamiclaim4') || '') });
+
+            this.setState({ completedButton1: ((await AsyncStorage.getItem('MiamicompletedButton1') || false) === "true") });
+            this.setState({ completedButton2: ((await AsyncStorage.getItem('MiamicompletedButton2') || false) === "true") });
+            this.setState({ completedButton3: ((await AsyncStorage.getItem('MiamicompletedButton3') || false) === "true") });
+            this.setState({ completedButton4: ((await AsyncStorage.getItem('MiamicompletedButton4') || false) === "true") });
+
+            this.setState({ hasHitAddButton: ((await AsyncStorage.getItem('MiamihasHitAddButton') || false) === "true") });
+        } catch (error) {
+            // Error retrieving data
+            console.log("Async storage error in retreival");
+        }
+    }
+
+    async componentWillUnmount() {
+        this._isMounted = false;
+        try {
+            await AsyncStorage.setItem('Miamibutton1', this.state.button1.toString());
+            await AsyncStorage.setItem('Miamibutton2', this.state.button2.toString());
+            await AsyncStorage.setItem('Miamibutton3', this.state.button3.toString());
+            await AsyncStorage.setItem('Miamibutton4', this.state.button4.toString());
+
+            await AsyncStorage.setItem('MiamitextValue1', this.state.textValue1);
+            await AsyncStorage.setItem('MiamitextValue2', this.state.textValue2);
+            await AsyncStorage.setItem('MiamitextValue3', this.state.textValue3);
+            await AsyncStorage.setItem('MiamitextValue4', this.state.textValue4);
+
+            await AsyncStorage.setItem('Miamiclaim1', this.state.claim1);
+            await AsyncStorage.setItem('Miamiclaim2', this.state.claim2);
+            await AsyncStorage.setItem('Miamiclaim3', this.state.claim3);
+            await AsyncStorage.setItem('Miamiclaim4', this.state.claim4);
+
+            await AsyncStorage.setItem('MiamicompletedButton1', this.state.completedButton1.toString());
+            await AsyncStorage.setItem('MiamicompletedButton2', this.state.completedButton2.toString());
+            await AsyncStorage.setItem('MiamicompletedButton3', this.state.completedButton3.toString());
+            await AsyncStorage.setItem('MiamicompletedButton4', this.state.completedButton4.toString());
+            await AsyncStorage.setItem('MiamihasHitAddButton', this.state.hasHitAddButton.toString());
+        } catch (error) {
+            // Error saving data
+            console.warn("async storage had a problem storying the data on unmount");
+        }
+    }
 
     getClaimStatus(type) {
         if (this.state[type] === true) {
