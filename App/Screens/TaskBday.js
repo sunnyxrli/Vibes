@@ -52,7 +52,7 @@ export default class TaskBday extends React.Component {
     constructor(props){
       super(props);
       console.log("got to misbah bday");
-    
+
       }
 
   static navigationOptions = ({ navigation }) => {
@@ -77,7 +77,7 @@ export default class TaskBday extends React.Component {
           <Text style={TaskBdayStyle.TaskTitle}>Misbah Bday Party</Text>
           <Text style={TaskBdayStyle.expirationDate}>Expires Dec 31st, 2019</Text>
           <Text style={TaskBdayStyle.taskDetails}>Let’s all join together to plan a birthday party for our favorite engineer!</Text>
-          
+
         </View>
 
       <View  style={{flexDirection:'row', marginTop:50, flex:1, marginLeft:20}}>
@@ -126,16 +126,17 @@ export default class TaskBday extends React.Component {
 
 
         </View>
-        
+
 
         <View style={{ marginLeft: 20, paddingTop: 50, marginTop:50}}>
           <Text style={TaskBdayStyle.collab}>COLLABORATORS</Text>
         </View>
         <ScrollView>
-        <View style={{ marginTop:20, flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
+        <View style={{flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
           <Image
               source={require("../Images/collabButton.png")}
               resizeMode='contain'
+              style={{height: height * 0.3, width: height * 0.4}}
           />
       </View>
       </ScrollView>

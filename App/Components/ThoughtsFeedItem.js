@@ -54,6 +54,11 @@ export default class ThoughtsFeedItem extends React.Component {
     }
   }
 
+  actionPressed = (action) => {
+    this.props.onActionPressed(action);
+  }
+
+
   render() {
     const { content = {} } = this.props;
     var actionText = "";
@@ -88,7 +93,10 @@ export default class ThoughtsFeedItem extends React.Component {
           </View>
         </View>
         <View style={styles.lowerRow}>
-          <TouchableOpacity>
+          <TouchableOpacity
+          onPress={() => {
+            this.actionPressed(content.action);
+          }}>
             <Text style={{fontSize: actionFontSize, fontWeight: actionFontWeight, color: actionFontColor}}>{actionText}</Text>
           </TouchableOpacity>
           <TouchableOpacity
