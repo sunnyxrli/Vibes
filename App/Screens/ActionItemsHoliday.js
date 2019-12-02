@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType } from 'react-native';
 import { material } from 'react-native-typography';
 // import Feed from '../Components/Feed';
+import { AsyncStorage } from 'react-native';
 import Home from '../Screens/HomeScreen';
 import { Colors } from '../Themes';
 var { height, width } = Dimensions.get('window');
@@ -70,11 +71,66 @@ export default class ActionItemsHoliday extends React.Component {
         completedButton4: false,
         hasHitAddButton: false,
     }
+    async componentDidMount() {
+        this._isMounted = true;
+        try {
+            this.setState({ button1: ((await AsyncStorage.getItem('Holidaybutton1') || false) === "true") });
+            this.setState({ button2: ((await AsyncStorage.getItem('Holidaybutton2') || false) === "true") });
+            this.setState({ button3: ((await AsyncStorage.getItem('Holidaybutton3') || false) === "true") });
+            this.setState({ button4: ((await AsyncStorage.getItem('Holidaybutton4') || false) === "true") });
 
-    // constructor(props) {
-    //   super(props);
-    //   console.log("toggle");
-    // }
+            this.setState({ textValue1: (await AsyncStorage.getItem('HolidaytextValue1') || 'CLAIM') });
+            this.setState({ textValue2: (await AsyncStorage.getItem('HolidaytextValue2') || 'CLAIM') });
+            this.setState({ textValue3: (await AsyncStorage.getItem('HolidaytextValue3') || 'CLAIM') });
+            this.setState({ textValue4: (await AsyncStorage.getItem('HolidaytextValue4') || 'CLAIM') });
+
+
+            this.setState({ claim1: (await AsyncStorage.getItem('Holidayclaim1') || '') });
+            this.setState({ claim2: (await AsyncStorage.getItem('Holidayclaim2') || '') });
+            this.setState({ claim3: (await AsyncStorage.getItem('Holidayclaim3') || '') });
+            this.setState({ claim4: (await AsyncStorage.getItem('Holidayclaim4') || '') });
+
+            this.setState({ completedButton1: ((await AsyncStorage.getItem('HolidaycompletedButton1') || false) === "true") });
+            this.setState({ completedButton2: ((await AsyncStorage.getItem('HolidaycompletedButton2') || false) === "true") });
+            this.setState({ completedButton3: ((await AsyncStorage.getItem('HolidaycompletedButton3') || false) === "true") });
+            this.setState({ completedButton4: ((await AsyncStorage.getItem('HolidaycompletedButton4') || false) === "true") });
+
+            this.setState({ hasHitAddButton: ((await AsyncStorage.getItem('HolidayhasHitAddButton') || false) === "true") });
+        } catch (error) {
+            // Error retrieving data
+            console.log("Async storage error in retreival");
+        }
+    }
+
+    async componentWillUnmount() {
+        this._isMounted = false;
+        try {
+            console.log("saving bros");
+            await AsyncStorage.setItem('Holidaybutton1', this.state.button1.toString());
+            await AsyncStorage.setItem('Holidaybutton2', this.state.button2.toString());
+            await AsyncStorage.setItem('Holidaybutton3', this.state.button3.toString());
+            await AsyncStorage.setItem('Holidaybutton4', this.state.button4.toString());
+
+            await AsyncStorage.setItem('HolidaytextValue1', this.state.textValue1);
+            await AsyncStorage.setItem('HolidaytextValue2', this.state.textValue2);
+            await AsyncStorage.setItem('HolidaytextValue3', this.state.textValue3);
+            await AsyncStorage.setItem('HolidaytextValue4', this.state.textValue4);
+
+            await AsyncStorage.setItem('Holidayclaim1', this.state.claim1);
+            await AsyncStorage.setItem('Holidayclaim2', this.state.claim2);
+            await AsyncStorage.setItem('Holidayclaim3', this.state.claim3);
+            await AsyncStorage.setItem('Holidayclaim4', this.state.claim4);
+
+            await AsyncStorage.setItem('HolidaycompletedButton1', this.state.completedButton1.toString());
+            await AsyncStorage.setItem('HolidaycompletedButton2', this.state.completedButton2.toString());
+            await AsyncStorage.setItem('HolidaycompletedButton3', this.state.completedButton3.toString());
+            await AsyncStorage.setItem('HolidaycompletedButton4', this.state.completedButton4.toString());
+            await AsyncStorage.setItem('HolidayhasHitAddButton', this.state.hasHitAddButton.toString());
+        } catch (error) {
+            // Error saving data
+            console.warn("async storage had a problem storying the data on unmount");
+        }
+    }
 
 
     getClaimStatus(type) {
