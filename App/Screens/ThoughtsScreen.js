@@ -42,7 +42,6 @@ const accentColor = () => {
 export default class HomeScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
-    console.log(navigation)
     return {
       headerTitle: (
         <View style={{flexDirection: 'row', flex: 1, justifyContent: "space-evenly", alignItems: "center"}}>
@@ -93,13 +92,11 @@ export default class HomeScreen extends React.Component {
   }
 
 
-  onProfileRequested = (username) => {
-    let {navigate} = this.props.navigation;
-    if(username == "create") {
-      navigate('UserProfileScreen', {username: username});
-    }
-    else {
-      navigate('UserProfileScreen', {username: username});
+  onActionRequested = (action) => {
+    if(action === "create") {
+      this.props.navigation.navigate("CreateTaskOne", {mood: mood});
+    } else if (action !== "waiting") {
+      this.props.navigation.navigate(action, {mood: mood});
     }
   }
 
@@ -109,7 +106,7 @@ export default class HomeScreen extends React.Component {
     const text = params.text;
     return (
       <View style={thoughtsStyles.container}>
-        <ThoughtsFeed onProfileRequested={this.onProfileRequested} accentColor={this.state.moodColor} getNewData={getnew} text={text}/>
+        <ThoughtsFeed onActionRequested={this.onActionRequested} accentColor={this.state.moodColor} getNewData={getnew} text={text}/>
       </View>
     );
   }

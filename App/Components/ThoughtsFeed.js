@@ -54,17 +54,15 @@ export default class ThoughtsFeed extends React.Component {
       return ([]);
   }
 
-  onProfilePressed = (username) => {
-    if(username) {
-      this.props.onProfileRequested(username);
-    }
+  onActionPressed = (action) => {
+    this.props.onActionRequested(action);
   }
 
   renderItem = ({item}) => {
     return (
       <ThoughtsFeedItem
         content={item}
-        onProfilePressed={this.onProfilePressed}
+        onActionPressed={this.onActionPressed}
         accentColor={this.props.accentColor}
         getNewData={this.props.getNewData}
       />

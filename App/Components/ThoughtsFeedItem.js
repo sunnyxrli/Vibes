@@ -54,6 +54,11 @@ export default class ThoughtsFeedItem extends React.Component {
     }
   }
 
+  actionPressed = (action) => {
+    this.props.onActionPressed(action);
+  }
+
+
   render() {
     const { content = {} } = this.props;
     var actionText = "";
@@ -88,18 +93,21 @@ export default class ThoughtsFeedItem extends React.Component {
           </View>
         </View>
         <View style={styles.lowerRow}>
-          <TouchableOpacity>
+          <TouchableOpacity
+          onPress={() => {
+            this.actionPressed(content.action);
+          }}>
             <Text style={{fontSize: actionFontSize, fontWeight: actionFontWeight, color: actionFontColor}}>{actionText}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: "center"}}
             onPress={this.likeThis}
           >
+            <Text style={{fontSize: height * 0.025, alignSelf: "center"}}>{this.state.favs}</Text>
             <Entypo
             name={this.state.liked ? "heart" : "heart-outlined"}
-            size={height * 0.035}
-            color={this.state.liked ? Colors.ember : Colors.coal} />
-            <Text style={{fontSize: height * 0.02}}>{this.state.favs}</Text>
+            size={height * 0.030}
+            color={this.state.liked ? Colors.ember : "#828282"} />
           </TouchableOpacity>
         </View>
       </View>

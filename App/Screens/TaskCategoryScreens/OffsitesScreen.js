@@ -52,6 +52,20 @@ export default class OffsitesScreen extends React.Component {
         };
     };
 
+    updateMood = () => {
+      if(!this.props.navigation) {
+        return;
+      }
+      this.setState({mood: this.props.navigation.state.params.mood});
+    }
+
+    componentDidMount(){
+      setInterval(() => (
+        this.props.navigation.state.params.mood != accentColor(mood) ?
+        this.updateMood() : ""
+      ), 500);
+    }
+
 
 
     render() {

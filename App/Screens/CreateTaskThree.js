@@ -75,6 +75,20 @@ export default class TasksScreen extends React.Component {
     this.setState({ buttonPressedSpace: true });
   }
 
+  updateMood = () => {
+    if(!this.props.navigation) {
+      return;
+    }
+    this.setState({mood: this.props.navigation.state.params.mood});
+  }
+
+  componentDidMount(){
+    setInterval(() => (
+      this.props.navigation.state.params.mood != accentColor(mood) ?
+      this.updateMood() : ""
+    ), 500);
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>

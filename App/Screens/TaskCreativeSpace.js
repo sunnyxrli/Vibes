@@ -53,7 +53,7 @@ export default class TaskCreativeSpace extends React.Component {
     constructor(props){
       super(props);
       console.log("got to team lunches");
-    
+
       }
 
   static navigationOptions = ({ navigation }) => {
@@ -70,6 +70,20 @@ export default class TaskCreativeSpace extends React.Component {
     };
   };
 
+  updateMood = () => {
+    if(!this.props.navigation) {
+      return;
+    }
+    this.setState({mood: this.props.navigation.state.params.mood});
+  }
+
+  componentDidMount(){
+    setInterval(() => (
+      this.props.navigation.state.params.mood != accentColor(mood) ?
+      this.updateMood() : ""
+    ), 500);
+  }
+
 
   render() {
     return (
@@ -78,7 +92,7 @@ export default class TaskCreativeSpace extends React.Component {
           <Text style={TaskStyle.TaskTitle}>Creative Office Space!</Text>
           <Text style={TaskStyle.expirationDate}>Expires Jan 1st, 2020</Text>
           <Text style={TaskStyle.taskDetails}>Let's make the office more welcoming!</Text>
-          
+
         </View>
 
       <View  style={{flexDirection:'row', marginTop:50, flex:1, marginLeft:20}}>
@@ -130,10 +144,11 @@ export default class TaskCreativeSpace extends React.Component {
           <Text style={TaskStyle.collab}>COLLABORATORS</Text>
         </View>
         <ScrollView>
-        <View style={{ marginTop:20, flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
+        <View style={{flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
           <Image
               source={require("../Images/collabButton.png")}
               resizeMode='contain'
+              style={{height: height * 0.3, width: height * 0.4}}
           />
       </View>
       </ScrollView>

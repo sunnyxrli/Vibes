@@ -101,6 +101,10 @@ export default class ActionItemsWeeklyLunches extends React.Component {
             // Error retrieving data
             console.log("Async storage error in retreival");
         }
+        setInterval(() => (
+          this.props.navigation.state.params.mood != accentColor(mood) ?
+          this.updateMood() : ""
+        ), 500);
     }
 
     async componentWillUnmount() {
@@ -226,6 +230,13 @@ export default class ActionItemsWeeklyLunches extends React.Component {
             }
         };
     };
+
+    updateMood = () => {
+      if(!this.props.navigation) {
+        return;
+      }
+      this.setState({mood: this.props.navigation.state.params.mood});
+    }
 
     renderNewActionItem() {
         if (this.state.showCancel) {

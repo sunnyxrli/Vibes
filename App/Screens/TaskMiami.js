@@ -52,7 +52,7 @@ export default class TaskMiami extends React.Component {
     constructor(props){
       super(props);
       console.log("got to misbah bday");
-    
+
       }
 
   static navigationOptions = ({ navigation }) => {
@@ -69,6 +69,20 @@ export default class TaskMiami extends React.Component {
     };
   };
 
+  updateMood = () => {
+    if(!this.props.navigation) {
+      return;
+    }
+    this.setState({mood: this.props.navigation.state.params.mood});
+  }
+
+  componentDidMount(){
+    setInterval(() => (
+      this.props.navigation.state.params.mood != accentColor(mood) ?
+      this.updateMood() : ""
+    ), 500);
+  }
+
 
   render() {
     return (
@@ -76,8 +90,8 @@ export default class TaskMiami extends React.Component {
         <View style={{ }}>
           <Text style={TaskMiamiStyle.TaskTitle}>Miami Trip</Text>
           <Text style={TaskMiamiStyle.expirationDate}>Expires Dec 31st, 2019</Text>
-          <Text style={TaskMiamiStyle.taskDetails}>Let’s celebrate the successful launch of Vibes with an Onsite!</Text>
-          
+          <Text style={TaskMiamiStyle.taskDetails}>Let’s celebrate the successful launch of Vibes with an off-site!</Text>
+
         </View>
 
       <View  style={{flexDirection:'row', marginTop:50, flex:1, marginLeft:20}}>
@@ -131,10 +145,11 @@ export default class TaskMiami extends React.Component {
           <Text style={TaskMiamiStyle.collab}>COLLABORATORS</Text>
         </View>
         <ScrollView>
-        <View style={{ marginTop:20, flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
+        <View style={{flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
           <Image
               source={require("../Images/collabButton.png")}
               resizeMode='contain'
+              style={{height: height * 0.3, width: height * 0.4}}
           />
       </View>
       </ScrollView>

@@ -48,7 +48,6 @@ export default class HomeScreen extends React.Component {
   };
 
   static navigationOptions = ({ navigation }) => {
-    console.log(navigation.state.routeName)
     return {
       headerTitle: (
         <Text style={styles.headerText}>Your team feels</Text>
@@ -151,9 +150,9 @@ export default class HomeScreen extends React.Component {
         <View style={styles.tasksColumn}>
          <FlatList
          data={[
-            {key: '1', link: "TasksScreen"},
-            {key: '2', link: "TasksScreen"},
-            {key: '3', link: "TasksScreen"}
+            {key: '1', link: "TaskCreativeSpace"},
+            {key: '2', link: "TaskMiami"},
+            {key: '3', link: "TaskBday"}
           ]}
          renderItem={({item}) => <TouchableOpacity
            onPress={() => {
