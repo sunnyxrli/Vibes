@@ -52,7 +52,6 @@ export default class OfficeSpaceScreen extends React.Component {
     };
 
 
-
     render() {
         return (
             <View style={OfficeSpaceStyles.tasksContainer}>

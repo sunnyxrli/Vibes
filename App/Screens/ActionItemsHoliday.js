@@ -249,7 +249,7 @@ export default class ActionItemsHoliday extends React.Component {
             <View style={{ borderColor: '#DADADA', borderWidth: 1, marginTop: 20, marginLeft: 20, marginRight: 20, flex: 1, marginBottom: 20, borderRadius: 15 }}>
                 <View style={{ flexDirection: 'column' }}>
 
-                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center" }}>
+                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
                         <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
                             <TouchableOpacity
                                 style={{
@@ -309,7 +309,7 @@ export default class ActionItemsHoliday extends React.Component {
                         </View>
                     </View>
 
-                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center" }}>
+                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
                         <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
                             <TouchableOpacity
                                 style={{
@@ -368,7 +368,7 @@ export default class ActionItemsHoliday extends React.Component {
 
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center" }}>
+                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
                         <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
 
                             <TouchableOpacity
@@ -430,7 +430,7 @@ export default class ActionItemsHoliday extends React.Component {
                     </View>
 
 
-                    <View style={{ flexDirection: 'column', height: 70, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center", justifyContent: "center" }}>
+                    <View style={{ flexDirection: 'column', height: 70, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center", justifyContent: "center" }}>
                         <View style={{ flexDirection: 'row' }}>
                             <TouchableOpacity
                                 style={{
@@ -462,7 +462,7 @@ export default class ActionItemsHoliday extends React.Component {
                     </View>
 
 
-                    <View style={{ flexDirection: 'column', height: 70, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center", justifyContent: "center" }}>
+                    <View style={{ flexDirection: 'column', height: 70, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center", justifyContent: "center" }}>
                         <View style={{ flexDirection: 'row' }}>
                             <TouchableOpacity
                                 style={{
@@ -494,7 +494,7 @@ export default class ActionItemsHoliday extends React.Component {
 
 
 
-                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center", opacity: this.state.hasHitAddButton ? 1 : 0 }}>
+                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center", opacity: this.state.hasHitAddButton ? 1 : 0 }}>
                         <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
 
                             <TouchableOpacity
