@@ -74,6 +74,20 @@ export default class TasksScreen extends React.Component {
   	}
   }
 
+  updateMood = () => {
+    if(!this.props.navigation) {
+      return;
+    }
+    this.setState({mood: this.props.navigation.state.params.mood});
+  }
+
+  componentDidMount(){
+    setInterval(() => (
+      this.props.navigation.state.params.mood != accentColor(mood) ?
+      this.updateMood() : ""
+    ), 500);
+  }
+
   static navigationOptions = ({ navigation }) => {
     return {
 	    // headerRight: () => (
@@ -139,7 +153,7 @@ export default class TasksScreen extends React.Component {
 		    justifyContent: 'center',
 		    alignItems: 'center'
           }}
-          onPress={() => {this.props.navigation.navigate('CreateTaskThree')}}
+          onPress={() => {this.props.navigation.navigate('CreateTaskThree', {mood: mood})}}
         >
           <Text style={{
             fontFamily:'Lato-Bold',

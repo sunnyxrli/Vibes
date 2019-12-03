@@ -132,6 +132,10 @@ export default class ActionItemsMisbahBday extends React.Component {
             // Error saving data
             console.warn("async storage had a problem storying the data on unmount");
         }
+        setInterval(() => (
+          this.props.navigation.state.params.mood != accentColor(mood) ?
+          this.updateMood() : ""
+        ), 500);
     }
 
     getClaimStatus(type) {
@@ -227,6 +231,13 @@ export default class ActionItemsMisbahBday extends React.Component {
             }
         };
     };
+
+    updateMood = () => {
+      if(!this.props.navigation) {
+        return;
+      }
+      this.setState({mood: this.props.navigation.state.params.mood});
+    }
 
     renderNewActionItem() {
         if (this.state.showCancel) {

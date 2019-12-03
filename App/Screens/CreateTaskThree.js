@@ -90,6 +90,20 @@ export default class TasksScreen extends React.Component {
     this.setState({ buttonPressedFood: true });
   }
 
+  updateMood = () => {
+    if(!this.props.navigation) {
+      return;
+    }
+    this.setState({mood: this.props.navigation.state.params.mood});
+  }
+
+  componentDidMount(){
+    setInterval(() => (
+      this.props.navigation.state.params.mood != accentColor(mood) ?
+      this.updateMood() : ""
+    ), 500);
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -191,7 +205,7 @@ export default class TasksScreen extends React.Component {
 		    justifyContent: 'center',
 		    alignItems: 'center'
           }}
-          onPress={() => {this.props.navigation.navigate('TasksWeeklyLunches')}}
+          onPress={() => { this.props.navigation.navigate('TasksWeeklyLunches', {mood: mood}); }}
         >
           <Text style={{
             fontFamily:'Lato-Bold',

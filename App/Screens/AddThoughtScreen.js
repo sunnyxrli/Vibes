@@ -83,7 +83,18 @@ export default class ThoughtsScreen extends React.Component {
     this.props.navigation.navigate('ThoughtsScreen', {getnew: true, text: this.state.thoughtText});
   }
 
+  updateMood = () => {
+    if(!this.props.navigation) {
+      return;
+    }
+    this.props.navigation.setParams(mood)
+  }
+
   componentDidMount(){
+    setInterval(() => (
+      this.state.moodColor != accentColor(mood) ?
+      this.updateMood() : ""
+    ), 500);
   }
 
   toggleAnonymous = (value) => {
