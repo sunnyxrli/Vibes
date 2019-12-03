@@ -48,7 +48,6 @@ export default class HomeScreen extends React.Component {
   };
 
   static navigationOptions = ({ navigation }) => {
-    console.log(navigation.state.routeName)
     return {
       headerTitle: (
         <Text style={styles.headerText}>Your team feels</Text>

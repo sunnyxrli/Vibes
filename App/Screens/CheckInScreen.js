@@ -17,7 +17,6 @@ const accentColor = () => {
 export default class CheckInScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
-    console.log(navigation)
     return {
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(),

@@ -52,7 +52,6 @@ export default class TasksScreen extends React.Component {
 
 
   static navigationOptions = ({ navigation }) => {
-    console.log(navigation)
     return {
       headerTitle: (
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
