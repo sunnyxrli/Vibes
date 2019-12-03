@@ -31,6 +31,7 @@ import CreateTaskTwo from '../Screens/CreateTaskTwo'
 import CreateTaskThree from '../Screens/CreateTaskThree'
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import icoMoonConfig from '../../selection.json';
+import TasksWeeklyLunches from '../Screens/TasksWeeklyLunches';
 const expoAssetId = require("../../assets/fonts/icomoon.ttf");
 const CustomIcon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon', expoAssetId);
 
@@ -52,7 +53,8 @@ const ThoughtsNav = createStackNavigator({
   CreateTaskOne: { screen: CreateTaskOne },
   CreateTaskTwo: { screen: CreateTaskTwo },
   CreateTaskThree: { screen: CreateTaskThree },
-  AddThoughtScreen: { screen: AddThoughtScreen}
+  AddThoughtScreen: { screen: AddThoughtScreen},
+  TasksWeeklyLunches: {screen: TasksWeeklyLunches}
 }, {
   initialRouteName: 'ThoughtsScreen',
   headerMode: 'float',

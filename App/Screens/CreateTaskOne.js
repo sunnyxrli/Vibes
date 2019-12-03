@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, Button } from 'react-native';
 import { material } from 'react-native-typography';
 import Home from '../Screens/HomeScreen';
 
@@ -51,14 +51,26 @@ export default class TasksScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      // headerTitle: (
-      //   <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-      //   </View>
-      // ),
-      headerStyle: {
-        backgroundColor: 'white',
-        borderBottomWidth: 0,
-      }
+	    // headerRight: () => (
+	    //     <TouchableOpacity
+	    //       style={{
+	    //       	marginTop: 2,
+	    //         marginRight: 16,
+	    //       }}
+	    //       onPress={() => {this.props.navigation.navigate('ThoughtsScreen', {mood: mood})}}
+	    //     >
+	    //       <Text style={{
+	    //         fontFamily:'Lato-Regular',
+	    //         fontSize: 17,
+	    //         alignSelf: 'center',
+	    //         color: '#007AFF',
+	    //       }}>Cancel</Text>
+	    //     </TouchableOpacity>
+	    // ),
+    	headerStyle: {
+	        backgroundColor: 'white',
+	        borderBottomWidth: 0,
+      	}
     };
   };
 
@@ -67,11 +79,11 @@ export default class TasksScreen extends React.Component {
       <View style={{ flex: 1 }}>
         <Text style={{
           fontFamily:'Lato-Bold',
-          fontSize: 40,
+          fontSize: height * 0.05,
           textAlign: 'left',
-          marginTop: 10,
-          marginBottom: 30,
-          marginLeft: 20,
+          marginTop: height * 0.01,
+          marginBottom: height * 0.02,
+          marginLeft: width * 0.053,
         }}>Create Task</Text>
         <Image
             source={require("../Images/taskTitle.png")}
@@ -87,12 +99,14 @@ export default class TasksScreen extends React.Component {
           style={{
             backgroundColor: accentColor(mood),
             opacity: 0.8,
-            paddingTop: 18,
-            borderRadius: 30,
-            width: 245,
-            height: 56,
+            borderRadius: 7,
+            width: 196,
+            height: 41,
             alignSelf: 'center',
-            marginTop: 20,
+            marginTop: 10,
+		    flex: 1,
+		    justifyContent: 'center',
+		    alignItems: 'center'
           }}
           onPress={() => {this.props.navigation.navigate('CreateTaskTwo')}}
         >
@@ -100,7 +114,9 @@ export default class TasksScreen extends React.Component {
             fontFamily:'Lato-Bold',
             fontSize: 20,
             alignSelf: 'center',
+            textAlign: 'center',
             color: '#FFFFFF',
+			lineHeight: 20,
           }}>NEXT</Text>
         </TouchableOpacity>
         <View style={styles.container}>
@@ -140,7 +156,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   taskTitle: {
-    height: 200,
+    height: height * 0.25,
     width: width * 0.95,
     padding: 0,
     margin: 0,
@@ -153,7 +169,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   taskDes: {
-    height: 250,
+    height: height * 0.30,
     width: width * 0.95,
     padding: 0,
     margin: 0,

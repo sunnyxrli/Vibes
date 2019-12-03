@@ -61,9 +61,24 @@ export default class TasksScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: (
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-        </View>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}/>
       ),
+	    // headerRight: () => (
+	    //     <TouchableOpacity
+	    //       style={{
+	    //       	marginTop: 2,
+	    //         marginRight: 16,
+	    //       }}
+	    //       onPress={() => {this.props.navigation.navigate('ThoughtsScreen', {mood: mood})}}
+	    //     >
+	    //       <Text style={{
+	    //         fontFamily:'Lato-Regular',
+	    //         fontSize: 17,
+	    //         alignSelf: 'center',
+	    //         color: '#007AFF',
+	    //       }}>Cancel</Text>
+	    //     </TouchableOpacity>
+	    // ),
       headerStyle: {
         backgroundColor: 'white',
         borderBottomWidth: 0,
@@ -72,13 +87,13 @@ export default class TasksScreen extends React.Component {
   };
 
   setbuttonSelected() {
-    this.setState({ buttonPressedSpace: true });
+    this.setState({ buttonPressedFood: true });
   }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Text style={{
+      	<Text style={{
           fontFamily:'Lato-Bold',
           fontSize: 40,
           textAlign: 'left',
@@ -87,103 +102,104 @@ export default class TasksScreen extends React.Component {
           marginLeft: 20,
         }}>Create Task</Text>
         <Text style={{
-          fontFamily:'Lato-Bold',
-          fontStyle: 'italic',
+          fontFamily:'Lato-Italic',
           fontSize: 20,
           textAlign: 'left',
           marginTop: 0,
-          marginBottom: 30,
+          marginBottom: 20,
           marginLeft: 20,
         }}>Choose a category</Text>
-        <ScrollView>
-          <View style={TasksStyles.categoryContainer}>
-            <TouchableOpacity
-              style={[TasksStyles.categoryItem, { backgroundColor: this.state.buttonPressedOffsites ? accentColor(mood) : accentColorMuted(mood) }]}
-              onPress={() => {this.setbuttonSelected()}}
-            >
-              <Image
-                source={require("../Images/TaskCategories/offsites.png")}
-                style={{
-                  height: 80,
-                  width: 80, justifyContent: 'center'
-                }} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[TasksStyles.categoryItem, { backgroundColor: this.state.buttonPressedEvents ? accentColor(mood) : accentColorMuted(mood) }]}
-              onPress={() => {this.setbuttonSelected()}}
-            >
-              <Image
-                source={require("../Images/TaskCategories/officeEvents.png")}
-                style={{
-                  height: 110,
-                  width: 75, justifyContent: 'center'
-                }} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[TasksStyles.categoryItem, { backgroundColor: this.state.buttonPressedSpace ? accentColor(mood) : accentColorMuted(mood) }]}
-              onPress={() => {this.setbuttonSelected()}}
-            >
-              <Image
-                source={require("../Images/TaskCategories/officeSpace.png")}
-                style={{
-                  height: 100,
-                  width: 60, justifyContent: 'center'
-                }} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[TasksStyles.categoryItem, { backgroundColor: this.state.buttonPressedInclusivity ? accentColor(mood) : accentColorMuted(mood) }]}
-              onPress={() => {this.setbuttonSelected()}}
-            >
-              <Image
-                source={require("../Images/TaskCategories/inclusivity.png")}
-                style={{
-                  height: 85,
-                  width: 110, justifyContent: 'center'
-                }} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[TasksStyles.categoryItem, { backgroundColor: this.state.buttonPressedFood ? accentColor(mood) : accentColorMuted(mood) }]}
-              onPress={() => {this.setbuttonSelected()}}
-            >
-              <Image
-                source={require("../Images/TaskCategories/food.png")}
-                style={{
-                  height: 80,
-                  width: 50, justifyContent: 'center'
-                }} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[TasksStyles.categoryItem, { backgroundColor: this.state.buttonPressedOther ? accentColor(mood) : accentColorMuted(mood) }]}
-              onPress={() => {this.setbuttonSelected()}}
-            >
-              <Image
-                source={require("../Images/TaskCategories/other.png")}
-                style={{
-                  height: 70,
-                  width: 84, justifyContent: 'center'
-                }} />
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
+	    <View style={TasksStyles.categoryContainer}>
+	        <TouchableOpacity
+	          style={[TasksStyles.categoryItem, { backgroundColor: this.state.buttonPressedOffsites ? accentColor(mood) : accentColorMuted(mood) }]}
+	          onPress={() => {}}
+	        >
+	          <Image
+	            source={require("../Images/TaskCategories/offsites.png")}
+	            style={{
+					width: 69.42,
+					height: 70.99,
+					justifyContent: 'center'
+	            }} />
+	        </TouchableOpacity>
+	        <TouchableOpacity
+	          style={[TasksStyles.categoryItem, { backgroundColor: this.state.buttonPressedEvents ? accentColor(mood) : accentColorMuted(mood) }]}
+	          onPress={() => {}}
+	        >
+	          <Image
+	            source={require("../Images/TaskCategories/officeEvents.png")}
+	            style={{
+	              height: 85,
+	              width: 56.86, justifyContent: 'center'
+	            }} />
+	        </TouchableOpacity>
+	        <TouchableOpacity
+	          style={[TasksStyles.categoryItem, { backgroundColor: this.state.buttonPressedSpace ? accentColor(mood) : accentColorMuted(mood) }]}
+	          onPress={() => {}}
+	        >
+	          <Image
+	            source={require("../Images/TaskCategories/officeSpace.png")}
+	            style={{
+	              height: 90,
+	              width: 54.65, justifyContent: 'center'
+	            }} />
+	        </TouchableOpacity>
+	        <TouchableOpacity
+	          style={[TasksStyles.categoryItem, { backgroundColor: this.state.buttonPressedInclusivity ? accentColor(mood) : accentColorMuted(mood) }]}
+	          onPress={() => {}}
+	        >
+	          <Image
+	            source={require("../Images/TaskCategories/inclusivity.png")}
+	            style={{
+	              height: 67,
+	              width: 90.09, justifyContent: 'center'
+	            }} />
+	        </TouchableOpacity>
+	        <TouchableOpacity
+	          style={[TasksStyles.categoryItemBottom, { backgroundColor: this.state.buttonPressedFood ? accentColor(mood) : accentColorMuted(mood) }]}
+	          onPress={() => {this.setbuttonSelected()}}
+	        >
+	          <Image
+	            source={require("../Images/TaskCategories/food.png")}
+	            style={{
+	              height: 65.14,
+	              width: 42.83, justifyContent: 'center'
+	            }} />
+	        </TouchableOpacity>
+	        <TouchableOpacity
+	          style={[TasksStyles.categoryItemBottom, { backgroundColor: this.state.buttonPressedOther ? accentColor(mood) : accentColorMuted(mood) }]}
+	          onPress={() => {}}
+	        >
+	          <Image
+	            source={require("../Images/TaskCategories/other.png")}
+	            style={{
+	              height: 54,
+	              width: 66, justifyContent: 'center'
+	            }} />
+	        </TouchableOpacity>
+	    </View>
         <TouchableOpacity
           style={{
             backgroundColor: accentColor(mood),
             opacity: 0.8,
-            paddingTop: 18,
-            borderRadius: 30,
-            width: 245,
-            height: 56,
+            borderRadius: 7,
+            width: 196,
+            height: 41,
             alignSelf: 'center',
-            marginTop: 20,
-            marginBottom: 20
+            marginTop: 45,
+		    flex: 1,
+		    justifyContent: 'center',
+		    alignItems: 'center'
           }}
-          onPress={() => {}}
+          onPress={() => {this.props.navigation.navigate('TasksWeeklyLunches')}}
         >
           <Text style={{
             fontFamily:'Lato-Bold',
             fontSize: 20,
             alignSelf: 'center',
             color: '#FFFFFF',
+            textAlign: 'center',
+            lineHeight: 20,
           }}>CREATE</Text>
         </TouchableOpacity>
         <View style={TasksStyles.container}>
@@ -252,7 +268,6 @@ const TasksStyles = StyleSheet.create({
   categoryContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    // left: 4.5,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -264,14 +279,25 @@ const TasksStyles = StyleSheet.create({
   },
   categoryItem: {
     alignItems: 'center',
-    height: 125,
-    width: 125,
-    margin: 10.5,
+    height: 112.98,
+    width: 112.98,
+    margin: 7,
     opacity: 0.8,
     borderRadius: 10,
     alignItems: 'center',
-    justifyContent: 'center'
-    // flex: 1,
-    // margin: 1,
+    justifyContent: 'center',
+    padding: 0
+  },
+  categoryItemBottom: {
+    alignItems: 'center',
+    height: 112.98,
+    width: 112.98,
+    margin: 7,
+    marginBottom: 0,
+    opacity: 0.8,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 0
   }
 });
