@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType, Alert } from 'react-native';
 import { material } from 'react-native-typography';
 // import Feed from '../Components/Feed';
 import Home from '../Screens/HomeScreen';
@@ -128,7 +128,14 @@ export default class TaskHoliday extends React.Component {
               marginLeft:'auto',
               marginRight:20
             }}
-            //onPress={() => this.setMoodsOverlayVisible(true)}
+            onPress={( ) => Alert.alert(
+              'Joined Task',
+              "Congratulations you've joined Decorate for the Holidays!",
+              [
+                {text: "Vew Action Items", onPress: () =>  this.props.navigation.navigate('ActionItemsHoliday', {mood: mood})},
+              ],
+              {cancelable: false},
+            ) }
           >
             <Text style={{
               fontSize: 18,

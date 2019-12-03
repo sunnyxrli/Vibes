@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType , Alert} from 'react-native';
 import { material } from 'react-native-typography';
 // import Feed from '../Components/Feed';
 import { AsyncStorage } from 'react-native';

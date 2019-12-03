@@ -107,7 +107,6 @@ export default class ActionItemsMisbahBday extends React.Component {
     async componentWillUnmount() {
         this._isMounted = false;
         try {
-            console.log("saving bros");
             await AsyncStorage.setItem('Bdaybutton1', this.state.button1.toString());
             await AsyncStorage.setItem('Bdaybutton2', this.state.button2.toString());
             await AsyncStorage.setItem('Bdaybutton3', this.state.button3.toString());
