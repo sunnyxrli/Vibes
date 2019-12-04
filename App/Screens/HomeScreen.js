@@ -49,9 +49,6 @@ export default class HomeScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: (
-        <Text style={styles.headerText}>Your team feels</Text>
-      ),
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(navigation.getParam('mood')),
         borderBottomWidth: 0,
@@ -79,6 +76,7 @@ export default class HomeScreen extends React.Component {
     return (
       <ScrollView style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
         <View style={styles.faceimage}>
+          <Text style={{fontSize: height * 0.03, fontFamily: 'Lato-Regular'}}>Your team feels</Text>
           <Text style={{fontSize: width * 0.11, fontFamily: 'Lato-Black', color: accentColor(mood) }}>{mood}</Text>
           <Text style={styles.checkintext}>Last team check-in a few seconds ago</Text>
           <Image
