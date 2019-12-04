@@ -58,6 +58,7 @@ export default class TasksScreen extends React.Component {
           <Text style={TasksStyles.headerText}>Team Tasks</Text>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,

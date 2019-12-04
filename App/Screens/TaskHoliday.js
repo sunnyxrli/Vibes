@@ -62,6 +62,7 @@ export default class TaskHoliday extends React.Component {
           <Text style={TaskStyle.heading}>Task</Text>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,

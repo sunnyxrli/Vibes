@@ -62,6 +62,7 @@ export default class TaskBday extends React.Component {
           <Text style={TaskBdayStyle.heading}>Task</Text>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,

@@ -30,7 +30,7 @@ var accentColor = (mood) => {
   if (mood == 'EXCITED') {
     return '#C50A7A'
   } else if (mood == 'CONTENT') {
-    return '#E7A600'
+    return '#E78B00'
   } else if (mood == 'BORED') {
     return '#DD5D00'
   } else if (mood == 'STRESSED') {
@@ -79,12 +79,12 @@ export default class HomeScreen extends React.Component {
     return (
       <ScrollView style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
         <View style={styles.faceimage}>
-          <Text style={styles.headerText}>Your team feels</Text>
-          <Text style={{ fontSize: height * 0.05, fontFamily: 'Lato-Black', color: accentColor(mood) }}>{mood}</Text>
-          <Text style={styles.checkintext}> Last team check-in a few seconds ago</Text>
+          <Text style={{fontSize: width * 0.11, fontFamily: 'Lato-Black', color: accentColor(mood) }}>{mood}</Text>
+          <Text style={styles.checkintext}>Last team check-in a few seconds ago</Text>
           <Image
             source={FaceImages[mood]}
-            style={{ marginTop: 50, marginBottom: 20, height: height * 0.2, width: height * 0.2}}
+            style={{marginTop: height * 0.037, height: height * 0.2, width: width * 0.365}}
+            resizeMode='contain'
           />
         </View>
         <View style={styles.buttonRow}>
@@ -92,17 +92,18 @@ export default class HomeScreen extends React.Component {
             style={{
               backgroundColor: '#FFFFFF',
               opacity: 0.8,
-              paddingTop: height * 0.028,
               borderRadius: 100,
-              width: height * 0.2,
-              height: height * 0.08,
-              marginRight: height * 0.01,
+              width: width * 0.427,
+              height: height * 0.077,
+              justifyContent: 'center',
+              margin: height * 0.01,
+              marginTop: height * 0.012,
             }}
             onPress={() => this.setMoodsOverlayVisible(true)}
           >
             <Text style={{
               fontFamily:'Lato-Bold',
-              fontSize: height * 0.02,
+              fontSize: width * 0.048,
               textAlign: 'center'
             }}> MORE DATA </Text>
           </TouchableOpacity>
@@ -127,11 +128,12 @@ export default class HomeScreen extends React.Component {
           style={{
             backgroundColor: accentColor(mood),
             opacity: 0.9,
-            paddingTop: height * 0.028,
             borderRadius: 100,
-            width: height * 0.2,
+            width: width * 0.427,
             height: height * 0.08,
-            marginLeft: height * 0.01,
+            justifyContent: 'center',
+            margin: height * 0.01,
+            marginTop: height * 0.012
           }}
             onPress={() => {
               this.props.navigation.navigate('ThoughtsScreen', {mood: mood});
@@ -139,8 +141,8 @@ export default class HomeScreen extends React.Component {
           >
             <Text style={{
               fontFamily:'Lato-Bold',
-              fontSize: height * 0.02,
-              alignSelf: 'center',
+              fontSize: width * 0.048,
+              textAlign: 'center',
               color: '#FFFFFF'
             }}> WHY? </Text>
           </TouchableOpacity>
@@ -159,7 +161,7 @@ export default class HomeScreen extends React.Component {
            onPress={() => {
              this.props.navigation.navigate(item.link, {mood: mood});
            }}>
-           <View style={{backgroundColor: 'white', width: width * 0.95, height: height * 0.1, borderRadius: 15, marginBottom: height * 0.01, alignItems: "center", justifyContent: "center"}}>
+           <View style={{backgroundColor: 'white', width: width * 0.95, height: height * 0.1, borderRadius: height * 0.01, marginBottom: height * 0.01, alignItems: "center", justifyContent: "center"}}>
              <Image
                source={TaskImages[item.key]}
                style={styles.tasks}
@@ -195,37 +197,28 @@ const styles = StyleSheet.create({
   },
   faceimage: {
     alignItems: "center",
-  },
-  emotiontext: {
-    fontSize: 34,
-    fontWeight: '800',
-    color: accentColor(),
+    justifyContent: 'center'
   },
   checkintext: {
-    fontSize: height * 0.024,
-    fontFamily: 'Lato-Italic',
-    fontWeight: '200',
-    color: 'black',
+    fontSize: width * 0.053,
+    fontFamily: 'Lato-LightItalic',
+    marginTop: height * 0.008,
   },
   taskstext: {
-    fontSize: height * 0.03,
+    fontSize: width * 0.055,
     padding: height * 0.02,
+    paddingLeft: width * 0.032,
+    fontFamily: 'Lato-Bold'
   },
   tasks: {
-    width:width * 0.82,
-    alignSelf: "center"
-  },
-  displayText: {
-    fontSize: 40,
-    fontStyle: 'italic',
-    fontWeight: '200',
-    color: 'black',
+    width: width * 0.82,
+    alignContent: "center"
   },
   headerText: {
-    fontSize: height * 0.03,
-    fontFamily: 'Lato-Regular',
-    alignSelf: "center",
+    fontSize: width * 0.053,
+    fontFamily: 'Lato-Bold',
     marginLeft: "auto",
-    marginRight: "auto"
+    marginRight: "auto",
+    marginBottom: height * -0.031
   }
 });

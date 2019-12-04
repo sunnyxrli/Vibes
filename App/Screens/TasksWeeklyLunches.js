@@ -62,6 +62,7 @@ export default class TasksWeeklyLunches extends React.Component {
           <Text style={TasksWeekly.heading}>Task</Text>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
@@ -89,7 +90,7 @@ export default class TasksWeeklyLunches extends React.Component {
       <View style={{ }}>
         <View style={{ }}>
           <Text style={TasksWeekly.TaskTitle}>Weekly Team Lunches</Text>
-          <Text style={TasksWeekly.expirationDate}>Expires Dec 31st, 2019</Text>
+          <Text style={TasksWeekly.expirationDate}>Expires Dec 19th, 2019</Text>
           <Text style={TasksWeekly.taskDetails}>Let’s organize weekly team lunches so everyone on the team can get to know each other better!</Text>
 
         </View>

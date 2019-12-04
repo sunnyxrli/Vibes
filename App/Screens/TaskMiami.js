@@ -62,6 +62,7 @@ export default class TaskMiami extends React.Component {
           <Text style={TaskMiamiStyle.heading}>Task</Text>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
