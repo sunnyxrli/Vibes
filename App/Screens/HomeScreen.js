@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Image, Dimensions } from 'react-native';
+import { FlatList, StyleSheet, Text, ScrollView, View, TouchableOpacity, TouchableWithoutFeedback, Image, Dimensions } from 'react-native';
 import { material } from 'react-native-typography';
 import { Metrics } from '../Themes';
 import { Entypo } from '@expo/vector-icons';
@@ -55,7 +55,7 @@ export default class HomeScreen extends React.Component {
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(navigation.getParam('mood')),
         borderBottomWidth: 0,
-        height: height * 0.04,
+        height: 0,
       },
       headerTitleStyle: {
         flex: 1,
@@ -77,8 +77,9 @@ export default class HomeScreen extends React.Component {
       mood = "SAD";
     }
     return (
-      <View style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
+      <ScrollView style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
         <View style={styles.faceimage}>
+          <Text style={styles.headerText}>Your team feels</Text>
           <Text style={{ fontSize: height * 0.05, fontFamily: 'Lato-Black', color: accentColor(mood) }}>{mood}</Text>
           <Text style={styles.checkintext}> Last team check-in a few seconds ago</Text>
           <Image
@@ -169,7 +170,7 @@ export default class HomeScreen extends React.Component {
          keyExtractor={ (item, index) => index.toString()}
          />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 

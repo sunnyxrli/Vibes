@@ -105,7 +105,7 @@ export default class ThoughtsScreen extends React.Component {
     return (
       <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
         <SafeAreaView style={thoughtsStyles.container}>
-            <Text style={human.largeTitle}>Add a Thought</Text>
+            <Text style={{fontSize: height * 0.04}}>Add a Thought</Text>
             <TextInput
                 style={thoughtsStyles.textinput}
                 onChangeText={text => this.onChangeText(text)}
@@ -123,12 +123,12 @@ export default class ThoughtsScreen extends React.Component {
             style={{
               backgroundColor: accentColor(mood),
               opacity: 0.8,
-              paddingTop: height * 0.028,
+              paddingTop: height * 0.014,
               borderRadius: 100,
               width: height * 0.2,
-              height: height * 0.08,
+              height: height * 0.05,
               alignSelf: "center",
-              marginTop: height * 0.028,
+              marginTop: height * 0.04,
             }}
               onPress={() => {
                 this.postThought()
@@ -198,7 +198,7 @@ const thoughtsStyles = StyleSheet.create({
     padding: 20,
     paddingTop: 10,
     marginTop: 10,
-    borderColor: '#AAA',
+    borderColor: '#CCC',
     borderWidth: 1.5,
     fontSize: height * 0.03,
     color: '#555',
