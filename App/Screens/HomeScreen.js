@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
   },
   tasks: {
     width: width * 0.82,
-    alignSelf: "center"
+    alignContent: "center"
   },
   headerText: {
     fontSize: width * 0.053,
