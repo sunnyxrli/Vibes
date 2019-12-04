@@ -54,9 +54,6 @@ export default class ThoughtsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerRight:<View style={{padding:6}}></View>,
-      headerTitle: (
-        <Text style={thoughtsStyles.headerText}>Add Thought</Text>
-      ),
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
