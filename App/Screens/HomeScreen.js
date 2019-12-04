@@ -30,7 +30,7 @@ var accentColor = (mood) => {
   if (mood == 'EXCITED') {
     return '#C50A7A'
   } else if (mood == 'CONTENT') {
-    return '#E7A600'
+    return '#E78B00'
   } else if (mood == 'BORED') {
     return '#DD5D00'
   } else if (mood == 'STRESSED') {
