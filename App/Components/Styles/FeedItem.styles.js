@@ -28,7 +28,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 15,
-    marginLeft: height * 0.065,
+    marginLeft: height * 0.075,
   },
   descContainer: {
     marginLeft: Metrics.marginHorizontal,
