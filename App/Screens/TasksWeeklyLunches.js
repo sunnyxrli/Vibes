@@ -62,6 +62,7 @@ export default class TasksWeeklyLunches extends React.Component {
           <Text style={TasksWeekly.heading}>Task</Text>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,

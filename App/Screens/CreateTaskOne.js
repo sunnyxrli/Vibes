@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, Button } from 'react-native';
 import { material } from 'react-native-typography';
 import Home from '../Screens/HomeScreen';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 var { height, width } = Dimensions.get('window');
 
@@ -48,25 +49,36 @@ var accentColor = (mood) => {
 }
 
 export default class TasksScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { showTitle: false, showDes: false, };
+  }
 
   static navigationOptions = ({ navigation }) => {
     return {
-	    // headerRight: () => (
-	    //     <TouchableOpacity
-	    //       style={{
-	    //       	marginTop: 2,
-	    //         marginRight: 16,
-	    //       }}
-	    //       onPress={() => {this.props.navigation.navigate('ThoughtsScreen', {mood: mood})}}
-	    //     >
-	    //       <Text style={{
-	    //         fontFamily:'Lato-Regular',
-	    //         fontSize: 17,
-	    //         alignSelf: 'center',
-	    //         color: '#007AFF',
-	    //       }}>Cancel</Text>
-	    //     </TouchableOpacity>
-	    // ),
+	    headerRight: () => (
+	        <TouchableOpacity
+	          style={{
+	          	marginTop: 2,
+	            marginRight: 10,
+	          }}
+            onPress={() => {
+              const resetAction = StackActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({ routeName: 'ThoughtsScreen' })],
+              });
+              navigation.dispatch(resetAction);
+            }}
+	        >
+	          <Text style={{
+	            fontFamily:'Lato-Regular',
+	            fontSize: 17,
+	            alignSelf: 'center',
+	            color: 'black',
+	          }}>Cancel</Text>
+	        </TouchableOpacity>
+	    ),
+	    headerTintColor: 'black',
     	headerStyle: {
 	        backgroundColor: 'white',
 	        borderBottomWidth: 0,
@@ -88,6 +100,14 @@ export default class TasksScreen extends React.Component {
     ), 500);
   }
 
+  setShowTitle() {
+    this.setState({ showTitle: true });
+  }
+
+  setShowDes() {
+    this.setState({ showDes: true });
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -99,16 +119,27 @@ export default class TasksScreen extends React.Component {
           marginBottom: height * 0.02,
           marginLeft: width * 0.053,
         }}>Create Task</Text>
-        <Image
-            source={require("../Images/taskTitle.png")}
+        <TouchableOpacity
+          activeOpacity={1.0}
+          onPress={() => this.setShowTitle()}
+        >
+          <Image
+            source={ this.state.showTitle === true ? require('../Images/taskTitle.png') : require('../Images/emptyTaskTitle.png')}
             style={styles.taskTitle}
             resizeMode='contain'
-        />
-        <Image
-            source={require("../Images/taskDescription.png")}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={1.0}
+          onPress={() => this.setShowDes()}
+        >
+          <Image
+            source={ this.state.showDes === true ? require('../Images/taskDescription.png') : require('../Images/emptyTaskDescription.png')}
             style={styles.taskDes}
             resizeMode='contain'
-        />
+          />
+        </TouchableOpacity>
+
         <TouchableOpacity
           style={{
             backgroundColor: accentColor(mood),
@@ -118,9 +149,9 @@ export default class TasksScreen extends React.Component {
             height: 41,
             alignSelf: 'center',
             marginTop: 10,
-		    flex: 1,
-		    justifyContent: 'center',
-		    alignItems: 'center'
+    		    flex: 1,
+    		    justifyContent: 'center',
+    		    alignItems: 'center'
           }}
           onPress={() => {this.props.navigation.navigate('CreateTaskTwo', {mood: mood})}}
         >

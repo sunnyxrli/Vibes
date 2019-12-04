@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
 import { material } from 'react-native-typography';
 import Home from '../Screens/HomeScreen';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 var { height, width } = Dimensions.get('window');
 
@@ -63,22 +64,29 @@ export default class TasksScreen extends React.Component {
       headerTitle: (
         <View style={{ justifyContent: 'center', alignItems: 'center' }}/>
       ),
-	    // headerRight: () => (
-	    //     <TouchableOpacity
-	    //       style={{
-	    //       	marginTop: 2,
-	    //         marginRight: 16,
-	    //       }}
-	    //       onPress={() => {this.props.navigation.navigate('ThoughtsScreen', {mood: mood})}}
-	    //     >
-	    //       <Text style={{
-	    //         fontFamily:'Lato-Regular',
-	    //         fontSize: 17,
-	    //         alignSelf: 'center',
-	    //         color: '#007AFF',
-	    //       }}>Cancel</Text>
-	    //     </TouchableOpacity>
-	    // ),
+	    headerRight: () => (
+	        <TouchableOpacity
+	          style={{
+	          	marginTop: 2,
+	            marginRight: 10,
+	          }}
+            onPress={() => {
+              const resetAction = StackActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({ routeName: 'ThoughtsScreen' })],
+              });
+              navigation.dispatch(resetAction);
+            }}
+	        >
+	          <Text style={{
+	            fontFamily:'Lato-Regular',
+	            fontSize: 17,
+	            alignSelf: 'center',
+	            color: 'black',
+	          }}>Cancel</Text>
+	        </TouchableOpacity>
+	    ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: 'white',
         borderBottomWidth: 0,

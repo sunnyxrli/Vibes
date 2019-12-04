@@ -62,6 +62,7 @@ export default class HomeScreen extends React.Component {
           </TouchableOpacity>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
