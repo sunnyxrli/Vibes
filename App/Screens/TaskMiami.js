@@ -86,20 +86,20 @@ export default class TaskMiami extends React.Component {
   async componentDidMount() {
     this._isMounted = true;
     try {
-      const joinedValue = await AsyncStorage.getItem('JoinedMiami');      
+      const joinedValue = await AsyncStorage.getItem('JoinedMiami');
       if (joinedValue === null){
         this.setState({ joined: false });
       }else {
         this.setState({ joined:  joinedValue=== "true" });
       }
-      
-      const joinedTextValue = await AsyncStorage.getItem('JoinedMiamiText'); 
+
+      const joinedTextValue = await AsyncStorage.getItem('JoinedMiamiText');
       if (joinedTextValue === null || joinedTextValue === ""){
         this.setState({ joinedText: "Join" });
       }else{
         this.setState({ joinedText: joinedTextValue});
       }
-     
+
 
     } catch (error) {
       // Error retrieving data
@@ -112,6 +112,7 @@ export default class TaskMiami extends React.Component {
   }
 
   async componentWillUnmount() {
+    clearInterval(this.colorTimer);
     this._isMounted = false;
     try {
       await AsyncStorage.setItem('JoinedMiami', this.state.joined.toString());
@@ -126,7 +127,7 @@ export default class TaskMiami extends React.Component {
     this.setState({ joined: !this.state.joined }, function () {
       console.log("new joined");
       console.log(this.state.joined);
-     
+
       if (this.state.joined) {
 
         this.setState({joinedText: "Unjoin"});
@@ -139,7 +140,7 @@ export default class TaskMiami extends React.Component {
           { cancelable: false },
         );
       } else {
-        
+
         this.setState({joinedText: "Join"});
         Alert.alert(
           'UnJoined Task',

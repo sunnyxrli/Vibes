@@ -19,7 +19,7 @@ export default class CheckInScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerStyle: {
-        backgroundColor: homeScreenBackgroundColor(),
+        height: 0,
         borderBottomWidth: 0,
       },
       headerTintColor: 'black',
@@ -135,7 +135,7 @@ export default class CheckInScreen extends React.Component {
   }
 
   moveToHome() {
-    this.props.navigation.setParams({firstCheckIn: false});
+    this.props.navigation.setParams({firstCheckIn: true});
     this.props.navigation.navigate("HomeScreen", {mood: this.state.mood});
   }
 

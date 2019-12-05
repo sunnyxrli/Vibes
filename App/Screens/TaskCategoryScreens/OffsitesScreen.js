@@ -61,10 +61,14 @@ export default class OffsitesScreen extends React.Component {
     }
 
     componentDidMount(){
-      setInterval(() => (
+      this.colorTimer = setInterval(() => (
         this.props.navigation.state.params.mood != accentColor(mood) ?
         this.updateMood() : ""
       ), 500);
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.colorTimer);
     }
 
 

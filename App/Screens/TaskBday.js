@@ -85,20 +85,20 @@ export default class TaskBday extends React.Component {
   async componentDidMount() {
     this._isMounted = true;
     try {
-      const joinedValue = await AsyncStorage.getItem('JoinedBday');      
+      const joinedValue = await AsyncStorage.getItem('JoinedBday');
       if (joinedValue === null){
         this.setState({ joined: false });
       }else {
         this.setState({ joined:  joinedValue=== "true" });
       }
-      
-      const joinedTextValue = await AsyncStorage.getItem('JoinedBdayText'); 
+
+      const joinedTextValue = await AsyncStorage.getItem('JoinedBdayText');
       if (joinedTextValue === null || joinedTextValue === ""){
         this.setState({ joinedText: "Join" });
       }else{
         this.setState({ joinedText: joinedTextValue});
       }
-     
+
 
     } catch (error) {
       // Error retrieving data
@@ -112,6 +112,7 @@ export default class TaskBday extends React.Component {
 
   async componentWillUnmount() {
     this._isMounted = false;
+    clearInterval(this.colorTimer);
     try {
       await AsyncStorage.setItem('JoinedBday', this.state.joined.toString());
       await AsyncStorage.setItem('JoinedBdayText', this.state.joinedText.toString());
@@ -125,7 +126,7 @@ export default class TaskBday extends React.Component {
     this.setState({ joined: !this.state.joined }, function () {
       console.log("new joined");
       console.log(this.state.joined);
-     
+
       if (this.state.joined) {
 
         this.setState({joinedText: "Unjoin"});
@@ -138,7 +139,7 @@ export default class TaskBday extends React.Component {
           { cancelable: false },
         );
       } else {
-        
+
         this.setState({joinedText: "Join"});
         Alert.alert(
           'UnJoined Task',
@@ -215,7 +216,7 @@ export default class TaskBday extends React.Component {
         </View>
         <View style={{flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
           <Image
-              source={require("../Images/collabButton.png")}
+              source={require("../Images/collabButton3.png")}
               resizeMode='contain'
               style={{height: height * 0.3, width: height * 0.4}}
           />

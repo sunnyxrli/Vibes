@@ -58,12 +58,16 @@ export default class OtherScreen extends React.Component {
     this.setState({ mood: this.props.navigation.state.params.mood });
   }
 
-  componentDidMount() {
-    setInterval(() => (
-      this.props.navigation.state.params.mood != accentColor(mood) ?
+    componentDidMount(){
+      this.colorTimer = setInterval(() => (
+        this.props.navigation.state.params.mood != accentColor(mood) ?
         this.updateMood() : ""
     ), 500);
   }
+
+    componentWillUnmount() {
+      clearInterval(this.colorTimer);
+    }
 
 
   render() {
