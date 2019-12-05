@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType, Alert } from 'react-native';
 import { material } from 'react-native-typography';
 // import Feed from '../Components/Feed';
 import Home from '../Screens/HomeScreen';
 import { Colors } from '../Themes';
+import { AsyncStorage } from 'react-native';
 var { height, width } = Dimensions.get('window');
 
 var homeScreenBackgroundColor = (mood) => {
@@ -49,11 +50,16 @@ var accentColor = (mood) => {
 }
 
 export default class TaskMiami extends React.Component {
-    constructor(props){
-      super(props);
-      console.log("got to misbah bday");
 
-      }
+  state = {
+    joined: false,
+    joinedText: "Join",
+  }
+  constructor(props) {
+    super(props);
+    console.log("got to misbah bday");
+
+  }
 
   static navigationOptions = ({ navigation }) => {
     return {
@@ -71,56 +77,118 @@ export default class TaskMiami extends React.Component {
   };
 
   updateMood = () => {
-    if(!this.props.navigation) {
+    if (!this.props.navigation) {
       return;
     }
-    this.setState({mood: this.props.navigation.state.params.mood});
+    this.setState({ mood: this.props.navigation.state.params.mood });
   }
 
-  componentDidMount(){
-    this.colorTimer = setInterval(() => (
+  async componentDidMount() {
+    this._isMounted = true;
+    try {
+      const joinedValue = await AsyncStorage.getItem('JoinedMiami');
+      if (joinedValue === null){
+        this.setState({ joined: false });
+      }else {
+        this.setState({ joined:  joinedValue=== "true" });
+      }
+
+      const joinedTextValue = await AsyncStorage.getItem('JoinedMiamiText');
+      if (joinedTextValue === null || joinedTextValue === ""){
+        this.setState({ joinedText: "Join" });
+      }else{
+        this.setState({ joinedText: joinedTextValue});
+      }
+
+
+    } catch (error) {
+      // Error retrieving data
+      console.log("Async storage error in retreival");
+    }
+    setInterval(() => (
       this.props.navigation.state.params.mood != accentColor(mood) ?
-      this.updateMood() : ""
+        this.updateMood() : ""
     ), 500);
   }
 
-  componentWillUnmount() {
+  async componentWillUnmount() {
     clearInterval(this.colorTimer);
+    this._isMounted = false;
+    try {
+      await AsyncStorage.setItem('JoinedMiami', this.state.joined.toString());
+      await AsyncStorage.setItem('JoinedMiamiText', this.state.joinedText.toString());
+    } catch (error) {
+      // Error saving data
+      console.warn("async storage had a problem storying the data on unmount");
+    }
   }
 
+  joinTheEvent() {
+    this.setState({ joined: !this.state.joined }, function () {
+      console.log("new joined");
+      console.log(this.state.joined);
+
+      if (this.state.joined) {
+
+        this.setState({joinedText: "Unjoin"});
+        Alert.alert(
+          'Joined Task',
+          "Congratulations you've joined Miami Trip!",
+          [
+            { text: "Vew Action Items", onPress: () => this.props.navigation.navigate('ActionItemsMiamiTrip', { mood: mood }) },
+          ],
+          { cancelable: false },
+        );
+      } else {
+
+        this.setState({joinedText: "Join"});
+        Alert.alert(
+          'UnJoined Task',
+          "You've left Miami Trip.",
+          [
+            { text: "Ok", onPress: () => this.props.navigation.navigate('TasksScreen', { mood: mood }) },
+          ],
+          { cancelable: false },
+        );
+      }
+  });
+  }
 
   render() {
     return (
-      <View style={{ }}>
-        <View style={{ }}>
+      <View style={{}}>
+
+<ScrollView>
+
+        <View style={{}}>
           <Text style={TaskMiamiStyle.TaskTitle}>Miami Trip</Text>
           <Text style={TaskMiamiStyle.expirationDate}>Expires Dec 31st, 2019</Text>
           <Text style={TaskMiamiStyle.taskDetails}>Let’s celebrate the successful launch of Vibes with an off-site!</Text>
 
         </View>
 
-      <View  style={{flexDirection:'row', marginTop:50, flex:1, marginLeft:20}}>
-      <TouchableOpacity
-          style={{
-            backgroundColor: accentColor(mood),
-            opacity: 0.7,
-            paddingTop: 18,
-            borderRadius: 100,
-            width: 159.52,
-            height: 63,
-          }}
+        <View style={{ flexDirection: 'row', marginTop: 50, flex: 1, marginLeft: 20 }}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: accentColor(mood),
+              opacity: 0.7,
+              paddingTop: 18,
+              borderRadius: 100,
+              width: 159.52,
+              height: 63,
+            }}
             onPress={() => {
-              this.props.navigation.navigate('ActionItemsMiamiTrip', {mood: mood});
+              this.props.navigation.navigate('ActionItemsMiamiTrip', { mood: mood });
             }}
           >
             <Text style={{
-              fontFamily:'Lato-Bold',
+              fontFamily: 'Lato-Bold',
               fontSize: 18,
               alignSelf: 'center',
               color: '#FFFFFF'
             }}> Action Items </Text>
           </TouchableOpacity>
-      <TouchableOpacity
+          <TouchableOpacity
             style={{
               borderColor: accentColor(mood),
               backgroundColor: '#FFFFFF',
@@ -130,34 +198,34 @@ export default class TaskMiami extends React.Component {
               width: 159.52,
               height: 63,
               borderWidth: 1,
-              marginLeft:'auto',
-              marginRight:20
+              marginLeft: 'auto',
+              marginRight: 20
             }}
-            //onPress={() => this.setMoodsOverlayVisible(true)}
+            onPress={this.joinTheEvent.bind(this)}
           >
             <Text style={{
               fontSize: 18,
               textAlign: 'center',
               fontFamily: 'Lato-Bold',
-              color:accentColor(mood)
-            }}> Join </Text>
+              color: accentColor(mood)
+            }}> {this.state.joinedText} </Text>
           </TouchableOpacity>
 
 
         </View>
 
-        <View style={{ marginLeft: 20, paddingTop: 50, marginTop:50}}>
+        <View style={{ marginLeft: 20, marginTop: 50 }}>
           <Text style={TaskMiamiStyle.collab}>COLLABORATORS</Text>
         </View>
-        <ScrollView>
-        <View style={{flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
-          <Image
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "space-evenly" }}>
+            <Image
               source={require("../Images/collabButton.png")}
               resizeMode='contain'
-              style={{height: height * 0.3, width: height * 0.4}}
-          />
-      </View>
-      </ScrollView>
+              style={{ height: height * 0.3, width: height * 0.4 }}
+            />
+          </View>
+
+        </ScrollView>
       </View>
 
 
@@ -197,19 +265,19 @@ const TaskMiamiStyle = StyleSheet.create({
     fontSize: 20,
     paddingTop: 10,
     paddingLeft: 20,
-    fontFamily:'Lato-Italic'
+    fontFamily: 'Lato-Italic'
   },
-  taskDetails:{
+  taskDetails: {
     fontSize: 20,
     fontFamily:'Lato-Regular',
-    paddingRight: 90,
+    paddingRight: 50,
     marginTop: 30,
     paddingLeft: 20,
     lineHeight: 24
   },
-  collab:{
+  collab: {
     fontSize: 25,
-    fontFamily:'Lato-Regular',
+    fontFamily: 'Lato-Regular',
   }
 
 });

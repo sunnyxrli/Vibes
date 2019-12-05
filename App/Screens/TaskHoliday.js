@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType, Alert } from 'react-native';
 import { material } from 'react-native-typography';
 // import Feed from '../Components/Feed';
 import Home from '../Screens/HomeScreen';
 import { Colors } from '../Themes';
+import { AsyncStorage } from 'react-native';
 var { height, width } = Dimensions.get('window');
 
 var homeScreenBackgroundColor = (mood) => {
@@ -49,6 +50,10 @@ var accentColor = (mood) => {
 }
 
 export default class TaskHoliday extends React.Component {
+  state = {
+    joined: false,
+    joinedText: "Join",
+  }
     constructor(props){
       super(props);
       console.log("got to team lunches");
@@ -77,21 +82,82 @@ export default class TaskHoliday extends React.Component {
     this.setState({mood: this.props.navigation.state.params.mood});
   }
 
-  componentDidMount(){
-    this.colorTimer = setInterval(() => (
+  async componentDidMount() {
+    this._isMounted = true;
+    try {
+      const joinedValue = await AsyncStorage.getItem('JoinedHoliday');
+      if (joinedValue === null){
+        this.setState({ joined: false });
+      }else {
+        this.setState({ joined:  joinedValue=== "true" });
+      }
+
+      const joinedTextValue = await AsyncStorage.getItem('JoinedHolidayText');
+      if (joinedTextValue === null || joinedTextValue === ""){
+        this.setState({ joinedText: "Join" });
+      }else{
+        this.setState({ joinedText: joinedTextValue});
+      }
+
+
+    } catch (error) {
+      // Error retrieving data
+      console.log("Async storage error in retreival");
+    }
+    setInterval(() => (
       this.props.navigation.state.params.mood != accentColor(mood) ?
-      this.updateMood() : ""
+        this.updateMood() : ""
     ), 500);
   }
 
-  componentWillUnmount() {
+  async componentWillUnmount() {
     clearInterval(this.colorTimer);
+    this._isMounted = false;
+    try {
+      await AsyncStorage.setItem('JoinedHoliday', this.state.joined.toString());
+      await AsyncStorage.setItem('JoinedHolidayText', this.state.joinedText.toString());
+    } catch (error) {
+      // Error saving data
+      console.warn("async storage had a problem storying the data on unmount");
+    }
+  }
+
+  joinTheEvent() {
+    this.setState({ joined: !this.state.joined }, function () {
+      console.log("new joined");
+      console.log(this.state.joined);
+
+      if (this.state.joined) {
+
+        this.setState({joinedText: "Unjoin"});
+        Alert.alert(
+          'Joined Task',
+          "Congratulations you've joined Decorate for the Holidays!",
+          [
+            { text: "Vew Action Items", onPress: () => this.props.navigation.navigate('ActionItemsHoliday', { mood: mood }) },
+          ],
+          { cancelable: false },
+        );
+      } else {
+
+        this.setState({joinedText: "Join"});
+        Alert.alert(
+          'UnJoined Task',
+          "You've left Decorate for the Holidays.",
+          [
+            { text: "Ok", onPress: () => this.props.navigation.navigate('TasksScreen', { mood: mood }) },
+          ],
+          { cancelable: false },
+        );
+      }
+  });
   }
 
 
   render() {
     return (
       <View style={{ }}>
+        <ScrollView>
         <View style={{ }}>
           <Text style={TaskStyle.TaskTitle}>Decorate for the Holidays</Text>
           <Text style={TaskStyle.expirationDate}>Expires Jan 1st, 2020</Text>
@@ -133,23 +199,22 @@ export default class TaskHoliday extends React.Component {
               marginLeft:'auto',
               marginRight:20
             }}
-            //onPress={() => this.setMoodsOverlayVisible(true)}
+            onPress={this.joinTheEvent.bind(this)}
           >
             <Text style={{
               fontSize: 18,
               textAlign: 'center',
               fontFamily: 'Lato-Bold',
-              color:accentColor(mood)
-            }}> Join </Text>
+              color: accentColor(mood)
+            }}> {this.state.joinedText} </Text>
           </TouchableOpacity>
 
 
         </View>
 
-        <View style={{ marginLeft: 20, paddingTop: 50, marginTop:50}}>
+        <View style={{ marginLeft: 20, marginTop:50}}>
           <Text style={TaskStyle.collab}>COLLABORATORS</Text>
         </View>
-        <ScrollView>
         <View style={{flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
           <Image
               source={require("../Images/collabButton.png")}

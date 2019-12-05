@@ -40,7 +40,7 @@ export default class OfficeSpaceScreen extends React.Component {
             headerTitle: (
                 <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
                     <Image source={require('../../Images/TaskCategoryIcons/officeSpaceIcon.png')}
-                        style={{ height: 30, width: 29.81, marginRight: '6%' }} />
+                        style={{ height: height * 0.0367, width: width * 0.079, marginRight: '6%' }} />
                     <Text style={OfficeSpaceStyles.heading}>OFFICE SPACE</Text>
                 </View>
             ),
@@ -70,7 +70,6 @@ export default class OfficeSpaceScreen extends React.Component {
     }
 
 
-
     render() {
         return (
             <View style={OfficeSpaceStyles.tasksContainer}>
@@ -78,16 +77,16 @@ export default class OfficeSpaceScreen extends React.Component {
                     style={[OfficeSpaceStyles.task, { justifyContent: 'center', marginTop: 20 }]}
                     onPress={() => { this.props.navigation.navigate('TaskCreativeSpace', {mood: mood});}}
                 >
-                    <Text style={{ left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Creative Office Space!</Text>
-                    <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', color: accentColor(mood), left: 22 }}> Expires in 2 days </Text>
+                    <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Creative Office Space!</Text>
+                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires in 2 days </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={[OfficeSpaceStyles.task, { justifyContent: 'center'}]}
                     onPress={() => { this.props.navigation.navigate('TaskHoliday', {mood: mood});}}
                 >
-                    <Text style={{ left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Decorate for the Holidays</Text>
-                    <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', left: 22 }}> Expires Dec 19th, 2019 </Text>
+                    <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Decorate for the Holidays</Text>
+                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires Dec 19th, 2019 </Text>
                 </TouchableOpacity>
             </View>
         );
@@ -95,23 +94,10 @@ export default class OfficeSpaceScreen extends React.Component {
 }
 
 const OfficeSpaceStyles = StyleSheet.create({
-    displayText: {
-        flex: 1,
-        fontSize: 40,
-        fontStyle: 'italic',
-        fontWeight: '200',
-        color: 'black',
-        padding: '15%',
-        justifyContent: 'center',
-    },
     heading: {
         fontFamily: 'Lato-Black',
-        fontSize: 22,
+        fontSize: width * 0.059,
         textAlign: "center"
-    },
-    title: {
-        fontFamily: 'Lato-Bold',
-        fontSize: 20
     },
     tasksContainer: {
         flexDirection: 'column',
@@ -119,11 +105,11 @@ const OfficeSpaceStyles = StyleSheet.create({
         justifyContent: 'center'
     },
     task: {
-        width: 345,
-        height: 89,
+        width: width * 0.92,
+        height: height * 0.109,
         borderWidth: 1,
         borderRadius: 8,
         borderColor: '#BDBDBD',
-        margin: 5
+        margin: width * 0.013
     },
 })

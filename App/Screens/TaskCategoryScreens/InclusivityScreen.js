@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
 
+var { height, width } = Dimensions.get('window');
+
 var homeScreenBackgroundColor = (mood) => {
     if (mood == 'EXCITED') {
         return '#F291C7'
@@ -23,7 +25,7 @@ export default class InclusivityScreen extends React.Component {
             headerTitle: (
                 <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
                     <Image source={require('../../Images/TaskCategoryIcons/inclusivityIcon.png')}
-                        style={{ height: 30, width: 24.53, marginRight: '8%' }} />
+                        style={{ height: height * 0.0367, width: width * 0.065, marginRight: '8%' }} />
                     <Text style={InclusivityStyles.heading}>INCLUSIVITY</Text>
                 </View>
             ),
@@ -55,7 +57,7 @@ export default class InclusivityScreen extends React.Component {
 const InclusivityStyles = StyleSheet.create({
     displayText: {
         flex: 1,
-        fontSize: 30,
+        fontSize: width * 0.08,
         fontFamily: 'Lato-Regular',
         color: 'black',
         padding: '12%',
@@ -63,7 +65,7 @@ const InclusivityStyles = StyleSheet.create({
     },
     heading: {
         fontFamily: 'Lato-Black',
-        fontSize: 22,
+        fontSize: width * 0.059,
         textAlign: "center"
     },
 })

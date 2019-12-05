@@ -70,14 +70,26 @@ export default class HomeScreen extends React.Component {
   render() {
     const { navigation } = this.props;
     mood = navigation.getParam('mood');
-    if(mood == undefined) {
+    if (mood == undefined) {
       mood = "SAD";
     }
     return (
       <ScrollView style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
+        <TouchableOpacity
+          style={{
+          }}
+          onPress={() => this.setMoodsOverlayVisible(true)}
+        >
+          <Image
+            source={require('../Images/ProfileImages/charlie.png')}
+            style={{ height: width * 0.08, width: width * 0.08, alignSelf: 'flex-end', marginRight: width * 0.029}}
+            resizeMode='contain'
+          />
+        </TouchableOpacity>
+
         <View style={styles.faceimage}>
-          <Text style={{fontSize: height * 0.03, fontFamily: 'Lato-Regular'}}>Your team feels</Text>
-          <Text style={{fontSize: width * 0.11, fontFamily: 'Lato-Black', color: accentColor(mood) }}>{mood}</Text>
+          <Text style={{ fontSize: height * 0.03, fontFamily: 'Lato-Regular' }}>Your team feels</Text>
+          <Text style={{ fontSize: width * 0.11, fontFamily: 'Lato-Black', color: accentColor(mood) }}>{mood}</Text>
           <Text style={styles.checkintext}>Last team check-in a few seconds ago</Text>
           <Image
             source={FaceImages[mood]}
@@ -100,7 +112,7 @@ export default class HomeScreen extends React.Component {
             onPress={() => this.setMoodsOverlayVisible(true)}
           >
             <Text style={{
-              fontFamily:'Lato-Bold',
+              fontFamily: 'Lato-Bold',
               fontSize: width * 0.048,
               textAlign: 'center'
             }}> MORE DATA </Text>
@@ -108,37 +120,38 @@ export default class HomeScreen extends React.Component {
           <Overlay
             isVisible={this.state.moodsOverlayVisible}
             fullScreen={true}
-            overlayStyle={styles.moodsOverlay}
+            overlayStyle={[styles.moodsOverlay, {justifyContent: 'center'}]}
             animationType="slide"
             windowBackgroundColor="rgba(0, 0, 0, 0)"
             onBackdropPress={() => this.setMoodsOverlayVisible(false)}
           >
             <TouchableOpacity
-            onPress={() => this.setMoodsOverlayVisible(false)}>
+              style={{justifyContent: 'center', alignItems: 'center'}}
+              onPress={() => this.setMoodsOverlayVisible(false)}>
               <Image
                 source={OverlayImages[mood]}
-                style={{ width: width, height: height * 0.95}}
+                style={{width: width * 0.88, height: height * 0.8}}
                 resizeMode='contain'
               />
             </TouchableOpacity>
           </Overlay>
           <TouchableOpacity
-          style={{
-            backgroundColor: accentColor(mood),
-            opacity: 0.9,
-            borderRadius: 100,
-            width: width * 0.427,
-            height: height * 0.08,
-            justifyContent: 'center',
-            margin: height * 0.01,
-            marginTop: height * 0.012
-          }}
+            style={{
+              backgroundColor: accentColor(mood),
+              opacity: 0.9,
+              borderRadius: 100,
+              width: width * 0.427,
+              height: height * 0.08,
+              justifyContent: 'center',
+              margin: height * 0.01,
+              marginTop: height * 0.012
+            }}
             onPress={() => {
-              this.props.navigation.navigate('ThoughtsScreen', {mood: mood});
+              this.props.navigation.navigate('ThoughtsScreen', { mood: mood });
             }}
           >
             <Text style={{
-              fontFamily:'Lato-Bold',
+              fontFamily: 'Lato-Bold',
               fontSize: width * 0.048,
               textAlign: 'center',
               color: '#FFFFFF'
@@ -149,26 +162,26 @@ export default class HomeScreen extends React.Component {
           <Text style={styles.taskstext}>Tasks Expiring Soon</Text>
         </View>
         <View style={styles.tasksColumn}>
-         <FlatList
-         data={[
-            {key: '1', link: "TaskCreativeSpace"},
-            {key: '2', link: "TaskMiami"},
-            {key: '3', link: "TaskBday"}
-          ]}
-         renderItem={({item}) => <TouchableOpacity
-           onPress={() => {
-             this.props.navigation.navigate(item.link, {mood: mood});
-           }}>
-           <View style={{backgroundColor: 'white', width: width * 0.95, height: height * 0.1, borderRadius: height * 0.01, marginBottom: height * 0.01, alignItems: "center", justifyContent: "center"}}>
-             <Image
-               source={TaskImages[item.key]}
-               style={styles.tasks}
-               resizeMode="contain"
-             />
-           </View>
-         </TouchableOpacity>}
-         keyExtractor={ (item, index) => index.toString()}
-         />
+          <FlatList
+            data={[
+              { key: '1', link: "TaskCreativeSpace" },
+              { key: '2', link: "TaskMiami" },
+              { key: '3', link: "TaskBday" }
+            ]}
+            renderItem={({ item }) => <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate(item.link, { mood: mood });
+              }}>
+              <View style={{ backgroundColor: 'white', width: width * 0.95, height: height * 0.1, borderRadius: height * 0.01, marginBottom: height * 0.01, alignItems: "center", justifyContent: "center" }}>
+                <Image
+                  source={TaskImages[item.key]}
+                  style={styles.tasks}
+                  resizeMode="contain"
+                />
+              </View>
+            </TouchableOpacity>}
+            keyExtractor={(item, index) => index.toString()}
+          />
         </View>
       </ScrollView>
     );
@@ -185,8 +198,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     margin: 25,
-    marginLeft: (height<800 && height>700) ? 45 : 25,
-    marginRight: (height<800 && height>700)? 45 : 25,
+    marginLeft: (height < 800 && height > 700) ? 45 : 25,
+    marginRight: (height < 800 && height > 700) ? 45 : 25,
     marginBottom: 15,
   },
   tasksColumn: {

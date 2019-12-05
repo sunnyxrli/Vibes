@@ -41,7 +41,7 @@ export default class OffsitesScreen extends React.Component {
             headerTitle: (
                 <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                     <Image source={require('../../Images/TaskCategoryIcons/offsiteIcon.png')}
-                        style={{ height: 30, width: 42, marginRight: '8%' }} />
+                        style={{ height: height * 0.0367, width: width * 0.112, marginRight: '8%' }} />
                     <Text style={OffsitesSyles.heading}>OFFSITES</Text>
                 </View>
             ),
@@ -76,11 +76,11 @@ export default class OffsitesScreen extends React.Component {
         return (
             <View style={OffsitesSyles.tasksContainer}>
                 <TouchableOpacity
-                    style={[OffsitesSyles.task, { justifyContent: 'center', marginTop: 20 }]}
+                    style={[OffsitesSyles.task, { justifyContent: 'center', marginTop: height * 0.024 }]}
                     onPress={() => { this.props.navigation.navigate('TaskMiami', {mood: mood});}}
                 >
-                    <Text style={{ left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Miami Trip</Text>
-                    <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', color: accentColor(mood), left: 22 }}>Expires in 1 day</Text>
+                    <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Miami Trip</Text>
+                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires in 1 day</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -88,23 +88,10 @@ export default class OffsitesScreen extends React.Component {
 }
 
 const OffsitesSyles = StyleSheet.create({
-    displayText: {
-        flex: 1,
-        fontSize: 40,
-        fontStyle: 'italic',
-        fontWeight: '200',
-        color: 'black',
-        padding: '15%',
-        justifyContent: 'center',
-    },
     heading: {
         fontFamily: 'Lato-Black',
-        fontSize: 22,
+        fontSize: width * 0.059,
         textAlign: "center"
-    },
-    title: {
-        fontFamily: 'Lato-Bold',
-        fontSize: 20
     },
     tasksContainer: {
         flexDirection: 'column',
@@ -112,11 +99,11 @@ const OffsitesSyles = StyleSheet.create({
         justifyContent: 'center'
     },
     task: {
-        width: 345,
-        height: 89,
+        width: width * 0.92,
+        height: height * 0.109,
         borderWidth: 1,
         borderRadius: 8,
         borderColor: '#BDBDBD',
-        margin: 5
+        margin: width * 0.013
     },
 })
