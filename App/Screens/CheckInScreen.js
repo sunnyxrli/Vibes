@@ -22,6 +22,7 @@ export default class CheckInScreen extends React.Component {
         backgroundColor: homeScreenBackgroundColor(),
         borderBottomWidth: 0,
       },
+      headerTintColor: 'black',
       tabBarVisible: true,
     };
   };

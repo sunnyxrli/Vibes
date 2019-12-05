@@ -44,6 +44,7 @@ export default class OfficeSpaceScreen extends React.Component {
                     <Text style={OfficeSpaceStyles.heading}>OFFICE SPACE</Text>
                 </View>
             ),
+            headerTintColor: 'black',
             headerStyle: {
                 backgroundColor: homeScreenBackgroundColor(mood),
                 borderBottomWidth: 0,

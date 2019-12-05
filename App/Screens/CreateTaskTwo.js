@@ -109,7 +109,7 @@ export default class TasksScreen extends React.Component {
 	            fontFamily:'Lato-Regular',
 	            fontSize: 17,
 	            alignSelf: 'center',
-	            color: 'black',
+	            color: '#007AFF',
 	          }}>Cancel</Text>
 	        </TouchableOpacity>
 	    ),
