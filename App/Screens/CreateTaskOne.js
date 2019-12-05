@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, Button } from 'react-native';
 import { material } from 'react-native-typography';
 import Home from '../Screens/HomeScreen';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 var { height, width } = Dimensions.get('window');
 
@@ -48,17 +49,40 @@ var accentColor = (mood) => {
 }
 
 export default class TasksScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { showTitle: false, showDes: false, };
+  }
 
   static navigationOptions = ({ navigation }) => {
     return {
-      // headerTitle: (
-      //   <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-      //   </View>
-      // ),
-      headerStyle: {
-        backgroundColor: 'white',
-        borderBottomWidth: 0,
-      }
+	    headerRight: () => (
+	        <TouchableOpacity
+	          style={{
+	          	marginTop: 2,
+	            marginRight: 10,
+	          }}
+            onPress={() => {
+              const resetAction = StackActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({ routeName: 'ThoughtsScreen' })],
+              });
+              navigation.dispatch(resetAction);
+            }}
+	        >
+	          <Text style={{
+	            fontFamily:'Lato-Regular',
+	            fontSize: 17,
+	            alignSelf: 'center',
+	            color: 'black',
+	          }}>Cancel</Text>
+	        </TouchableOpacity>
+	    ),
+	    headerTintColor: 'black',
+    	headerStyle: {
+	        backgroundColor: 'white',
+	        borderBottomWidth: 0,
+      	}
     };
   };
 
@@ -76,37 +100,58 @@ export default class TasksScreen extends React.Component {
     ), 500);
   }
 
+  setShowTitle() {
+    this.setState({ showTitle: true });
+  }
+
+  setShowDes() {
+    this.setState({ showDes: true });
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
         <Text style={{
           fontFamily:'Lato-Bold',
-          fontSize: 40,
+          fontSize: height * 0.05,
           textAlign: 'left',
-          marginTop: 10,
-          marginBottom: 30,
-          marginLeft: 20,
+          marginTop: height * 0.01,
+          marginBottom: height * 0.02,
+          marginLeft: width * 0.053,
         }}>Create Task</Text>
-        <Image
-            source={require("../Images/taskTitle.png")}
+        <TouchableOpacity
+          activeOpacity={1.0}
+          onPress={() => this.setShowTitle()}
+        >
+          <Image
+            source={ this.state.showTitle === true ? require('../Images/taskTitle.png') : require('../Images/emptyTaskTitle.png')}
             style={styles.taskTitle}
             resizeMode='contain'
-        />
-        <Image
-            source={require("../Images/taskDescription.png")}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={1.0}
+          onPress={() => this.setShowDes()}
+        >
+          <Image
+            source={ this.state.showDes === true ? require('../Images/taskDescription.png') : require('../Images/emptyTaskDescription.png')}
             style={styles.taskDes}
             resizeMode='contain'
-        />
+          />
+        </TouchableOpacity>
+
         <TouchableOpacity
           style={{
             backgroundColor: accentColor(mood),
             opacity: 0.8,
-            paddingTop: 18,
-            borderRadius: 30,
-            width: 245,
-            height: 56,
+            borderRadius: 7,
+            width: 196,
+            height: 41,
             alignSelf: 'center',
-            marginTop: 20,
+            marginTop: 10,
+    		    flex: 1,
+    		    justifyContent: 'center',
+    		    alignItems: 'center'
           }}
           onPress={() => {this.props.navigation.navigate('CreateTaskTwo', {mood: mood})}}
         >
@@ -114,7 +159,9 @@ export default class TasksScreen extends React.Component {
             fontFamily:'Lato-Bold',
             fontSize: 20,
             alignSelf: 'center',
+            textAlign: 'center',
             color: '#FFFFFF',
+			lineHeight: 20,
           }}>NEXT</Text>
         </TouchableOpacity>
         <View style={styles.container}>
@@ -154,7 +201,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   taskTitle: {
-    height: 200,
+    height: height * 0.25,
     width: width * 0.95,
     padding: 0,
     margin: 0,
@@ -167,7 +214,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   taskDes: {
-    height: 250,
+    height: height * 0.30,
     width: width * 0.95,
     padding: 0,
     margin: 0,

@@ -224,6 +224,7 @@ export default class ActionItemsWeeklyLunches extends React.Component {
                     <Text style={TaskStyle.heading}>Action Items</Text>
                 </View>
             ),
+            headerTintColor: 'black',
             headerStyle: {
                 backgroundColor: homeScreenBackgroundColor(mood),
                 borderBottomWidth: 0,

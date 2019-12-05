@@ -226,6 +226,7 @@ export default class ActionItemsCreativeSpace extends React.Component {
           <Text style={TaskStyle.heading}>Action Items</Text>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,

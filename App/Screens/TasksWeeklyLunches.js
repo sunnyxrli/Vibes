@@ -67,6 +67,7 @@ export default class TasksWeeklyLunches extends React.Component {
           <Text style={TasksWeekly.heading}>Task</Text>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
@@ -158,7 +159,7 @@ export default class TasksWeeklyLunches extends React.Component {
         <ScrollView>
         <View style={{ }}>
           <Text style={TasksWeekly.TaskTitle}>Weekly Team Lunches</Text>
-          <Text style={TasksWeekly.expirationDate}>Expires Dec 31st, 2019</Text>
+          <Text style={TasksWeekly.expirationDate}>Expires Dec 19th, 2019</Text>
           <Text style={TasksWeekly.taskDetails}>Let’s organize weekly team lunches so everyone on the team can get to know each other better!</Text>
 
         </View>
@@ -249,7 +250,7 @@ const TasksWeekly = StyleSheet.create({
   taskDetails:{
     fontSize: 20,
     fontFamily:'Lato-Regular',
-    paddingRight: 90,
+    paddingRight: 50,
     marginTop: 30,
     paddingLeft: 20,
     lineHeight: 24

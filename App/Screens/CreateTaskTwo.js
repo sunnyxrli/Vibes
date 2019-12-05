@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView
 import { material } from 'react-native-typography';
 import Home from '../Screens/HomeScreen';
 import CalendarPicker from 'react-native-calendar-picker';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 var { height, width } = Dimensions.get('window');
 
@@ -63,6 +64,17 @@ export default class TasksScreen extends React.Component {
     });
   }
 
+  disableDates(date) {
+  	wanted_date = new Date(2019, 11, 19);
+  	format_wanted_date = wanted_date.getFullYear() + "-" + (wanted_date.getMonth()+1) + "-" + wanted_date.getDate()
+  	format_curr_date = date.utc().format('YYYY-MM-DD');
+  	if (format_curr_date === format_wanted_date) {
+  		return false;
+  	} else {
+  		return true;
+  	}
+  }
+
   updateMood = () => {
     if(!this.props.navigation) {
       return;
@@ -79,14 +91,33 @@ export default class TasksScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      // headerTitle: (
-      //   <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-      //   </View>
-      // ),
-      headerStyle: {
-        backgroundColor: 'white',
-        borderBottomWidth: 0,
-      }
+	    headerRight: () => (
+	        <TouchableOpacity
+	          style={{
+	          	marginTop: 2,
+	            marginRight: 10,
+	          }}
+            onPress={() => {
+              const resetAction = StackActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({ routeName: 'ThoughtsScreen' })],
+              });
+              navigation.dispatch(resetAction);
+            }}
+	        >
+	          <Text style={{
+	            fontFamily:'Lato-Regular',
+	            fontSize: 17,
+	            alignSelf: 'center',
+	            color: 'black',
+	          }}>Cancel</Text>
+	        </TouchableOpacity>
+	    ),
+      	headerTintColor: 'black',
+        headerStyle: {
+	        backgroundColor: 'white',
+	        borderBottomWidth: 0,
+      	}
     };
   };
 
@@ -104,28 +135,31 @@ export default class TasksScreen extends React.Component {
           marginLeft: 20,
         }}>Create Task</Text>
         <Text style={{
-          fontFamily:'Lato-Bold',
-          fontStyle: 'italic',
+          fontFamily:'Lato-Italic',
           fontSize: 20,
           textAlign: 'left',
           marginTop: 0,
-          marginBottom: 30,
+          marginBottom: 60,
           marginLeft: 20,
         }}>Finish task by</Text>
         <CalendarPicker
           onDateChange={this.onDateChange}
-          selectedDayColor={accentColorMuted(mood)}
+          disabledDates={this.disableDates}
+          selectedDayColor={accentColor(mood)}
+          selectedDayTextColor='white'
         />
         <TouchableOpacity
           style={{
             backgroundColor: accentColor(mood),
             opacity: 0.8,
-            paddingTop: 18,
-            borderRadius: 30,
-            width: 245,
-            height: 56,
+            borderRadius: 7,
+            width: 196,
+            height: 41,
             alignSelf: 'center',
-            marginTop: 20,
+            marginTop: 50,
+            flex: 1,
+		    justifyContent: 'center',
+		    alignItems: 'center'
           }}
           onPress={() => {this.props.navigation.navigate('CreateTaskThree', {mood: mood})}}
         >
@@ -134,6 +168,8 @@ export default class TasksScreen extends React.Component {
             fontSize: 20,
             alignSelf: 'center',
             color: '#FFFFFF',
+            textAlign: 'center',
+            lineHeight: 20,
           }}>NEXT</Text>
         </TouchableOpacity>
         <View style={styles.container}>

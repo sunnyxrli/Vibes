@@ -59,6 +59,7 @@ export default class TasksScreen extends React.Component {
           <Text style={TasksStyles.headerText}>Team Tasks</Text>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
@@ -68,7 +69,7 @@ export default class TasksScreen extends React.Component {
   };
 
   updateMood = () => {
-    if(!this.props.navigation) {
+    if (!this.props.navigation) {
       return;
     }
     this.props.navigation.setParams(mood)
@@ -78,7 +79,7 @@ export default class TasksScreen extends React.Component {
     AsyncStorage.clear();
     setInterval(() => (
       this.props.navigation.state.params.mood != homeScreenBackgroundColor(mood) ?
-      this.updateMood() : ""
+        this.updateMood() : ""
     ), 500);
     
   }
@@ -89,13 +90,13 @@ export default class TasksScreen extends React.Component {
       <View style={{ flex: 1 }}>
         <ScrollView>
           <Text style={[TasksStyles.title, { paddingTop: height * 0.03, paddingLeft: height * 0.018, paddingBottom: height * 0.023 }]}>Tasks You’ve Joined</Text>
-          <View style={{alignItems: 'center'}}>
+          <View style={{ alignItems: 'center' }}>
             <TouchableOpacity
-              style={[TasksStyles.task, {justifyContent: 'center'}]}
-              onPress={() => {this.props.navigation.navigate('TaskMiami', {mood: mood})}}
+              style={[TasksStyles.task, { justifyContent: 'center' }]}
+              onPress={() => { this.props.navigation.navigate('TaskMiami', { mood: mood }) }}
             >
-              <Text style={{ left: height * 0.03, fontFamily: 'Lato-Regular', fontSize: height * 0.03 }}>Miami Trip</Text>
-              <Text style={{ fontSize: height * 0.02, fontFamily: 'Lato-Italic', color: accentColor(mood), left: height * 0.027 }}> Expires in 1 day </Text>
+              <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Miami Trip</Text>
+              <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires in 1 day</Text>
             </TouchableOpacity>
           </View>
 
@@ -103,7 +104,7 @@ export default class TasksScreen extends React.Component {
           <View style={TasksStyles.categoryContainer}>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { this.props.navigation.navigate('OffsitesScreen', {mood: mood}) }}
+              onPress={() => { this.props.navigation.navigate('OffsitesScreen', { mood: mood }) }}
             >
               <Image
                 source={require("../Images/TaskCategories/offsites.png")}
@@ -114,7 +115,7 @@ export default class TasksScreen extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { this.props.navigation.navigate('OfficeEventsScreen', {mood: mood}) }}
+              onPress={() => { this.props.navigation.navigate('OfficeEventsScreen', { mood: mood }) }}
             >
               <Image
                 source={require("../Images/TaskCategories/officeEvents.png")}
@@ -125,7 +126,7 @@ export default class TasksScreen extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { this.props.navigation.navigate('OfficeSpaceScreen', {mood: mood}) }}
+              onPress={() => { this.props.navigation.navigate('OfficeSpaceScreen', { mood: mood }) }}
             >
               <Image
                 source={require("../Images/TaskCategories/officeSpace.png")}
@@ -136,7 +137,7 @@ export default class TasksScreen extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { this.props.navigation.navigate('InclusivityScreen', {mood: mood}) }}
+              onPress={() => { this.props.navigation.navigate('InclusivityScreen', { mood: mood }) }}
             >
               <Image
                 source={require("../Images/TaskCategories/inclusivity.png")}
@@ -147,7 +148,7 @@ export default class TasksScreen extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { this.props.navigation.navigate('FoodScreen', {mood: mood}) }}
+              onPress={() => { this.props.navigation.navigate('FoodScreen', { mood: mood }) }}
             >
               <Image
                 source={require("../Images/TaskCategories/food.png")}
@@ -158,7 +159,7 @@ export default class TasksScreen extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
-              onPress={() => { this.props.navigation.navigate('OtherScreen', {mood: mood}) }}
+              onPress={() => { this.props.navigation.navigate('OtherScreen', { mood: mood }) }}
             >
               <Image
                 source={require("../Images/TaskCategories/other.png")}
@@ -202,7 +203,7 @@ const TasksStyles = StyleSheet.create({
     justifyContent: 'center'
   },
   headerText: {
-    fontSize: height * 0.025,
+    fontSize: width * 0.059,
     alignSelf: "center",
     marginLeft: "auto",
     marginRight: "auto",

@@ -68,6 +68,7 @@ export default class TaskCreativeSpace extends React.Component {
           <Text style={TaskStyle.heading}>Task</Text>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
@@ -249,6 +250,7 @@ const TaskStyle = StyleSheet.create({
     fontSize: 50,
     paddingTop: 25,
     paddingLeft: 20,
+    paddingRight: 20
   },
   heading: {
     fontFamily: 'Lato-Black',

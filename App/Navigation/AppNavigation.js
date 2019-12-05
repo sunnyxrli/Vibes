@@ -2,9 +2,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import React from 'react';
-import { Images, Colors, Metrics } from '../Themes'
-import { StyleSheet, Image, Dimensions, View } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
+import { Dimensions } from 'react-native';
 import HomeScreen from '../Screens/HomeScreen'
 import ThoughtsScreen from '../Screens/ThoughtsScreen'
 import AddThoughtScreen from '../Screens/AddThoughtScreen.js'
@@ -52,7 +50,8 @@ const ThoughtsNav = createStackNavigator({
   CreateTaskOne: { screen: CreateTaskOne },
   CreateTaskTwo: { screen: CreateTaskTwo },
   CreateTaskThree: { screen: CreateTaskThree },
-  AddThoughtScreen: { screen: AddThoughtScreen}
+  AddThoughtScreen: { screen: AddThoughtScreen},
+  TasksWeeklyLunches: {screen: TasksWeeklyLunchesScreen}
 }, {
   initialRouteName: 'ThoughtsScreen',
   headerMode: 'float',
@@ -114,7 +113,7 @@ const TabNav = createBottomTabNavigator({
       tabBarVisible: (navigation.state.params || navigation.state.routeName === "MajMoodScreen" || navigation.state.routeName === "TasksScreen" || navigation.state.routeName === "ThoughtsScreen") ? true : false,
     }),
     tabBarOptions: {
-      activeTintColor: '#222',
+      activeTintColor: '#000000',
       inactiveTintColor: '#DADADA',
       showLabel: false,
     },
@@ -123,9 +122,7 @@ const TabNav = createBottomTabNavigator({
 MajMoodNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <View style={{width: height * 0.05}}>
-        <CustomIcon name="moods" size={height * 0.03} color={tintColor} />
-      </View>
+      <CustomIcon name="moods" size={height * 0.033} color={tintColor} />
     ),
   };
 };
@@ -133,9 +130,7 @@ MajMoodNav.navigationOptions = ({ navigation }) => {
 ThoughtsNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <View style={{width: height * 0.05}}>
-        <CustomIcon name="thoughts" size={height * 0.03} color={tintColor} />
-      </View>
+      <CustomIcon name="thoughts" size={height * 0.033} color={tintColor} />
     ),
   };
 };
@@ -143,19 +138,10 @@ ThoughtsNav.navigationOptions = ({ navigation }) => {
 TasksNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <View style={{width: height * 0.05}}>
-        <CustomIcon name="taskList" size={height * 0.03} color={tintColor} />
-      </View>
+      <CustomIcon name="taskList" size={height * 0.033} color={tintColor} />
     ),
   };
 };
-// TasksOfficeEventsNav.navigationOptions = ({ navigation }) => {
-//   return {
-//     tabBarIcon: ({ tintColor }) => (
-//       <CustomIcon name="taskList" size={27} color={tintColor} />
-//     ),
-//   };
-// };
 
 CheckInNav.navigationOptions = ({ navigation }) => {
   tabBarVisible = false;
@@ -167,9 +153,7 @@ CheckInNav.navigationOptions = ({ navigation }) => {
 CheckInScreen.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <View style={{width: height * 0.05}}>
-        <CustomIcon name="checkIn" size={height * 0.03} color={tintColor} />
-      </View>
+      <CustomIcon name="checkIn" size={height * 0.033} color={tintColor} />
     ),
   };
 };
