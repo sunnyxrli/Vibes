@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType, Alert } from 'react-native';
 import { material } from 'react-native-typography';
 // import Feed from '../Components/Feed';
 import { AsyncStorage } from 'react-native';
@@ -95,7 +95,6 @@ export default class ActionItemsMisbahBday extends React.Component {
             this.setState({ completedButton2: ((await AsyncStorage.getItem('MiamicompletedButton2') || false) === "true") });
             this.setState({ completedButton3: ((await AsyncStorage.getItem('MiamicompletedButton3') || false) === "true") });
             this.setState({ completedButton4: ((await AsyncStorage.getItem('MiamicompletedButton4') || false) === "true") });
-
             this.setState({ hasHitAddButton: ((await AsyncStorage.getItem('MiamihasHitAddButton') || false) === "true") });
         } catch (error) {
             // Error retrieving data
@@ -185,6 +184,24 @@ export default class ActionItemsMisbahBday extends React.Component {
         }
     }
 
+    checkForTaskCompletion(){
+        console.log("grr");
+        console.log(this.state.completedButton1);
+        console.log(this.state.completedButton2);
+        console.log(this.state.completedButton3);
+        if(this.state.completedButton1 && this.state.completedButton2 && this.state.completedButton3 && (!this.state.hasHitAddButton || this.state.completedButton4)){
+            Alert.alert(
+                'Completed Task',
+                "Congratulations you've completed Miami Trip!",
+                [
+                  { text: "Okay", onPress: () => this.props.navigation.navigate('HomeScreen', { mood: mood }) },
+                  { text: "Cancel", onPress: () => this.props.navigation.navigate('ActionItemsMiamiTrip', { mood: mood }) },
+                ],
+                { cancelable: false },
+              );
+        }
+    }
+
     updateItemCompletionStatus(type) {
         console.log("toggle3");
         switch (type) {
@@ -192,29 +209,31 @@ export default class ActionItemsMisbahBday extends React.Component {
                 if (!this.state.button1) {
                     return;
                 }
-                this.setState({ completedButton1: !this.state[type] });
+                this.setState({ completedButton1: !this.state[type] }, function(){this.checkForTaskCompletion();});
                 break;
             case "completedButton2":
                 if (!this.state.button2) {
                     return;
                 }
-                this.setState({ completedButton2: !this.state[type] });
+                this.setState({ completedButton2: !this.state[type] }, function(){this.checkForTaskCompletion();});
                 break;
             case "completedButton3":
                 if (!this.state.button3) {
                     return;
                 }
-                this.setState({ completedButton3: !this.state[type] });
+                this.setState({ completedButton3: !this.state[type] }, function(){this.checkForTaskCompletion();});
                 break;
             case "completedButton4":
                 if (!this.state.button4) {
                     return;
                 }
-                this.setState({ completedButton4: !this.state[type] });
+                this.setState({ completedButton4: !this.state[type] }, function(){this.checkForTaskCompletion();});
                 break;
             default:
                 break;
         }
+
+
     }
 
 
@@ -288,7 +307,7 @@ export default class ActionItemsMisbahBday extends React.Component {
                             }}>Look up hotels</Text>
                         </View>
 
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'row' , opacity:this.state.completedButton1 ? 0.0 :1}}>
                             <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim1}</Text></View>
                             <TouchableOpacity
                                 style={{
@@ -349,7 +368,7 @@ export default class ActionItemsMisbahBday extends React.Component {
                             }}>Find venue</Text>
                         </View>
 
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'row' , opacity:this.state.completedButton2 ? 0.0 :1}}>
                             <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim2}</Text></View>
                             <TouchableOpacity
                                 style={{
@@ -410,7 +429,7 @@ export default class ActionItemsMisbahBday extends React.Component {
                             }}>Ideate fun activities to do</Text>
                         </View>
 
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'row' , opacity:this.state.completedButton3 ? 0.0 :1}}>
                             <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim3}</Text></View>
                             <TouchableOpacity
                                 style={{
@@ -481,8 +500,8 @@ export default class ActionItemsMisbahBday extends React.Component {
                         <View style={{ flexDirection: 'row', paddingTop: 10 }}>
                             <TouchableOpacity
                                 style={{
-                                    borderColor:'black',
-                                    backgroundColor: "white",
+                                    borderColor: accentColor(mood),
+                                    backgroundColor: accentColor(mood),
                                     opacity: 0.7,
                                     borderRadius: 11.5,
                                     width: 23,
@@ -499,6 +518,7 @@ export default class ActionItemsMisbahBday extends React.Component {
                                 fontFamily: 'Lato-Regular',
                                 paddingLeft: 10,
                                 lineHeight: 24,
+                                textDecorationLine: "line-through",
                             }}>Book plane tickets</Text>
                         </View>
 
@@ -535,7 +555,7 @@ export default class ActionItemsMisbahBday extends React.Component {
                             }}>Run idea through manager</Text>
                         </View>
 
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'row', opacity:this.state.completedButton4 ? 0.0 :1 }}>
                             <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim4}</Text></View>
                             <TouchableOpacity
                                 style={{
