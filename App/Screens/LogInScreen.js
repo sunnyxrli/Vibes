@@ -37,13 +37,18 @@ export default class LogInScreen extends React.Component {
         return (
             <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
                 <Image
+                    source={require('../Images/vibesLogo.png')}
+                    style={{ height: height * 0.073, width: width * 0.22, alignContent: 'center', marginTop: height * 0.1 }}
+                    resizeMode='contain'
+                />
+                <Image
                     source={require('../Images/ProfileImages/charlie.png')}
-                    style={{ height: width * 0.285, width: width * 0.285, alignContent: 'center', marginTop: height * 0.2 }}
+                    style={{ height: width * 0.285, width: width * 0.285, alignContent: 'center', marginTop: height * 0.13 }}
                     resizeMode='contain'
                 />
                 <Image
                     source={require('../Images/loginUsername.png')}
-                    style={{ height: height * 0.064, width: width * 0.776, alignContent: 'center', marginTop: height * 0.0575 }}
+                    style={{ height: height * 0.064, width: width * 0.776, alignContent: 'center', marginTop: height * 0.03 }}
                     resizeMode='contain'
                 />
                 <TouchableOpacity
@@ -76,12 +81,6 @@ export default class LogInScreen extends React.Component {
                         color: 'white'
                     }}>LOGIN</Text>
                 </TouchableOpacity>
-
-                <Image
-                    source={require('../Images/vibesLogo.png')}
-                    style={{ height: height * 0.073, width: width * 0.22, alignContent: 'center', marginTop: height * 0.15 }}
-                    resizeMode='contain'
-                />
             </View>
         );
     }
