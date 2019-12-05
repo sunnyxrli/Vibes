@@ -211,7 +211,7 @@ export default class TaskCreativeSpace extends React.Component {
           </TouchableOpacity>
         </View>
 
-        <View style={{ marginLeft: 20, paddingTop: 50, marginTop:50}}>
+        <View style={{ marginLeft: 20, marginTop:50}}>
           <Text style={TaskStyle.collab}>COLLABORATORS</Text>
         </View>
         <View style={{flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
