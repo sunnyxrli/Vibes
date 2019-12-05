@@ -15,6 +15,20 @@ var homeScreenBackgroundColor = (mood) => {
     }
 }
 
+var accentColor = (mood) => {
+    if (mood == 'EXCITED') {
+      return '#B5006C'
+    } else if (mood == 'CONTENT') {
+      return '#E7A600'
+    } else if (mood == 'BORED') {
+      return '#DD5D00'
+    } else if (mood == 'STRESSED') {
+      return '#167904'
+    } else {
+      return '#003498'
+    }
+  }
+
 export default class OtherScreen extends React.Component {
 
 
