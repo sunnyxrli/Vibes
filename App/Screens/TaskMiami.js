@@ -198,7 +198,7 @@ const TaskMiamiStyle = StyleSheet.create({
   taskDetails:{
     fontSize: 20,
     fontFamily:'Lato-Regular',
-    paddingRight: 90,
+    paddingRight: 50,
     marginTop: 30,
     paddingLeft: 20,
     lineHeight: 24

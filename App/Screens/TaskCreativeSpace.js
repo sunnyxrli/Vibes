@@ -89,8 +89,8 @@ export default class TaskCreativeSpace extends React.Component {
   render() {
     return (
       <View style={{ }}>
-        <View style={{ }}>
-          <Text style={TaskStyle.TaskTitle}>Creative Office Space!</Text>
+        <View>
+          <Text style={[TaskStyle.TaskTitle, {}]}>Creative Office Space!</Text>
           <Text style={TaskStyle.expirationDate}>Expires Jan 1st, 2020</Text>
           <Text style={TaskStyle.taskDetails}>Let's make the office more welcoming!</Text>
 
@@ -182,6 +182,7 @@ const TaskStyle = StyleSheet.create({
     fontSize: 50,
     paddingTop: 25,
     paddingLeft: 20,
+    paddingRight: 20
   },
   heading: {
     fontFamily: 'Lato-Black',
