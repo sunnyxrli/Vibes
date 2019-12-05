@@ -19,7 +19,7 @@ export default class CheckInScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerStyle: {
-        backgroundColor: homeScreenBackgroundColor(),
+        height: 0,
         borderBottomWidth: 0,
       },
       tabBarVisible: true,
