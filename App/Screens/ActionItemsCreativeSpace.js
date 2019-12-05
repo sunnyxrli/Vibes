@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType , Alert} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType, Alert } from 'react-native';
 import { material } from 'react-native-typography';
 // import Feed from '../Components/Feed';
 import { AsyncStorage } from 'react-native';
@@ -74,69 +74,69 @@ export default class ActionItemsCreativeSpace extends React.Component {
 
   async componentDidMount() {
     this._isMounted = true;
-        try {
-            console.log("yup");
-            this.setState({ button1 : ((await AsyncStorage.getItem('Creativebutton1') || false) === "true")});
-            this.setState({ button2 : ((await AsyncStorage.getItem('Creativebutton2') || false) === "true")});
-            this.setState({ button3 : ((await AsyncStorage.getItem('Creativebutton3') || false) === "true")});
-            this.setState({ button4 : ((await AsyncStorage.getItem('Creativebutton4') || false) === "true")});
+    try {
+      console.log("yup");
+      this.setState({ button1: ((await AsyncStorage.getItem('Creativebutton1') || false) === "true") });
+      this.setState({ button2: ((await AsyncStorage.getItem('Creativebutton2') || false) === "true") });
+      this.setState({ button3: ((await AsyncStorage.getItem('Creativebutton3') || false) === "true") });
+      this.setState({ button4: ((await AsyncStorage.getItem('Creativebutton4') || false) === "true") });
 
-            this.setState({ textValue1 : (await AsyncStorage.getItem('CreativetextValue1') || 'CLAIM')});
-            this.setState({ textValue2 : (await AsyncStorage.getItem('CreativetextValue2') || 'CLAIM')});
-            this.setState({ textValue3 : (await AsyncStorage.getItem('CreativetextValue3') || 'CLAIM')});
-            this.setState({ textValue4 : (await AsyncStorage.getItem('CreativetextValue4') || 'CLAIM')});
+      this.setState({ textValue1: (await AsyncStorage.getItem('CreativetextValue1') || 'CLAIM') });
+      this.setState({ textValue2: (await AsyncStorage.getItem('CreativetextValue2') || 'CLAIM') });
+      this.setState({ textValue3: (await AsyncStorage.getItem('CreativetextValue3') || 'CLAIM') });
+      this.setState({ textValue4: (await AsyncStorage.getItem('CreativetextValue4') || 'CLAIM') });
 
 
-            this.setState({ claim1 : (await AsyncStorage.getItem('Creativeclaim1') || '')});
-            this.setState({ claim2 : (await AsyncStorage.getItem('Creativeclaim2') || '')});
-            this.setState({ claim3 : (await AsyncStorage.getItem('Creativeclaim3') || '')});
-            this.setState({ claim4 : (await AsyncStorage.getItem('Creativeclaim4') || '')});
+      this.setState({ claim1: (await AsyncStorage.getItem('Creativeclaim1') || '') });
+      this.setState({ claim2: (await AsyncStorage.getItem('Creativeclaim2') || '') });
+      this.setState({ claim3: (await AsyncStorage.getItem('Creativeclaim3') || '') });
+      this.setState({ claim4: (await AsyncStorage.getItem('Creativeclaim4') || '') });
 
-            this.setState({ completedButton1 : ((await AsyncStorage.getItem('CreativecompletedButton1') || false) === "true")});
-            this.setState({ completedButton2 : ((await AsyncStorage.getItem('CreativecompletedButton2') || false) === "true")});
-            this.setState({ completedButton3 : ((await AsyncStorage.getItem('CreativecompletedButton3') || false) === "true")});
-            this.setState({ completedButton4 : ((await AsyncStorage.getItem('CreativecompletedButton4') || false) === "true")});
+      this.setState({ completedButton1: ((await AsyncStorage.getItem('CreativecompletedButton1') || false) === "true") });
+      this.setState({ completedButton2: ((await AsyncStorage.getItem('CreativecompletedButton2') || false) === "true") });
+      this.setState({ completedButton3: ((await AsyncStorage.getItem('CreativecompletedButton3') || false) === "true") });
+      this.setState({ completedButton4: ((await AsyncStorage.getItem('CreativecompletedButton4') || false) === "true") });
 
-            this.setState({ hasHitAddButton : ((await AsyncStorage.getItem('CreativehasHitAddButton') || false) === "true")});
-        } catch (error) {
-            // Error retrieving data
-            console.log("Async storage error in retreival");
-        }
-        setInterval(() => (
-          this.props.navigation.state.params.mood != accentColor(mood) ?
-          this.updateMood() : ""
-        ), 500);
-}
+      this.setState({ hasHitAddButton: ((await AsyncStorage.getItem('CreativehasHitAddButton') || false) === "true") });
+    } catch (error) {
+      // Error retrieving data
+      console.log("Async storage error in retreival");
+    }
+    setInterval(() => (
+      this.props.navigation.state.params.mood != accentColor(mood) ?
+        this.updateMood() : ""
+    ), 500);
+  }
 
-async componentWillUnmount() {
+  async componentWillUnmount() {
     this._isMounted = false;
     try {
-        console.log("saving bros");
-        await AsyncStorage.setItem('Creativebutton1', this.state.button1.toString());
-        await AsyncStorage.setItem('Creativebutton2', this.state.button2.toString());
-        await AsyncStorage.setItem('Creativebutton3', this.state.button3.toString());
-        await AsyncStorage.setItem('Creativebutton4', this.state.button4.toString());
+      console.log("saving bros");
+      await AsyncStorage.setItem('Creativebutton1', this.state.button1.toString());
+      await AsyncStorage.setItem('Creativebutton2', this.state.button2.toString());
+      await AsyncStorage.setItem('Creativebutton3', this.state.button3.toString());
+      await AsyncStorage.setItem('Creativebutton4', this.state.button4.toString());
 
-        await AsyncStorage.setItem('CreativetextValue1', this.state.textValue1);
-        await AsyncStorage.setItem('CreativetextValue2', this.state.textValue2);
-        await AsyncStorage.setItem('CreativetextValue3', this.state.textValue3);
-        await AsyncStorage.setItem('CreativetextValue4', this.state.textValue4);
+      await AsyncStorage.setItem('CreativetextValue1', this.state.textValue1);
+      await AsyncStorage.setItem('CreativetextValue2', this.state.textValue2);
+      await AsyncStorage.setItem('CreativetextValue3', this.state.textValue3);
+      await AsyncStorage.setItem('CreativetextValue4', this.state.textValue4);
 
-        await AsyncStorage.setItem('Creativeclaim1', this.state.claim1);
-        await AsyncStorage.setItem('Creativeclaim2', this.state.claim2);
-        await AsyncStorage.setItem('Creativeclaim3', this.state.claim3);
-        await AsyncStorage.setItem('Creativeclaim4', this.state.claim4);
+      await AsyncStorage.setItem('Creativeclaim1', this.state.claim1);
+      await AsyncStorage.setItem('Creativeclaim2', this.state.claim2);
+      await AsyncStorage.setItem('Creativeclaim3', this.state.claim3);
+      await AsyncStorage.setItem('Creativeclaim4', this.state.claim4);
 
-        await AsyncStorage.setItem('CreativecompletedButton1', this.state.completedButton1.toString());
-        await AsyncStorage.setItem('CreativecompletedButton2', this.state.completedButton2.toString());
-        await AsyncStorage.setItem('CreativecompletedButton3', this.state.completedButton3.toString());
-        await AsyncStorage.setItem('CreativecompletedButton4',this.state.completedButton4.toString());
-        await AsyncStorage.setItem('CreativehasHitAddButton', this.state.hasHitAddButton.toString());
+      await AsyncStorage.setItem('CreativecompletedButton1', this.state.completedButton1.toString());
+      await AsyncStorage.setItem('CreativecompletedButton2', this.state.completedButton2.toString());
+      await AsyncStorage.setItem('CreativecompletedButton3', this.state.completedButton3.toString());
+      await AsyncStorage.setItem('CreativecompletedButton4', this.state.completedButton4.toString());
+      await AsyncStorage.setItem('CreativehasHitAddButton', this.state.hasHitAddButton.toString());
     } catch (error) {
-        // Error saving data
-        console.warn("async storage had a problem storying the data on unmount");
+      // Error saving data
+      console.warn("async storage had a problem storying the data on unmount");
     }
-}
+  }
 
 
   getClaimStatus(type) {
@@ -234,10 +234,10 @@ async componentWillUnmount() {
   };
 
   updateMood = () => {
-    if(!this.props.navigation) {
+    if (!this.props.navigation) {
       return;
     }
-    this.setState({mood: this.props.navigation.state.params.mood});
+    this.setState({ mood: this.props.navigation.state.params.mood });
   }
 
   renderNewActionItem() {
@@ -262,11 +262,11 @@ async componentWillUnmount() {
       <View style={{ borderColor: '#DADADA', borderWidth: 1, marginTop: 20, marginLeft: 20, marginRight: 20, flex: 1, marginBottom: 20, borderRadius: 15 }}>
         <View style={{ flexDirection: 'column' }}>
 
-          <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
-            <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
+        <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 15 }}>
               <TouchableOpacity
                 style={{
-                  borderColor: 'black',
+                  borderColor: this.state.completedButton1 ? accentColor(mood) :'black',
                   backgroundColor: this.state.completedButton1 ? accentColor(mood) : 'white',
                   paddingTop: 18,
                   opacity: 0.7,
@@ -304,6 +304,7 @@ async componentWillUnmount() {
                   marginLeft: 'auto',
                   marginRight: 20,
                   marginTop: 5,
+                  marginBottom:10
                 }}
                 onPress={() => {
                   console.log("hey");
@@ -322,11 +323,11 @@ async componentWillUnmount() {
             </View>
           </View>
 
-          <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
-            <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
+          <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
               <TouchableOpacity
                 style={{
-                  borderColor: 'black',
+                  borderColor: this.state.completedButton2 ? accentColor(mood) :'black',
                   backgroundColor: this.state.completedButton2 ? accentColor(mood) : 'white',
                   paddingTop: 18,
                   opacity: 0.7,
@@ -364,6 +365,7 @@ async componentWillUnmount() {
                   marginLeft: 'auto',
                   marginRight: 20,
                   marginTop: 5,
+                  marginBottom:10
                 }}
                 onPress={() => {
                   console.log("hey");
@@ -381,12 +383,12 @@ async componentWillUnmount() {
 
             </View>
           </View>
-          <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
-            <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
+          <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
 
               <TouchableOpacity
                 style={{
-                  borderColor: 'black',
+                  borderColor: this.state.completedButton3 ? accentColor(mood) :'black',
                   backgroundColor: this.state.completedButton3 ? accentColor(mood) : '#FFFFFF',
                   paddingTop: 18,
                   opacity: 0.7,
@@ -424,6 +426,7 @@ async componentWillUnmount() {
                   marginLeft: 'auto',
                   marginRight: 20,
                   marginTop: 5,
+                  marginBottom:10
                 }}
                 onPress={() => {
                   console.log("hey");
@@ -443,11 +446,11 @@ async componentWillUnmount() {
           </View>
 
 
-          <View style={{ flexDirection: 'column', height: 70, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center", justifyContent: "center" }}>
-            <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 10}}>
               <TouchableOpacity
                 style={{
-                  borderColor: 'black',
+                  borderColor: accentColor(mood),
                   backgroundColor: accentColor(mood),
                   opacity: 0.7,
                   borderRadius: 11.5,
@@ -470,13 +473,13 @@ async componentWillUnmount() {
             </View>
 
             <View style={{ flexDirection: 'row' }}>
-              <View style={{ marginLeft: 33 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Sunny</Text></View>
+              <View style={{ marginLeft: 33 , marginBottom:10}}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Sunny</Text></View>
             </View>
           </View>
 
 
-          <View style={{ flexDirection: 'column', height: 70, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center", justifyContent: "center" }}>
-            <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 10}}>
               <TouchableOpacity
                 style={{
                   borderColor: 'black',
@@ -501,18 +504,17 @@ async componentWillUnmount() {
             </View>
 
             <View style={{ flexDirection: 'row' }}>
-              <View style={{ marginLeft: 33 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Misbah</Text></View>
+              <View style={{ marginLeft: 33, marginBottom:10 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Misbah</Text></View>
             </View>
           </View>
 
 
-
-          <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center", opacity: this.state.hasHitAddButton ? 1 : 0 }}>
-            <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
+          <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center", opacity: this.state.hasHitAddButton ? 1 : 0 }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
 
               <TouchableOpacity
                 style={{
-                  borderColor: 'black',
+                  borderColor: this.state.completedButton4 ? accentColor(mood) :'black',
                   backgroundColor: this.state.completedButton4 ? accentColor(mood) : '#FFFFFF',
                   paddingTop: 18,
                   opacity: 0.7,
@@ -550,6 +552,7 @@ async componentWillUnmount() {
                   marginLeft: 'auto',
                   marginRight: 20,
                   marginTop: 5,
+                  marginBottom:10
                 }}
                 onPress={() => {
                   console.log("hey");
