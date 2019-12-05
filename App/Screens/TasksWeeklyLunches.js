@@ -85,26 +85,26 @@ export default class TasksWeeklyLunches extends React.Component {
   async componentDidMount() {
     this._isMounted = true;
     try {
-      const joinedValue = await AsyncStorage.getItem('JoinedWeeklyLunches');      
+      const joinedValue = await AsyncStorage.getItem('JoinedWeeklyLunches');
       if (joinedValue === null){
         this.setState({ joined: false });
       }else {
         this.setState({ joined:  joinedValue=== "true" });
       }
-      
-      const joinedTextValue = await AsyncStorage.getItem('JoinedWeeklyLunchesText'); 
+
+      const joinedTextValue = await AsyncStorage.getItem('JoinedWeeklyLunchesText');
       if (joinedTextValue === null || joinedTextValue === ""){
         this.setState({ joinedText: "Join" });
       }else{
         this.setState({ joinedText: joinedTextValue});
       }
-     
+
 
     } catch (error) {
       // Error retrieving data
       console.log("Async storage error in retreival");
     }
-    setInterval(() => (
+    this.colorTimer = setInterval(() => (
       this.props.navigation.state.params.mood != accentColor(mood) ?
         this.updateMood() : ""
     ), 500);
@@ -112,6 +112,7 @@ export default class TasksWeeklyLunches extends React.Component {
 
   async componentWillUnmount() {
     this._isMounted = false;
+    clearInterval(this.colorTimer);
     try {
       await AsyncStorage.setItem('JoinedWeeklyLunches', this.state.joined.toString());
       await AsyncStorage.setItem('JoinedWeeklyLunchesText', this.state.joinedText.toString());
@@ -125,7 +126,7 @@ export default class TasksWeeklyLunches extends React.Component {
     this.setState({ joined: !this.state.joined }, function () {
       console.log("new joined");
       console.log(this.state.joined);
-     
+
       if (this.state.joined) {
 
         this.setState({joinedText: "Unjoin"});
@@ -138,7 +139,7 @@ export default class TasksWeeklyLunches extends React.Component {
           { cancelable: false },
         );
       } else {
-        
+
         this.setState({joinedText: "Join"});
         Alert.alert(
           'UnJoined Task',

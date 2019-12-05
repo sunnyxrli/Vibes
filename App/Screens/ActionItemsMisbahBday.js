@@ -98,14 +98,20 @@ export default class ActionItemsMisbahBday extends React.Component {
                 this.setState({ completedButton4 : ((await AsyncStorage.getItem('BdaycompletedButton4') || false) === "true")});
 
                 this.setState({ hasHitAddButton : ((await AsyncStorage.getItem('BdayhasHitAddButton') || false) === "true")});
+
             } catch (error) {
                 // Error retrieving data
                 console.log("Async storage error in retreival");
             }
+            this.colorTimer = setInterval(() => (
+              this.props.navigation.state.params.mood != accentColor(mood) ?
+              this.updateMood() : ""
+            ), 500);
     }
 
     async componentWillUnmount() {
         this._isMounted = false;
+        clearInterval(this.colorTimer);
         try {
             await AsyncStorage.setItem('Bdaybutton1', this.state.button1.toString());
             await AsyncStorage.setItem('Bdaybutton2', this.state.button2.toString());
@@ -131,10 +137,6 @@ export default class ActionItemsMisbahBday extends React.Component {
             // Error saving data
             console.warn("async storage had a problem storying the data on unmount");
         }
-        setInterval(() => (
-          this.props.navigation.state.params.mood != accentColor(mood) ?
-          this.updateMood() : ""
-        ), 500);
     }
 
     getClaimStatus(type) {

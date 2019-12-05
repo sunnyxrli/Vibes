@@ -101,7 +101,7 @@ export default class ActionItemsWeeklyLunches extends React.Component {
             // Error retrieving data
             console.log("Async storage error in retreival");
         }
-        setInterval(() => (
+        this.colorTimer = setInterval(() => (
           this.props.navigation.state.params.mood != accentColor(mood) ?
           this.updateMood() : ""
         ), 500);
@@ -109,6 +109,7 @@ export default class ActionItemsWeeklyLunches extends React.Component {
 
     async componentWillUnmount() {
         this._isMounted = false;
+        clearInterval(this.colorTimer);
         try {
             await AsyncStorage.setItem('Weeklybutton1', this.state.button1.toString());
             await AsyncStorage.setItem('Weeklybutton2', this.state.button2.toString());

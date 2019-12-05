@@ -86,20 +86,20 @@ export default class TaskCreativeSpace extends React.Component {
   async componentDidMount() {
     this._isMounted = true;
     try {
-      const joinedValue = await AsyncStorage.getItem('JoinedCreativeSpace');      
+      const joinedValue = await AsyncStorage.getItem('JoinedCreativeSpace');
       if (joinedValue === null){
         this.setState({ joined: false });
       }else {
         this.setState({ joined:  joinedValue=== "true" });
       }
-      
-      const joinedTextValue = await AsyncStorage.getItem('JoinedCreativeSpaceText'); 
+
+      const joinedTextValue = await AsyncStorage.getItem('JoinedCreativeSpaceText');
       if (joinedTextValue === null || joinedTextValue === ""){
         this.setState({ joinedText: "Join" });
       }else{
         this.setState({ joinedText: joinedTextValue});
       }
-     
+
 
     } catch (error) {
       // Error retrieving data
@@ -112,6 +112,7 @@ export default class TaskCreativeSpace extends React.Component {
   }
 
   async componentWillUnmount() {
+    clearInterval(this.colorTimer);
     this._isMounted = false;
     try {
       await AsyncStorage.setItem('JoinedCreativeSpace', this.state.joined.toString());
@@ -126,7 +127,7 @@ export default class TaskCreativeSpace extends React.Component {
     this.setState({ joined: !this.state.joined }, function () {
       console.log("new joined");
       console.log(this.state.joined);
-     
+
       if (this.state.joined) {
 
         this.setState({joinedText: "Unjoin"});
@@ -139,7 +140,7 @@ export default class TaskCreativeSpace extends React.Component {
           { cancelable: false },
         );
       } else {
-        
+
         this.setState({joinedText: "Join"});
         Alert.alert(
           'UnJoined Task',
