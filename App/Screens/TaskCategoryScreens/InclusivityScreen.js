@@ -34,7 +34,16 @@ export default class InclusivityScreen extends React.Component {
         };
     };
 
+    componentDidMount(){
+      this.colorTimer = setInterval(() => (
+        this.props.navigation.state.params.mood != accentColor(mood) ?
+        this.updateMood() : ""
+      ), 500);
+    }
 
+    componentWillUnmount() {
+      clearInterval(this.colorTimer);
+    }
 
     render() {
         return (

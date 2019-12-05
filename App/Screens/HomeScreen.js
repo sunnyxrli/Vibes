@@ -81,7 +81,7 @@ export default class HomeScreen extends React.Component {
           <Text style={styles.checkintext}>Last team check-in a few seconds ago</Text>
           <Image
             source={FaceImages[mood]}
-            style={{marginTop: height * 0.037, height: height * 0.2, width: width * 0.365}}
+            style={{ marginTop: 50, marginBottom: 20, height: height * 0.2, width: height * 0.2}}
             resizeMode='contain'
           />
         </View>

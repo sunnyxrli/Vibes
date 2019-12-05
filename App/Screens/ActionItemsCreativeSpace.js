@@ -102,7 +102,7 @@ export default class ActionItemsCreativeSpace extends React.Component {
             // Error retrieving data
             console.log("Async storage error in retreival");
         }
-        setInterval(() => (
+        this.colorTimer = setInterval(() => (
           this.props.navigation.state.params.mood != accentColor(mood) ?
           this.updateMood() : ""
         ), 500);
@@ -110,6 +110,7 @@ export default class ActionItemsCreativeSpace extends React.Component {
 
 async componentWillUnmount() {
     this._isMounted = false;
+    clearInterval(this.colorTimer);
     try {
         console.log("saving bros");
         await AsyncStorage.setItem('Creativebutton1', this.state.button1.toString());

@@ -101,7 +101,7 @@ export default class ActionItemsMisbahBday extends React.Component {
             // Error retrieving data
             console.log("Async storage error in retreival");
         }
-        setInterval(() => (
+        this.colorTimer = setInterval(() => (
           this.props.navigation.state.params.mood != accentColor(mood) ?
           this.updateMood() : ""
         ), 500);
@@ -109,6 +109,7 @@ export default class ActionItemsMisbahBday extends React.Component {
 
     async componentWillUnmount() {
         this._isMounted = false;
+        clearInterval(this.colorTimer);
         try {
             await AsyncStorage.setItem('Miamibutton1', this.state.button1.toString());
             await AsyncStorage.setItem('Miamibutton2', this.state.button2.toString());
@@ -130,6 +131,7 @@ export default class ActionItemsMisbahBday extends React.Component {
             await AsyncStorage.setItem('MiamicompletedButton3', this.state.completedButton3.toString());
             await AsyncStorage.setItem('MiamicompletedButton4', this.state.completedButton4.toString());
             await AsyncStorage.setItem('MiamihasHitAddButton', this.state.hasHitAddButton.toString());
+            clearInterval(this.colorTimer);
         } catch (error) {
             // Error saving data
             console.warn("async storage had a problem storying the data on unmount");

@@ -100,7 +100,7 @@ export default class ActionItemsHoliday extends React.Component {
             // Error retrieving data
             console.log("Async storage error in retreival");
         }
-        setInterval(() => (
+        this.colorTimer = setInterval(() => (
           this.props.navigation.state.params.mood != accentColor(mood) ?
           this.updateMood() : ""
         ), 500);
@@ -108,6 +108,7 @@ export default class ActionItemsHoliday extends React.Component {
 
     async componentWillUnmount() {
         this._isMounted = false;
+        clearInterval(this.colorTimer);
         try {
             console.log("saving bros");
             await AsyncStorage.setItem('Holidaybutton1', this.state.button1.toString());
@@ -130,6 +131,7 @@ export default class ActionItemsHoliday extends React.Component {
             await AsyncStorage.setItem('HolidaycompletedButton3', this.state.completedButton3.toString());
             await AsyncStorage.setItem('HolidaycompletedButton4', this.state.completedButton4.toString());
             await AsyncStorage.setItem('HolidayhasHitAddButton', this.state.hasHitAddButton.toString());
+            clearInterval(this.colorTimer);
         } catch (error) {
             // Error saving data
             console.warn("async storage had a problem storying the data on unmount");
