@@ -79,7 +79,8 @@ const TasksNav = createStackNavigator({
   ActionItemsMisbahBday:{screen: ActionItemsMisbahBdayScreen},
   ActionItemsMiamiTrip:{screen: ActionItemsMiamiTripScreen},
   ActionItemsHoliday:{screen: ActionItemsHolidayScreen},
-  ActionItemsWeeklyLunches:{screen: ActionItemsWeeklyLunchesScreen}
+  ActionItemsWeeklyLunches:{screen: ActionItemsWeeklyLunchesScreen},
+  HomeScreen: { screen: HomeScreen }
 }, {
   initialRouteName: 'TasksScreen',
   initialRouteParams: {mood: "mood"},
