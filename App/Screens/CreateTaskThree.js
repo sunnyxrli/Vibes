@@ -114,7 +114,7 @@ export default class TasksScreen extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }}>
       	<Text style={{
           fontFamily:'Lato-Bold',
           fontSize: 40,
@@ -213,7 +213,7 @@ export default class TasksScreen extends React.Component {
 		    justifyContent: 'center',
 		    alignItems: 'center'
           }}
-          onPress={() => { this.props.navigation.navigate('TasksWeeklyLunches', {mood: mood}); }}
+          onPress={() => { if (this.state.buttonPressedFood) {this.props.navigation.navigate('TasksWeeklyLunches', {mood: mood})}}}
         >
           <Text style={{
             fontFamily:'Lato-Bold',
@@ -240,7 +240,7 @@ export default class TasksScreen extends React.Component {
           }}>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -251,7 +251,7 @@ const TasksStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 10
+    margin: 30
   },
   CircleShapeView: {
     width: 12,
