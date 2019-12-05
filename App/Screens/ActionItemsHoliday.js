@@ -290,6 +290,7 @@ export default class ActionItemsHoliday extends React.Component {
 
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim1}</Text></View>
+                            <View style={{opacity: this.state.completedButton1 ? 0.0 : 1, marginLeft: "auto"}}>
                             <TouchableOpacity
                                 style={{
                                     borderColor: accentColor(mood),
@@ -318,6 +319,7 @@ export default class ActionItemsHoliday extends React.Component {
                                     fontFamily: 'Lato-Regular',
                                 }}>{this.state.textValue1}</Text>
                             </TouchableOpacity>
+                            </View>
 
                         </View>
                     </View>
@@ -351,6 +353,7 @@ export default class ActionItemsHoliday extends React.Component {
 
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim2}</Text></View>
+                            <View style={{opacity: this.state.completedButton2 ? 0.0 : 1, marginLeft: "auto"}}>
                             <TouchableOpacity
                                 style={{
                                     borderColor: accentColor(mood),
@@ -379,7 +382,7 @@ export default class ActionItemsHoliday extends React.Component {
                                     fontFamily: 'Lato-Regular',
                                 }}>{this.state.textValue2}</Text>
                             </TouchableOpacity>
-
+</View>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
@@ -412,6 +415,7 @@ export default class ActionItemsHoliday extends React.Component {
 
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim3}</Text></View>
+                            <View style={{opacity: this.state.completedButton3 ? 0.0 : 1, marginLeft: "auto"}}>
                             <TouchableOpacity
                                 style={{
                                     borderColor: accentColor(mood),
@@ -440,6 +444,7 @@ export default class ActionItemsHoliday extends React.Component {
                                     fontFamily: 'Lato-Regular',
                                 }}>{this.state.textValue3}</Text>
                             </TouchableOpacity>
+                            </View>
 
                         </View>
                     </View>
@@ -539,6 +544,7 @@ export default class ActionItemsHoliday extends React.Component {
 
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim4}</Text></View>
+                            <View style={{opacity: this.state.completedButton4 ? 0.0 : 1, marginLeft: "auto"}}>
                             <TouchableOpacity
                                 style={{
                                     borderColor: accentColor(mood),
@@ -566,7 +572,7 @@ export default class ActionItemsHoliday extends React.Component {
                                     fontFamily: 'Lato-Regular',
                                 }}>{this.state.textValue4}</Text>
                             </TouchableOpacity>
-
+</View>
                         </View>
                     </View>
                 </View>

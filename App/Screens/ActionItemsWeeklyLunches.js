@@ -290,6 +290,7 @@ export default class ActionItemsWeeklyLunches extends React.Component {
 
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim1}</Text></View>
+                            <View style={{opacity: this.state.completedButton1 ? 0.0 : 1, marginLeft: "auto"}}>
                             <TouchableOpacity
                                 style={{
                                     borderColor: accentColor(mood),
@@ -318,6 +319,7 @@ export default class ActionItemsWeeklyLunches extends React.Component {
                                     fontFamily: 'Lato-Regular',
                                 }}>{this.state.textValue1}</Text>
                             </TouchableOpacity>
+                            </View>
 
                         </View>
                     </View>
@@ -351,6 +353,7 @@ export default class ActionItemsWeeklyLunches extends React.Component {
 
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim2}</Text></View>
+                            <View style={{opacity: this.state.completedButton2 ? 0.0 : 1, marginLeft: "auto"}}>
                             <TouchableOpacity
                                 style={{
                                     borderColor: accentColor(mood),
@@ -379,6 +382,7 @@ export default class ActionItemsWeeklyLunches extends React.Component {
                                     fontFamily: 'Lato-Regular',
                                 }}>{this.state.textValue2}</Text>
                             </TouchableOpacity>
+                            </View>
 
                         </View>
                     </View>
@@ -388,8 +392,8 @@ export default class ActionItemsWeeklyLunches extends React.Component {
                         <View style={{ flexDirection: 'row', paddingTop: 10 }}>
                             <TouchableOpacity
                                 style={{
-                                    borderColor: accentColor(mood),
-                                    backgroundColor: accentColor(mood),
+                                    borderColor: "black",
+                                    backgroundColor: "white",
                                     opacity: 0.7,
                                     borderRadius: 11.5,
                                     width: 23,
@@ -406,7 +410,6 @@ export default class ActionItemsWeeklyLunches extends React.Component {
                                 fontFamily: 'Lato-Regular',
                                 paddingLeft: 10,
                                 lineHeight: 24,
-                                textDecorationLine: "line-through",
                             }}>Send out calendar alerts</Text>
                         </View>
 
@@ -445,6 +448,7 @@ export default class ActionItemsWeeklyLunches extends React.Component {
 
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim4}</Text></View>
+                            <View style={{opacity: this.state.completedButton4 ? 0.0 : 1, marginLeft: "auto"}}>
                             <TouchableOpacity
                                 style={{
                                     borderColor: accentColor(mood),
@@ -472,6 +476,7 @@ export default class ActionItemsWeeklyLunches extends React.Component {
                                     fontFamily: 'Lato-Regular',
                                 }}>{this.state.textValue4}</Text>
                             </TouchableOpacity>
+                            </View>
 
                         </View>
                     </View>
