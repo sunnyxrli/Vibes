@@ -44,6 +44,7 @@ export default class FoodScreen extends React.Component {
                     <Text style={FoodStyles.heading}>FOOD</Text>
                 </View>
             ),
+            headerTintColor: 'black',
             headerStyle: {
                 backgroundColor: homeScreenBackgroundColor(mood),
                 borderBottomWidth: 0,

@@ -54,6 +54,7 @@ export default class HomeScreen extends React.Component {
         borderBottomWidth: 0,
         height: 0,
       },
+      headerTintColor: 'black',
       headerTitleStyle: {
         flex: 1,
         alignSelf: "center",

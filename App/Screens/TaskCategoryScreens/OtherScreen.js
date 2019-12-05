@@ -43,6 +43,7 @@ export default class OtherScreen extends React.Component {
           <Text style={OtherStyles.heading}>OTHER</Text>
         </View>
       ),
+      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,

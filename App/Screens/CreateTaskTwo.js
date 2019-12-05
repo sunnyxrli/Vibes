@@ -109,7 +109,7 @@ export default class TasksScreen extends React.Component {
 	            fontFamily:'Lato-Regular',
 	            fontSize: 17,
 	            alignSelf: 'center',
-	            color: 'black',
+	            color: '#007AFF',
 	          }}>Cancel</Text>
 	        </TouchableOpacity>
 	    ),
@@ -125,7 +125,7 @@ export default class TasksScreen extends React.Component {
     const { selectedStartDate } = this.state;
     const startDate = selectedStartDate ? selectedStartDate.toString() : '';
     return (
-      <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }}>
         <Text style={{
           fontFamily:'Lato-Bold',
           fontSize: 40,
@@ -159,9 +159,9 @@ export default class TasksScreen extends React.Component {
             marginTop: 50,
             flex: 1,
 		    justifyContent: 'center',
-		    alignItems: 'center'
+		    alignItems: 'center',
           }}
-          onPress={() => {this.props.navigation.navigate('CreateTaskThree', {mood: mood})}}
+          onPress={() => { if (this.state.selectedStartDate) {this.props.navigation.navigate('CreateTaskThree', {mood: mood})}}}
         >
           <Text style={{
             fontFamily:'Lato-Bold',
@@ -188,7 +188,7 @@ export default class TasksScreen extends React.Component {
           <View style={styles.CircleShapeView}>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -199,7 +199,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 10
+    margin: 10,
+    marginTop: 30
   },
   CircleShapeView: {
     width: 12,
