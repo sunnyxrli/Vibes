@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
-import TaskBday  from '../../Screens/TaskBday.js';
+import TaskBday from '../../Screens/TaskBday.js';
 var { height, width } = Dimensions.get('window');
 
 var homeScreenBackgroundColor = (mood) => {
@@ -19,17 +19,17 @@ var homeScreenBackgroundColor = (mood) => {
 
 var accentColor = (mood) => {
     if (mood == 'EXCITED') {
-      return '#C50A7A'
+        return '#C50A7A'
     } else if (mood == 'CONTENT') {
-      return '#E78B00'
+        return '#E78B00'
     } else if (mood == 'BORED') {
-      return '#DD5D00'
+        return '#DD5D00'
     } else if (mood == 'STRESSED') {
-      return '#167904'
+        return '#167904'
     } else {
-      return '#003498'
+        return '#003498'
     }
-  }
+}
 
 export default class OfficeEventsScreen extends React.Component {
 
@@ -39,7 +39,7 @@ export default class OfficeEventsScreen extends React.Component {
             headerTitle: (
                 <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                     <Image source={require('../../Images/TaskCategoryIcons/eventIcon.png')}
-                        style={{ height: 30, width: 28.79, marginRight: '6%' }} />
+                        style={{ height: height * 0.0367, width: width * 0.077, marginRight: '6%' }} />
                     <Text style={OfficeEventsStyles.heading}>OFFICE EVENTS</Text>
                 </View>
             ),
@@ -51,17 +51,17 @@ export default class OfficeEventsScreen extends React.Component {
     };
 
     updateMood = () => {
-      if(!this.props.navigation) {
-        return;
-      }
-      this.setState({mood: this.props.navigation.state.params.mood});
+        if (!this.props.navigation) {
+            return;
+        }
+        this.setState({ mood: this.props.navigation.state.params.mood });
     }
 
-    componentDidMount(){
-      setInterval(() => (
-        this.props.navigation.state.params.mood != accentColor(mood) ?
-        this.updateMood() : ""
-      ), 500);
+    componentDidMount() {
+        setInterval(() => (
+            this.props.navigation.state.params.mood != accentColor(mood) ?
+                this.updateMood() : ""
+        ), 500);
     }
 
 
@@ -70,11 +70,11 @@ export default class OfficeEventsScreen extends React.Component {
         return (
             <View style={OfficeEventsStyles.tasksContainer}>
                 <TouchableOpacity
-                    style={[OfficeEventsStyles.task, { justifyContent: 'center', marginTop: 20 }]}
-                    onPress={() => { this.props.navigation.navigate('TaskBday', {mood: mood});}}
+                    style={[OfficeEventsStyles.task, { justifyContent: 'center', marginTop: height * 0.024 }]}
+                    onPress={() => { this.props.navigation.navigate('TaskBday', { mood: mood }); }}
                 >
-                    <Text style={{ left: 24, fontFamily: 'Lato-Regular', fontSize: 23 }}>Misbah Bday Party</Text>
-                    <Text style={{ fontSize: 16, fontFamily: 'Lato-Italic', color: accentColor(mood), left: 22 }}>Expires in 3 days</Text>
+                    <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Misbah Bday Party</Text>
+                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires in 3 days</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -82,23 +82,10 @@ export default class OfficeEventsScreen extends React.Component {
 }
 
 const OfficeEventsStyles = StyleSheet.create({
-    displayText: {
-        flex: 1,
-        fontSize: 40,
-        fontStyle: 'italic',
-        fontWeight: '200',
-        color: 'black',
-        padding: '15%',
-        justifyContent: 'center',
-    },
     heading: {
         fontFamily: 'Lato-Black',
-        fontSize: 22,
+        fontSize: width * 0.059,
         textAlign: "center"
-    },
-    title: {
-        fontFamily: 'Lato-Bold',
-        fontSize: 20
     },
     tasksContainer: {
         flexDirection: 'column',
@@ -106,11 +93,11 @@ const OfficeEventsStyles = StyleSheet.create({
         justifyContent: 'center'
     },
     task: {
-        width: 345,
-        height: 89,
+        width: width * 0.92,
+        height: height * 0.109,
         borderWidth: 1,
         borderRadius: 8,
         borderColor: '#BDBDBD',
-        margin: 5
+        margin: width * 0.013
     },
 })
