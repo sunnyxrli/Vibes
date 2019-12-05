@@ -101,8 +101,8 @@ export default class ActionItemsHoliday extends React.Component {
             console.log("Async storage error in retreival");
         }
         setInterval(() => (
-          this.props.navigation.state.params.mood != accentColor(mood) ?
-          this.updateMood() : ""
+            this.props.navigation.state.params.mood != accentColor(mood) ?
+                this.updateMood() : ""
         ), 500);
     }
 
@@ -233,10 +233,10 @@ export default class ActionItemsHoliday extends React.Component {
     };
 
     updateMood = () => {
-      if(!this.props.navigation) {
-        return;
-      }
-      this.setState({mood: this.props.navigation.state.params.mood});
+        if (!this.props.navigation) {
+            return;
+        }
+        this.setState({ mood: this.props.navigation.state.params.mood });
     }
 
     renderNewActionItem() {
@@ -261,11 +261,11 @@ export default class ActionItemsHoliday extends React.Component {
             <View style={{ borderColor: '#DADADA', borderWidth: 1, marginTop: 20, marginLeft: 20, marginRight: 20, flex: 1, marginBottom: 20, borderRadius: 15 }}>
                 <View style={{ flexDirection: 'column' }}>
 
-                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center" }}>
-                        <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
+                    <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 15 }}>
                             <TouchableOpacity
                                 style={{
-                                    borderColor: 'black',
+                                    borderColor: this.state.completedButton1 ? accentColor(mood) : 'black',
                                     backgroundColor: this.state.completedButton1 ? accentColor(mood) : 'white',
                                     paddingTop: 18,
                                     opacity: 0.7,
@@ -303,6 +303,7 @@ export default class ActionItemsHoliday extends React.Component {
                                     marginLeft: 'auto',
                                     marginRight: 20,
                                     marginTop: 5,
+                                    marginBottom: 10
                                 }}
                                 onPress={() => {
                                     console.log("hey");
@@ -321,11 +322,11 @@ export default class ActionItemsHoliday extends React.Component {
                         </View>
                     </View>
 
-                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center" }}>
-                        <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
+                    <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
                             <TouchableOpacity
                                 style={{
-                                    borderColor: 'black',
+                                    borderColor: this.state.completedButton2 ? accentColor(mood) : 'black',
                                     backgroundColor: this.state.completedButton2 ? accentColor(mood) : 'white',
                                     paddingTop: 18,
                                     opacity: 0.7,
@@ -363,6 +364,7 @@ export default class ActionItemsHoliday extends React.Component {
                                     marginLeft: 'auto',
                                     marginRight: 20,
                                     marginTop: 5,
+                                    marginBottom: 10
                                 }}
                                 onPress={() => {
                                     console.log("hey");
@@ -380,12 +382,12 @@ export default class ActionItemsHoliday extends React.Component {
 
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center" }}>
-                        <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
+                    <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
 
                             <TouchableOpacity
                                 style={{
-                                    borderColor: 'black',
+                                    borderColor: this.state.completedButton3 ? accentColor(mood) : 'black',
                                     backgroundColor: this.state.completedButton3 ? accentColor(mood) : '#FFFFFF',
                                     paddingTop: 18,
                                     opacity: 0.7,
@@ -423,6 +425,7 @@ export default class ActionItemsHoliday extends React.Component {
                                     marginLeft: 'auto',
                                     marginRight: 20,
                                     marginTop: 5,
+                                    marginBottom: 10
                                 }}
                                 onPress={() => {
                                     console.log("hey");
@@ -442,11 +445,11 @@ export default class ActionItemsHoliday extends React.Component {
                     </View>
 
 
-                    <View style={{ flexDirection: 'column', height: 70, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center", justifyContent: "center" }}>
-                        <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
                             <TouchableOpacity
                                 style={{
-                                    borderColor: 'black',
+                                    borderColor: accentColor(mood),
                                     backgroundColor: accentColor(mood),
                                     opacity: 0.7,
                                     borderRadius: 11.5,
@@ -469,13 +472,13 @@ export default class ActionItemsHoliday extends React.Component {
                         </View>
 
                         <View style={{ flexDirection: 'row' }}>
-                            <View style={{ marginLeft: 33 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Sunny</Text></View>
+                            <View style={{ marginLeft: 33, marginBottom: 10 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Sunny</Text></View>
                         </View>
                     </View>
 
 
-                    <View style={{ flexDirection: 'column', height: 70, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center", justifyContent: "center" }}>
-                        <View style={{ flexDirection: 'row' }}>
+                    <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
                             <TouchableOpacity
                                 style={{
                                     borderColor: 'black',
@@ -500,18 +503,18 @@ export default class ActionItemsHoliday extends React.Component {
                         </View>
 
                         <View style={{ flexDirection: 'row' }}>
-                            <View style={{ marginLeft: 33 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Tommy</Text></View>
+                            <View style={{ marginLeft: 33, marginBottom: 10 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Tommy</Text></View>
                         </View>
                     </View>
 
 
 
-                    <View style={{ flexDirection: 'column', height: 97, width: 301, borderBottomWidth: 1, borderColor: 'black', alignSelf: "center", opacity: this.state.hasHitAddButton ? 1 : 0 }}>
-                        <View style={{ flexDirection: 'row', paddingTop: 34.5 }}>
+                    <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center", opacity: this.state.hasHitAddButton ? 1 : 0 }}>
+                        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
 
                             <TouchableOpacity
                                 style={{
-                                    borderColor: 'black',
+                                    borderColor: this.state.completedButton4 ? accentColor(mood) : 'black',
                                     backgroundColor: this.state.completedButton4 ? accentColor(mood) : '#FFFFFF',
                                     paddingTop: 18,
                                     opacity: 0.7,
@@ -549,6 +552,7 @@ export default class ActionItemsHoliday extends React.Component {
                                     marginLeft: 'auto',
                                     marginRight: 20,
                                     marginTop: 5,
+                                    marginBottom: 10
                                 }}
                                 onPress={() => {
                                     console.log("hey");

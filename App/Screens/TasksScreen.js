@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView
 import { material } from 'react-native-typography';
 import Home from '../Screens/HomeScreen';
 import TaskMiami from '../Screens/TaskMiami';
+import { AsyncStorage } from 'react-native';
 
 var { height, width } = Dimensions.get('window');
 
@@ -74,11 +75,13 @@ export default class TasksScreen extends React.Component {
     this.props.navigation.setParams(mood)
   }
 
-  componentDidMount() {
+  componentDidMount(){
+    AsyncStorage.clear();
     setInterval(() => (
       this.props.navigation.state.params.mood != homeScreenBackgroundColor(mood) ?
         this.updateMood() : ""
     ), 500);
+    
   }
 
 
