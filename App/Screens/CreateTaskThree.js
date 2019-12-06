@@ -235,9 +235,9 @@ export default class TasksScreen extends React.Component {
           <View style={TasksStyles.CircleShapeView}>
           </View>
           <View style={{
-            width: 12 / 375 * width,
-            height: 12 / 375 * width,
-            borderRadius: (12 / 375 * width) / 2,
+            width: 9 / 375 * width,
+            height: 9 / 375 * width,
+            borderRadius: (9 / 375 * width) / 2,
             marginLeft: 20 / 375 * width,
             marginRight: 10 / 375 * width,
             opacity: 0.8,
@@ -252,16 +252,15 @@ export default class TasksScreen extends React.Component {
 
 const TasksStyles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     margin: 30 / 375 * width
   },
   CircleShapeView: {
-    width: 12 / 375 * width,
-    height: 12 / 375 * width,
-    borderRadius: (12 / 375 * width) / 2,
+    width: 9 / 375 * width,
+    height: 9 / 375 * width,
+    borderRadius: (9 / 375 * width) / 2,
     backgroundColor: '#BDBDBD',
     marginLeft: 20 / 375 * width,
     marginRight: 10 / 375 * width,

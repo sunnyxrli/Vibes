@@ -120,6 +120,7 @@ export default class TasksScreen extends React.Component {
           marginLeft: width * 0.053,
         }}>Create Task</Text>
         <TouchableOpacity
+          style={{ justifyContent: 'center', alignItems: 'center' }}
           activeOpacity={1.0}
           onPress={() => this.setShowTitle()}
         >
@@ -130,6 +131,7 @@ export default class TasksScreen extends React.Component {
           />
         </TouchableOpacity>
         <TouchableOpacity
+          style={{ justifyContent: 'center', alignItems: 'center' }}
           activeOpacity={1.0}
           onPress={() => this.setShowDes()}
         >
@@ -148,7 +150,7 @@ export default class TasksScreen extends React.Component {
             width: (196 / 375) * width,
             height: (41 / 817) * height,
             alignSelf: 'center',
-            marginTop: (10 / 817) * height,
+            marginTop: (40 / 817) * height,
             justifyContent: 'center',
             alignItems: 'center'
           }}
@@ -164,9 +166,9 @@ export default class TasksScreen extends React.Component {
         </TouchableOpacity>
         <View style={styles.container}>
           <View style={{
-            width: 12 / 375 * width,
-            height: 12 / 375 * width,
-            borderRadius: (12 / 375 * width) / 2,
+            width: 9 / 375 * width,
+            height: 9 / 375 * width,
+            borderRadius: (9 / 375 * width) / 2,
             marginLeft: 20 / 375 * width,
             marginRight: 10 / 375 * width,
             backgroundColor: accentColor(mood),
@@ -184,26 +186,25 @@ export default class TasksScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 10 / 375 * width
+    margin: 30 / 375 * width
   },
   CircleShapeView: {
-    width: 12 / 375 * width,
-    height: 12 / 375 * width,
-    borderRadius: (12 / 375 * width) / 2,
+    width: 9 / 375 * width,
+    height: 9 / 375 * width,
+    borderRadius: (9 / 375 * width) / 2,
     backgroundColor: '#BDBDBD',
     marginLeft: 20 / 375 * width,
     marginRight: 10 / 375 * width,
   },
   taskTitle: {
-    height: height * 0.25,
-    width: width * 0.95,
+    height: 118 / 817 * height,
+    width: 343 / 375 * width,
     padding: 0,
     margin: 0,
-    marginLeft: 10 / 375 * width,
+    justifyContent: 'center'
   },
   pageIndicator: {
     height: 20 / 817 * height,
@@ -212,10 +213,10 @@ const styles = StyleSheet.create({
     marginTop: 40 / 817 * height,
   },
   taskDes: {
-    height: height * 0.30,
-    width: width * 0.95,
+    height: 258 / 817 * height,
+    width: 342 / 375 * width,
     padding: 0,
     margin: 0,
-    marginLeft: 10 / 375 * width,
+    justifyContent: 'center'
   },
 });
