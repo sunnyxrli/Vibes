@@ -3,7 +3,6 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import React from 'react';
 import { Dimensions } from 'react-native';
-import LogInScreen from '../Screens/LogInScreen'
 import HomeScreen from '../Screens/HomeScreen'
 import ThoughtsScreen from '../Screens/ThoughtsScreen'
 import AddThoughtScreen from '../Screens/AddThoughtScreen.js'
@@ -34,6 +33,7 @@ const expoAssetId = require("../../assets/fonts/icomoon.ttf");
 const CustomIcon = createIconSetFromIcoMoon(icoMoonConfig, 'icomoon', expoAssetId);
 
 var { height, width } = Dimensions.get('window');
+var firstCheckIn = false;
 
 const MajMoodNav = createStackNavigator({
   HomeScreen: { screen: HomeScreen },
@@ -94,31 +94,13 @@ const TasksNav = createStackNavigator({
 })
 
 const CheckInNav = createStackNavigator({
-  LogInScreen: { screen: LogInScreen },
-  CheckInScreen: {
-    screen: CheckInScreen,
-  },
+  CheckInScreen: { screen: CheckInScreen },
 }, {
-  initialRouteName: 'LogInScreen',
-  headerMode: 'none',
-  navigationOptions: {
-    headerVisible: false,
-  },
+  initialRouteName: 'CheckInScreen',
+  headerMode: "none",
   tabBarOptions: {
-    activeTintColor: '#000000',
+    activeTintColor: '',
     inactiveTintColor: '#DADADA',
-  },
-});
-
-const LogInNav = createStackNavigator({
-  LogInScreen: { screen: LogInScreen },
-}, {
-  initialRouteName: 'LogInScreen',
-  header: "none",
-  tabBarOptions: {
-    activeTintColor: '#000000',
-    inactiveTintColor: '#DADADA',
-
   },
 });
 
@@ -130,7 +112,8 @@ const TabNav = createBottomTabNavigator({
 }, {
   initialRouteName: 'CheckInScreen',
   defaultNavigationOptions: ({ navigation }) => ({
-    tabBarVisible: (navigation.state.params || navigation.state.routeName === "MajMoodScreen" || navigation.state.routeName === "TasksScreen" || navigation.state.routeName === "ThoughtsScreen") ? true : false,
+    params: ({firstCheckIn: false}),
+    tabBarVisible: (firstCheckIn || navigation.state.routeName === "TasksScreen" || navigation.state.routeName === "ThoughtsScreen") ? true : false,
   }),
   tabBarOptions: {
     activeTintColor: '#000000',
@@ -140,6 +123,7 @@ const TabNav = createBottomTabNavigator({
 })
 
 MajMoodNav.navigationOptions = ({ navigation }) => {
+  firstCheckIn = true;
   return {
     tabBarIcon: ({ tintColor }) => (
       <CustomIcon name="moods" size={height * 0.033} color={tintColor} />
@@ -148,6 +132,7 @@ MajMoodNav.navigationOptions = ({ navigation }) => {
 };
 
 ThoughtsNav.navigationOptions = ({ navigation }) => {
+  firstCheckIn = true;
   return {
     tabBarIcon: ({ tintColor }) => (
       <CustomIcon name="thoughts" size={height * 0.033} color={tintColor} />
@@ -156,6 +141,7 @@ ThoughtsNav.navigationOptions = ({ navigation }) => {
 };
 
 TasksNav.navigationOptions = ({ navigation }) => {
+  firstCheckIn = true;
   return {
     tabBarIcon: ({ tintColor }) => (
       <CustomIcon name="taskList" size={height * 0.033} color={tintColor} />
@@ -163,21 +149,15 @@ TasksNav.navigationOptions = ({ navigation }) => {
   };
 };
 
-// CheckInNav.navigationOptions = ({ navigation }) => {
-//   tabBarVisible = false;
-//   return {
-//     tabBarVisible,
-//   };
-// };
 
 CheckInNav.navigationOptions = ({ navigation }) => {
   return {
     tabBarIcon: ({ tintColor }) => (
-      <CustomIcon name="checkIn" size={height * 0.033} color={tintColor} />
+      <CustomIcon name="checkIn" size={height * 0.03} color={tintColor} />
     ),
-    tabBarVisible: false
   };
 };
+
 
 const AppContainer = createAppContainer(TabNav);
 export default AppContainer;

@@ -56,8 +56,6 @@ export default class TasksWeeklyLunches extends React.Component {
   }
     constructor(props){
       super(props);
-      console.log("got to team lunches");
-
       }
 
   static navigationOptions = ({ navigation }) => {
@@ -124,8 +122,6 @@ export default class TasksWeeklyLunches extends React.Component {
 
   joinTheEvent() {
     this.setState({ joined: !this.state.joined }, function () {
-      console.log("new joined");
-      console.log(this.state.joined);
 
       if (this.state.joined) {
 
@@ -217,7 +213,7 @@ export default class TasksWeeklyLunches extends React.Component {
         </View>
         <View style={{flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
           <Image
-              source={require("../Images/collabButton.png")}
+              source={require("../Images/collabButton4.png")}
               resizeMode='contain'
               style={{height: height * 0.3, width: height * 0.4}}
           />

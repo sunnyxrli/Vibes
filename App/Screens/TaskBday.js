@@ -56,7 +56,6 @@ export default class TaskBday extends React.Component {
   }
     constructor(props){
       super(props);
-      console.log("got to misbah bday");
 
       }
 
@@ -124,8 +123,6 @@ export default class TaskBday extends React.Component {
 
   joinTheEvent() {
     this.setState({ joined: !this.state.joined }, function () {
-      console.log("new joined");
-      console.log(this.state.joined);
 
       if (this.state.joined) {
 
@@ -169,10 +166,10 @@ export default class TaskBday extends React.Component {
           style={{
             backgroundColor: accentColor(mood),
             opacity: 0.7,
-            paddingTop: 18,
+            paddingTop: 18/817 * height,
             borderRadius: 100,
-            width: 159.52,
-            height: 63,
+            width: 159.52/375 * width,
+            height: 63/817 * height,
           }}
             onPress={() => {
               this.props.navigation.navigate('ActionItemsMisbahBday', {mood: mood});
@@ -180,7 +177,7 @@ export default class TaskBday extends React.Component {
           >
             <Text style={{
               fontFamily:'Lato-Bold',
-              fontSize: 18,
+              fontSize: 18/375 * width,
               alignSelf: 'center',
               color: '#FFFFFF'
             }}> Action Items </Text>
@@ -189,19 +186,19 @@ export default class TaskBday extends React.Component {
             style={{
               borderColor: accentColor(mood),
               backgroundColor: '#FFFFFF',
-              paddingTop: 18,
+              paddingTop: 18/817 * height,
               opacity: 0.7,
               borderRadius: 100,
-              width: 159.52,
-              height: 63,
+              width: 159.52/375 * width,
+              height: 63/817 * height,
               borderWidth: 1,
               marginLeft:'auto',
-              marginRight:20
+              marginRight: 20/375 * width
             }}
             onPress={this.joinTheEvent.bind(this)}
           >
             <Text style={{
-              fontSize: 18,
+              fontSize: 18/375 * width,
               textAlign: 'center',
               fontFamily: 'Lato-Bold',
               color: accentColor(mood)
@@ -211,7 +208,7 @@ export default class TaskBday extends React.Component {
         </View>
 
 
-        <View style={{ marginLeft: 20, marginTop:50}}>
+        <View style={{ marginLeft: 20/375 * width, marginTop: 50/817 * height}}>
           <Text style={TaskBdayStyle.collab}>COLLABORATORS</Text>
         </View>
         <View style={{flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
@@ -230,49 +227,34 @@ export default class TaskBday extends React.Component {
 }
 
 const TaskBdayStyle = StyleSheet.create({
-
-
-
-
-
-
-
-  // displayText: {
-  //   flex: 1,
-  //   fontSize: 40,
-  //   fontStyle: 'italic',
-  //   fontWeight: '200',
-  //   color: 'black',
-  //   padding: '15%',
-  //   justifyContent: 'center',
-  // },
   TaskTitle: {
     fontFamily: 'Lato-Bold',
-    fontSize: 50,
-    paddingTop: 25,
-    paddingLeft: 20,
+    fontSize: 50/375 * width,
+    paddingTop: 25/817 * height,
+    paddingLeft: 20/375 * width,
   },
   heading: {
-    fontFamily: 'Lato-Black',
-    fontSize: 22,
-    textAlign: "center"
+    fontSize: height * 0.035,
+    alignSelf: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
+    fontFamily: 'Lato-Black'
   },
   expirationDate: {
-    fontSize: 20,
-    paddingTop: 10,
-    paddingLeft: 20,
+    fontSize: 20/375 * width,
+    paddingTop: 10/817 * height,
+    paddingLeft: 20/375 * width,
     fontFamily:'Lato-Italic'
   },
   taskDetails:{
-    fontSize: 20,
+    fontSize: 20/375 * width,
     fontFamily:'Lato-Regular',
-    paddingRight: 90,
-    marginTop: 30,
-    paddingLeft: 20,
-    lineHeight: 24
+    paddingRight: 90/375 * width,
+    marginTop: 30/817 * height,
+    paddingLeft: 20/375 * width,
   },
   collab:{
-    fontSize: 25,
+    fontSize: 25/375 * width,
     fontFamily:'Lato-Regular',
   }
 
