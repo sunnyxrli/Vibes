@@ -76,25 +76,13 @@ export default class HomeScreen extends React.Component {
     }
     return (
       <ScrollView style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
-        <TouchableOpacity
-          style={{
-          }}
-          onPress={() => this.setMoodsOverlayVisible(true)}
-        >
-          <Image
-            source={require('../Images/ProfileImages/charlie.png')}
-            style={{ height: width * 0.08, width: width * 0.08, alignSelf: 'flex-end', marginRight: width * 0.029}}
-            resizeMode='contain'
-          />
-        </TouchableOpacity>
-
         <View style={styles.faceimage}>
-          <Text style={{ fontSize: height * 0.03, fontFamily: 'Lato-Regular' }}>Your team feels</Text>
+          <Text style={{ fontSize: height * 0.03, fontFamily: 'Lato-Regular', paddingTop: height * 0.0367 }}>Your team feels</Text>
           <Text style={{ fontSize: width * 0.11, fontFamily: 'Lato-Black', color: accentColor(mood) }}>{mood}</Text>
           <Text style={styles.checkintext}>Last team check-in a few seconds ago</Text>
           <Image
             source={FaceImages[mood]}
-            style={{ marginTop: 50, marginBottom: 20, height: height * 0.2, width: height * 0.2}}
+            style={{ marginTop: 50, marginBottom: 20, height: height * 0.2, width: height * 0.2 }}
             resizeMode='contain'
           />
         </View>
@@ -121,20 +109,36 @@ export default class HomeScreen extends React.Component {
           <Overlay
             isVisible={this.state.moodsOverlayVisible}
             fullScreen={true}
-            overlayStyle={[styles.moodsOverlay, {justifyContent: 'center'}]}
+            overlayStyle={[styles.moodsOverlay, { justifyContent: 'center' }]}
             animationType="slide"
             windowBackgroundColor="rgba(0, 0, 0, 0)"
             onBackdropPress={() => this.setMoodsOverlayVisible(false)}
           >
-            <TouchableOpacity
-              style={{justifyContent: 'center', alignItems: 'center'}}
-              onPress={() => this.setMoodsOverlayVisible(false)}>
-              <Image
-                source={OverlayImages[mood]}
-                style={{width: width * 0.88, height: height * 0.8}}
-                resizeMode='contain'
-              />
-            </TouchableOpacity>
+            <View style={{ flex: 1 }}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 50 }}>
+                <Text style={{
+                  fontFamily: 'Lato-Bold',
+                  fontSize: width * 0.093,
+                  // textAlign: 'left',
+                  // marginTop: height * 0.01,
+                  // marginBottom: height * 0.02,
+                  // marginLeft: width * 0.053,
+                }}>More Data</Text>
+
+                <TouchableOpacity
+                  style={{ justifyContent: 'center', alignItems: 'center' }}
+                  onPress={() => this.setMoodsOverlayVisible(false)}>
+                  <Text style={{
+                  fontFamily: 'Lato-Regular',
+                  fontSize: 17,
+                  alignSelf: 'center',
+                  color: '#007AFF',
+                }}>Cancel</Text>
+                </TouchableOpacity>
+                
+              </View>
+            </View>
+
           </Overlay>
           <TouchableOpacity
             style={{

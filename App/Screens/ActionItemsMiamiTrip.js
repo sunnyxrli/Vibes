@@ -149,7 +149,6 @@ export default class ActionItemsMisbahBday extends React.Component {
         this.setState({ hasHitAddButton: true });
     }
     updateChoice(type) {
-        console.log(type);
         switch (type) {
             case "button1":
                 this.setState({ button1: !this.state.button1 }, function () {
@@ -185,10 +184,6 @@ export default class ActionItemsMisbahBday extends React.Component {
     }
 
     checkForTaskCompletion() {
-        console.log("grr");
-        console.log(this.state.completedButton1);
-        console.log(this.state.completedButton2);
-        console.log(this.state.completedButton3);
         if (this.state.completedButton1 && this.state.completedButton2 && this.state.completedButton3 && (!this.state.hasHitAddButton || this.state.completedButton4)) {
             Alert.alert(
                 'Completed Task',
@@ -203,7 +198,6 @@ export default class ActionItemsMisbahBday extends React.Component {
     }
 
     updateItemCompletionStatus(type) {
-        console.log("toggle3");
         switch (type) {
             case "completedButton1":
                 if (!this.state.button1) {
@@ -326,9 +320,7 @@ export default class ActionItemsMisbahBday extends React.Component {
                                     marginBottom: 10
                                 }}
                                 onPress={() => {
-                                    console.log("hey");
                                     this.updateChoice('button1');
-                                    console.log("hey");
                                     // selected={this.state.button3}
                                 }} >
                                 <Text style={{
@@ -389,9 +381,7 @@ export default class ActionItemsMisbahBday extends React.Component {
                                 marginBottom: 10
                             }}
                             onPress={() => {
-                                console.log("hey");
                                 this.updateChoice('button2');
-                                console.log("hey");
                                 // selected={this.state.button3}
                             }} >
                             <Text style={{
@@ -453,9 +443,7 @@ export default class ActionItemsMisbahBday extends React.Component {
                                 marginBottom: 10
                             }}
                             onPress={() => {
-                                console.log("hey");
                                 this.updateChoice('button3');
-                                console.log("hey");
                                 // selected={this.state.button3}
                             }} >
                             <Text style={{
@@ -581,9 +569,7 @@ export default class ActionItemsMisbahBday extends React.Component {
                                 marginBottom: 5
                             }}
                             onPress={() => {
-                                console.log("hey");
                                 this.updateChoice('button4');
-                                console.log("hey");
                             }} >
                             <Text style={{
                                 color: this.state.button4 ? accentColor(mood) : 'white',

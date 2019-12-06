@@ -38,23 +38,23 @@ var accentColor = (mood) => {
   }
 }
 const styles = StyleSheet.create({
-    heading: {
-        fontFamily: 'Lato-Black',
-        fontSize: 22,
-        textAlign: "center"
-    }
+  heading: {
+    fontFamily: 'Lato-Black',
+    fontSize: 22,
+    textAlign: "center"
+  }
 })
 
 export default class ThoughtsScreen extends React.Component {
 
   onChangeText = text => {
-    this.setState({thoughtText: text});
+    this.setState({ thoughtText: text });
   }
 
   static navigationOptions = ({ navigation }) => {
     return {
       headerTintColor: 'black',
-      headerRight:<View style={{padding:6}}></View>,
+      headerRight: <View style={{ padding: 6 }}></View>,
       headerStyle: {
         borderBottomWidth: 0,
         height: height * 0.04,
@@ -67,82 +67,84 @@ export default class ThoughtsScreen extends React.Component {
     anonymous: true,
   };
 
-  postThought(){
+  postThought() {
     var tempDate = new Date();
-    var date = tempDate.getFullYear() + '' + (tempDate.getMonth()+1) + '' + tempDate.getDate() + '' + tempDate.getHours() + '' + tempDate.getMinutes() + '' + tempDate.getSeconds();
+    var date = tempDate.getFullYear() + '' + (tempDate.getMonth() + 1) + '' + tempDate.getDate() + '' + tempDate.getHours() + '' + tempDate.getMinutes() + '' + tempDate.getSeconds();
     date = 120191231245959 - date;
     firestore.collection("Thoughts").doc(date.toString()).set({
-        action: "waiting",
-        favs: "",
-        profile: this.state.anonymous ? "anon" : "charlie",
-        text: this.state.thoughtText,
+      action: "waiting",
+      favs: "",
+      profile: this.state.anonymous ? "anon" : "charlie",
+      text: this.state.thoughtText,
     })
-    this.props.navigation.navigate('ThoughtsScreen', {getnew: true, text: this.state.thoughtText});
+    this.props.navigation.navigate('ThoughtsScreen', { getnew: true, text: this.state.thoughtText });
   }
 
   updateMood = () => {
-    if(!this.props.navigation) {
+    if (!this.props.navigation) {
       return;
     }
     this.props.navigation.setParams(mood)
   }
 
-  componentDidMount(){
+  componentDidMount() {
     setInterval(() => (
       this.state.moodColor != accentColor(mood) ?
-      this.updateMood() : ""
+        this.updateMood() : ""
     ), 500);
   }
 
   toggleAnonymous = (value) => {
-    this.setState({anonymous: value});
+    this.setState({ anonymous: value });
   }
 
   render() {
     return (
-      <TouchableWithoutFeedback onPress = {() => Keyboard.dismiss()}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <SafeAreaView style={thoughtsStyles.container}>
           <Text style={{
-            fontFamily:'Lato-Bold',
-            fontSize: height * 0.04,
+            fontFamily: 'Lato-Bold',
+            fontSize: height * 0.05,
             textAlign: 'left',
             marginTop: height * 0.01,
-            marginBottom: height * 0.01,
+            marginBottom: height * 0.02,
+            marginLeft: 5,
           }}>Add a Thought</Text>
-            <TextInput
-                style={thoughtsStyles.textinput}
-                onChangeText={text => this.onChangeText(text)}
-                value={this.state.thoughtText}
-                placeholder="I think ..."
-                multiline={true}
-            />
-            <View style={{marginTop: 10, alignSelf: "center"}}>
-              <Text style={{fontSize: height * 0.025}}>Post as</Text>
-            </View>
-            <View>
-              {this.getTabContent()}
-            </View>
-            <TouchableOpacity
+          <TextInput
+            style={thoughtsStyles.textinput}
+            onChangeText={text => this.onChangeText(text)}
+            value={this.state.thoughtText}
+            placeholder="I think ..."
+            multiline={true}
+          />
+          <View style={{ marginTop: (40/817) * height, marginBottom: (10/817) * height, alignSelf: "center" }}>
+            <Text style={{ fontSize: height * 0.025 }}>Post as</Text>
+          </View>
+          <View>
+            {this.getTabContent()}
+          </View>
+          <TouchableOpacity
             style={{
               backgroundColor: accentColor(mood),
               opacity: 0.8,
-              paddingTop: height * 0.014,
-              borderRadius: 100,
-              width: height * 0.2,
-              height: height * 0.05,
-              alignSelf: "center",
-              marginTop: height * 0.04,
+              borderRadius: 7,
+              width: (196 / 375) * width,
+              height: (47 / 812) * height,
+              alignSelf: 'center',
+              marginTop: (40 / 812) * height,
+              justifyContent: 'center',
+              alignItems: 'center'
             }}
-              onPress={() => {
-                this.postThought()
-              }}>
-              <Text style={{
-                fontFamily:'Lato-Bold',
-                fontSize: height * 0.02,
-                alignSelf: 'center',
-                color: '#FFFFFF'
-              }}> POST </Text>
-            </TouchableOpacity>
+            onPress={() => { this.postThought() }}
+          >
+            <Text style={{
+              fontFamily: 'Lato-Bold',
+              fontSize: (20 / 375) * width,
+              alignSelf: 'center',
+              textAlign: 'center',
+              color: '#FFFFFF',
+            }}>NEXT</Text>
+          </TouchableOpacity>
         </SafeAreaView>
       </TouchableWithoutFeedback>
     );
@@ -150,32 +152,54 @@ export default class ThoughtsScreen extends React.Component {
 
   getTabContent = () => {
     return (
-      <View style={{marginTop: 10, alignSelf: "center", flexDirection: "row"}}>
-        <View style={{opacity: this.state.anonymous ? 1 : 0.2}}>
-          <TouchableOpacity style ={{marginRight: height * 0.025}}
-          onPress={() => this.toggleAnonymous(true)}>
+      <View style={{ justifyContent: 'center', alignSelf: "center", flexDirection: "row" }}>
+        <View style={{ opacity: this.state.anonymous ? 1 : 0.2 }}>
+          <TouchableOpacity style={{ marginRight: height * 0.025 }}
+            onPress={() => this.toggleAnonymous(true)}>
             <Image
               source={require("../../App/Images/ProfileImages/anon-icon.png")}
-              style={{height: height * 0.1, width: height * 0.1, alignSelf: "center", borderColor: this.state.anonymous ? accentColor(mood) : "white", borderWidth: height * 0.003, borderRadius: height * 0.05}}
+              style={{
+                height: height * 0.1,
+                width: height * 0.1,
+                alignSelf: "center",
+                borderColor: this.state.anonymous ? accentColor(mood) : "white",
+                borderWidth: height * 0.004,
+                borderRadius: (height * 0.1) / 2
+              }}
+              resizeMode='contain'
             />
-            <Text style={{fontSize: height * 0.018, color: this.state.anonymous ? accentColor(mood) : "#000", alignSelf: "center"}}>ANONYMOUS</Text>
+            <Text style={{
+              fontSize: height * 0.02,
+              color: this.state.anonymous ? accentColor(mood) : "#000",
+              alignSelf: "center",
+              paddingTop: height * 0.012,
+              fontFamily: 'Lato-Bold'
+            }}>ANONYMOUS</Text>
           </TouchableOpacity>
         </View>
-        <View style={{opacity: this.state.anonymous ? 0.2 : 1}}>
-        <TouchableOpacity style={{marginLeft: height * 0.025}}
-        onPress={() => this.toggleAnonymous(false)}>
+        <View style={{ opacity: this.state.anonymous ? 0.2 : 1 }}>
+          <TouchableOpacity style={{ marginLeft: height * 0.025 }}
+            onPress={() => this.toggleAnonymous(false)}>
             <Image
               source={require("../../App/Images/ProfileImages/charlie.png")}
-              style={{height: height * 0.1,
-              width: height * 0.1,
-              alignSelf: "center",
-              marginBottom: 1,
-              borderColor: this.state.anonymous ? "white" : accentColor(mood),
-              borderWidth: height * 0.003,
-              borderRadius: height * 0.05}}
+              style={{
+                height: height * 0.1,
+                width: height * 0.1,
+                alignSelf: "center",
+                borderColor: this.state.anonymous ? "white" : accentColor(mood),
+                borderWidth: height * 0.004,
+                borderRadius: (height * 0.1) / 2
+              }}
+              resizeMode='contain'
             />
-            <Text style={{fontSize: height * 0.018, color: this.state.anonymous ? "#000" : accentColor(mood), alignSelf: "center"}}>CHARLIE</Text>
-        </TouchableOpacity>
+            <Text style={{
+              fontSize: height * 0.02,
+              color: this.state.anonymous ? '#828282' : accentColor(mood),
+              alignSelf: "center",
+              paddingTop: height * 0.012,
+              fontFamily: 'Lato-Bold'
+            }}>CHARLIE</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -195,15 +219,17 @@ const thoughtsStyles = StyleSheet.create({
     borderRadius: 10
   },
   textinput: {
-    height: height * 0.4,
+    height: height * 0.3,
     borderRadius: 10,
+    marginHorizontal: 5,
     padding: 20,
     paddingTop: 10,
     marginTop: 10,
-    borderColor: '#CCC',
-    borderWidth: 1.5,
+    borderColor: '#BDBDBD',
+    borderWidth: 1,
     fontSize: height * 0.03,
-    color: '#555',
+    fontFamily: 'Lato-Regular',
+    color: 'black',
   },
   Image: {
     justifyContent: 'flex-end',

@@ -62,11 +62,10 @@ export default class HomeScreen extends React.Component {
           </TouchableOpacity>
         </View>
       ),
-      headerTintColor: 'black',
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
-        height: height * 0.05,
+        height: height * 0.07,
       }
     };
   };
@@ -115,7 +114,7 @@ export default class HomeScreen extends React.Component {
 
 const thoughtsStyles = StyleSheet.create({
   container: {
-    marginTop: 10,
+    marginTop: height * 0.012,
     flex: 1,
   },
   displayText: {
@@ -128,8 +127,7 @@ const thoughtsStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerText: {
-    fontSize: height * 0.025,
-    alignSelf: "center",
+    fontSize: height * 0.035,
     marginLeft: "auto",
     marginRight: "auto",
     fontFamily: 'Lato-Black'
