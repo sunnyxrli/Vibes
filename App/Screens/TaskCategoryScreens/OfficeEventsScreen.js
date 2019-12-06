@@ -81,7 +81,7 @@ export default class OfficeEventsScreen extends React.Component {
                     onPress={() => { this.props.navigation.navigate('TaskBday', { mood: mood }); }}
                 >
                     <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Misbah Bday Party</Text>
-                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires in 3 days</Text>
+                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires Dec 13, 2019</Text>
                 </TouchableOpacity>
             </View>
         );

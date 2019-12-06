@@ -158,7 +158,7 @@ export default class TaskCreativeSpace extends React.Component {
         <ScrollView>
         <View style={{ }}>
           <Text style={TaskStyle.TaskTitle}>Creative Office Space!</Text>
-          <Text style={TaskStyle.expirationDate}>Expires Jan 1st, 2020</Text>
+          <Text style={TaskStyle.expirationDate}>Expires Dec 11, 2020</Text>
           <Text style={TaskStyle.taskDetails}>Let's make the office more welcoming!</Text>
 
         </View>

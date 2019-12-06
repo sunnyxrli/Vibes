@@ -81,7 +81,7 @@ export default class OfficeSpaceScreen extends React.Component {
                     onPress={() => { this.props.navigation.navigate('TaskCreativeSpace', {mood: mood});}}
                 >
                     <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Creative Office Space!</Text>
-                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires in 2 days </Text>
+                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires Dec 11, 2019</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -89,7 +89,7 @@ export default class OfficeSpaceScreen extends React.Component {
                     onPress={() => { this.props.navigation.navigate('TaskHoliday', {mood: mood});}}
                 >
                     <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Decorate for the Holidays</Text>
-                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires Dec 19th, 2019 </Text>
+                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires Dec 20, 2019</Text>
                 </TouchableOpacity>
             </View>
         );

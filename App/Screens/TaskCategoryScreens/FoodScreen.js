@@ -81,7 +81,7 @@ export default class FoodScreen extends React.Component {
                     onPress={() => { this.props.navigation.navigate('TasksWeeklyLunches', {mood: mood});}}
                 >
                     <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Weekly Team Lunches!</Text>
-                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires Dec 19th, 2019</Text>
+                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires Dec 19, 2019</Text>
                 </TouchableOpacity>
             </View>
         );
