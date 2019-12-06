@@ -7,7 +7,8 @@ import firestore from '../../firebase.js';
 import firebase from 'firebase';
 import { Overlay } from "react-native-elements";
 import TaskImages from '../../App/Components/TaskImageCollection.js';
-import OverlayImages from '../../App/Components/OverlayImageCollection.js';
+import OverlayMinority from '../Components/OverlayImageMinorityCollection.js';
+import OverlayGraph from '../Components/OverlayImageGraphCollection.js';
 import FaceImages from '../../App/Components/FaceImageCollection.js';
 
 var { height, width } = Dimensions.get('window');
@@ -114,29 +115,52 @@ export default class HomeScreen extends React.Component {
             windowBackgroundColor="rgba(0, 0, 0, 0)"
             onBackdropPress={() => this.setMoodsOverlayVisible(false)}
           >
-            <View style={{ flex: 1 }}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 50 }}>
+            <View style={{ flex: 1, marginHorizontal: 15/375 * width }}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 50 / 817 * height }}>
                 <Text style={{
                   fontFamily: 'Lato-Bold',
                   fontSize: width * 0.093,
-                  // textAlign: 'left',
-                  // marginTop: height * 0.01,
-                  // marginBottom: height * 0.02,
-                  // marginLeft: width * 0.053,
                 }}>More Data</Text>
 
                 <TouchableOpacity
                   style={{ justifyContent: 'center', alignItems: 'center' }}
                   onPress={() => this.setMoodsOverlayVisible(false)}>
                   <Text style={{
-                  fontFamily: 'Lato-Regular',
-                  fontSize: 17,
-                  alignSelf: 'center',
-                  color: '#007AFF',
-                }}>Cancel</Text>
+                    fontFamily: 'Lato-Regular',
+                    fontSize: 17 / 375 * width,
+                    alignSelf: 'center',
+                    color: '#007AFF',
+                  }}>Cancel</Text>
                 </TouchableOpacity>
-                
               </View>
+
+              <Text style={{
+                fontFamily: 'Lato-Regular',
+                fontSize: 24/375 * width,
+                marginTop: 46/817 * height
+              }}>People are also feeling</Text>
+              <View style={{ alignItems: 'center' }}>
+                <Image
+                  source={OverlayMinority[mood]}
+                  style={{ height: 112 / 817 * height, width: 303 / 375 * width, marginTop: 27/817 * height}}
+                  resizeMode='contain'
+                />
+              </View>
+
+              <Text style={{
+                fontFamily: 'Lato-Regular',
+                fontSize: 24/375 * width,
+                marginTop: 67/817 * height
+              }}>Recent Moods</Text>
+              <View style={{ alignItems: 'center' }}>
+                <Image
+                  source={OverlayGraph[mood]}
+                  style={{ height: 296 / 817 * height, width: 318 / 375 * width, marginTop: 31/817 * height}}
+                  resizeMode='contain'
+                />
+              </View>
+
+
             </View>
 
           </Overlay>
