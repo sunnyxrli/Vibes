@@ -105,7 +105,7 @@ export default class TaskCreativeSpace extends React.Component {
       // Error retrieving data
       console.log("Async storage error in retreival");
     }
-    setInterval(() => (
+    this.colorTimer = setInterval(() => (
       this.props.navigation.state.params.mood != accentColor(mood) ?
         this.updateMood() : ""
     ), 500);

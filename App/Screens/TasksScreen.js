@@ -77,7 +77,7 @@ export default class TasksScreen extends React.Component {
 
   componentDidMount(){
     AsyncStorage.clear();
-    this.colorTimer = setInterval(() => (
+    this.colorTimer = this.colorTimer = setInterval(() => (
       this.props.navigation.state.params.mood != homeScreenBackgroundColor(mood) ?
         this.updateMood() : ""
     ), 500);
