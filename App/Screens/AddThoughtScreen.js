@@ -108,7 +108,7 @@ export default class ThoughtsScreen extends React.Component {
             textAlign: 'left',
             marginTop: height * 0.01,
             marginBottom: height * 0.02,
-            marginLeft: 5,
+            marginLeft: (5 / 375) * width,
           }}>Add a Thought</Text>
           <TextInput
             style={thoughtsStyles.textinput}
@@ -221,10 +221,10 @@ const thoughtsStyles = StyleSheet.create({
   textinput: {
     height: height * 0.3,
     borderRadius: 10,
-    marginHorizontal: 5,
-    padding: 20,
-    paddingTop: 10,
-    marginTop: 10,
+    marginHorizontal: (5/375) * width,
+    padding: (20/375) * width,
+    paddingTop: (10/812) * height,
+    marginTop: (10/812) * height,
     borderColor: '#BDBDBD',
     borderWidth: 1,
     fontSize: height * 0.03,
@@ -233,7 +233,7 @@ const thoughtsStyles = StyleSheet.create({
   },
   Image: {
     justifyContent: 'flex-end',
-    marginEnd: 10,
+    marginEnd: (10/812) * height,
     flex: 2,
   },
   headerText: {
