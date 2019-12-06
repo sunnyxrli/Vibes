@@ -47,11 +47,11 @@ export default class HomeScreen extends React.Component {
         <View style={{flexDirection: 'row', flex: 1, justifyContent: "space-evenly", alignItems: "center"}}>
           <Image
             source={require("../Images/write.png")}
-            style={{ width: height * 0.03, height: height * 0.03, opacity: 0, marginLeft: height * 0.02}}
+            style={{ width: height * 0.03, height: height * 0.03, opacity: 0, marginLeft: 16.34/375 * width}}
           />
           <Text style={thoughtsStyles.headerText}>Team Thoughts</Text>
           <TouchableOpacity
-          style={{marginRight: height * 0.02}}
+          style={{marginRight: 16.34/375 * width}}
           onPress={() => {
             navigation.navigate('AddThoughtScreen', {mood: mood});
           }}>
@@ -119,7 +119,7 @@ const thoughtsStyles = StyleSheet.create({
   },
   displayText: {
     flex: 1,
-    fontSize: 40,
+    fontSize: 40/375 * width,
     fontStyle: 'italic',
     fontWeight: '200',
     color: 'black',

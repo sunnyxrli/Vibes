@@ -96,9 +96,9 @@ export default class TasksScreen extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1}}>
         <ScrollView>
-          <Text style={[TasksStyles.title, { paddingTop: height * 0.03, paddingLeft: height * 0.018, paddingBottom: height * 0.023 }]}>Tasks You’ve Joined</Text>
+          <Text style={[TasksStyles.title, { paddingTop: height * 0.03, paddingLeft: 14.706/375 * width, paddingBottom: height * 0.023 }]}>Tasks You’ve Joined</Text>
           <View style={{ alignItems: 'center' }}>
             <TouchableOpacity
               style={[TasksStyles.task, { justifyContent: 'center' }]}
@@ -109,7 +109,7 @@ export default class TasksScreen extends React.Component {
             </TouchableOpacity>
           </View>
 
-          <Text style={[TasksStyles.title, { paddingTop: height * 0.06, paddingLeft: height * 0.018, paddingBottom: height * 0.01 }]}>All Tasks</Text>
+          <Text style={[TasksStyles.title, { paddingTop: height * 0.06, paddingLeft: 14.706/375 * width, paddingBottom: height * 0.01 }]}>All Tasks</Text>
           <View style={TasksStyles.categoryContainer}>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
@@ -119,8 +119,10 @@ export default class TasksScreen extends React.Component {
                 source={require("../Images/TaskCategories/offsites.png")}
                 style={{
                   height: height * 0.115,
-                  width: height * 0.11, justifyContent: 'center'
-                }} />
+                  width: 91/375 * width, 
+                  justifyContent: 'center'
+                }} 
+                resizeMode='contain'/>
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
@@ -130,8 +132,10 @@ export default class TasksScreen extends React.Component {
                 source={require("../Images/TaskCategories/officeEvents.png")}
                 style={{
                   height: height * 0.14,
-                  width: height * 0.09, justifyContent: 'center'
-                }} />
+                  width: 76/375 * width, 
+                  justifyContent: 'center'
+                }} 
+                resizeMode='contain'/>
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
@@ -141,8 +145,10 @@ export default class TasksScreen extends React.Component {
                 source={require("../Images/TaskCategories/officeSpace.png")}
                 style={{
                   height: height * 0.14,
-                  width: height * 0.085, justifyContent: 'center'
-                }} />
+                  width: 70/375 * width, 
+                  justifyContent: 'center'
+                }} 
+                resizeMode='contain'/>
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
@@ -152,8 +158,10 @@ export default class TasksScreen extends React.Component {
                 source={require("../Images/TaskCategories/inclusivity.png")}
                 style={{
                   height: height * 0.115,
-                  width: height * 0.15, justifyContent: 'center'
-                }} />
+                  width: 122/375 * width, 
+                  justifyContent: 'center'
+                }} 
+                resizeMode='contain'/>
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
@@ -163,8 +171,10 @@ export default class TasksScreen extends React.Component {
                 source={require("../Images/TaskCategories/food.png")}
                 style={{
                   height: height * 0.11,
-                  width: height * 0.072, justifyContent: 'center'
-                }} />
+                  width: 59/375 * width, 
+                  justifyContent: 'center'
+                }} 
+                resizeMode='contain'/>
             </TouchableOpacity>
             <TouchableOpacity
               style={[TasksStyles.categoryItem, { backgroundColor: accentColorMuted(mood) }]}
@@ -174,8 +184,10 @@ export default class TasksScreen extends React.Component {
                 source={require("../Images/TaskCategories/other.png")}
                 style={{
                   height: height * 0.088,
-                  width: height * 0.106, justifyContent: 'center'
-                }} />
+                  width: 86.89/375 * width, 
+                  justifyContent: 'center'
+                }} 
+                resizeMode='contain'/>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -189,13 +201,14 @@ const TasksStyles = StyleSheet.create({
     fontFamily: 'Lato-Bold',
     fontSize: height * 0.025
   },
-  task: {
-    width: height * 0.422,
+task: {
+    width: width * 0.92,
     height: height * 0.109,
     borderWidth: 1,
-    borderRadius: height * 0.01,
-    borderColor: '#BDBDBD'
-  },
+    borderRadius: 8,
+    borderColor: '#BDBDBD',
+    margin: width * 0.013
+},
   categoryContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -204,9 +217,9 @@ const TasksStyles = StyleSheet.create({
   },
   categoryItem: {
     alignItems: 'center',
-    height: height * 0.2,
-    width: height * 0.2,
-    margin: height * 0.013,
+    height: 163/375 * width,
+    width: 163/375 * width,
+    margin: 10.5/375 * width,
     borderRadius: height * 0.012,
     alignItems: 'center',
     justifyContent: 'center'
