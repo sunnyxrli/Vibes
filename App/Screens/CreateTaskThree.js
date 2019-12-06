@@ -186,7 +186,7 @@ export default class TasksScreen extends React.Component {
             onPress={() => { this.setbuttonSelected() }}
           >
             <Image
-              source={require("../Images/TaskCategories/food.png")}
+              source={ this.state.buttonPressedFood ? require("../Images/TaskCategories/food-white.png") : require("../Images/TaskCategories/food.png")}
               style={{
                 height: 65.14 / 817 * height,
                 width: 42.83 / 375 * width, justifyContent: 'center'
