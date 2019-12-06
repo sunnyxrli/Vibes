@@ -165,15 +165,15 @@ export default class TaskMiami extends React.Component {
 
         </View>
 
-        <View style={{ flexDirection: 'row', marginTop: 50, flex: 1, marginLeft: 20 }}>
+        <View style={{ flexDirection: 'row', marginTop: 50/ 817 * height, flex: 1, marginLeft: 20/375 * width }}>
           <TouchableOpacity
             style={{
               backgroundColor: accentColor(mood),
               opacity: 0.7,
-              paddingTop: 18,
+              paddingTop: 18/ 817 * height,
               borderRadius: 100,
-              width: 159.52,
-              height: 63,
+              width: 159.52/375 * width,
+              height: 63/ 817 * height,
             }}
             onPress={() => {
               this.props.navigation.navigate('ActionItemsMiamiTrip', { mood: mood });
@@ -181,7 +181,7 @@ export default class TaskMiami extends React.Component {
           >
             <Text style={{
               fontFamily: 'Lato-Bold',
-              fontSize: 18,
+              fontSize: 18/375 * width,
               alignSelf: 'center',
               color: '#FFFFFF'
             }}> Action Items </Text>
@@ -190,19 +190,19 @@ export default class TaskMiami extends React.Component {
             style={{
               borderColor: accentColor(mood),
               backgroundColor: '#FFFFFF',
-              paddingTop: 18,
+              paddingTop: 18/ 817 * height,
               opacity: 0.7,
               borderRadius: 100,
-              width: 159.52,
-              height: 63,
+              width: 159.52/375 * width,
+              height: 63/ 817 * height,
               borderWidth: 1,
               marginLeft: 'auto',
-              marginRight: 20
+              marginRight: 20/375 * width
             }}
             onPress={this.joinTheEvent.bind(this)}
           >
             <Text style={{
-              fontSize: 18,
+              fontSize: 18/375 * width,
               textAlign: 'center',
               fontFamily: 'Lato-Bold',
               color: accentColor(mood)
@@ -212,7 +212,7 @@ export default class TaskMiami extends React.Component {
 
         </View>
 
-        <View style={{ marginLeft: 20, marginTop: 50 }}>
+        <View style={{ marginLeft: 20/375 * width, marginTop: 50/ 817 * height }}>
           <Text style={TaskMiamiStyle.collab}>COLLABORATORS</Text>
         </View>
           <View style={{ flex: 1, alignItems: "center", justifyContent: "space-evenly" }}>
@@ -233,49 +233,34 @@ export default class TaskMiami extends React.Component {
 
 const TaskMiamiStyle = StyleSheet.create({
 
-
-
-
-
-
-
-  // displayText: {
-  //   flex: 1,
-  //   fontSize: 40,
-  //   fontStyle: 'italic',
-  //   fontWeight: '200',
-  //   color: 'black',
-  //   padding: '15%',
-  //   justifyContent: 'center',
-  // },
-  TaskTitle: {
-    fontFamily: 'Lato-Bold',
-    fontSize: 50,
-    paddingTop: 25,
-    paddingLeft: 20,
-  },
-  heading: {
-    fontFamily: 'Lato-Black',
-    fontSize: height * 0.035,
-    textAlign: "center"
-  },
-  expirationDate: {
-    fontSize: 20,
-    paddingTop: 10,
-    paddingLeft: 20,
-    fontFamily: 'Lato-Italic'
-  },
-  taskDetails: {
-    fontSize: 20,
-    fontFamily:'Lato-Regular',
-    paddingRight: 50,
-    marginTop: 30,
-    paddingLeft: 20,
-    lineHeight: 24
-  },
-  collab: {
-    fontSize: 25,
-    fontFamily: 'Lato-Regular',
-  }
+    TaskTitle: {
+      fontFamily: 'Lato-Bold',
+      fontSize: 50/375 * width,
+      paddingTop: 25/ 817 * height ,
+      paddingLeft: 20/375 * width,
+      paddingRight: 20/375 * width
+    },
+    heading: {
+      fontFamily: 'Lato-Black',
+      fontSize: height * 0.035,
+      textAlign: "center"
+    },
+    expirationDate: {
+      fontSize: 20/375 * width,
+      paddingTop: 10/ 817 * height ,
+      paddingLeft: 20/375 * width,
+      fontFamily:'Lato-Italic'
+    },
+    taskDetails:{
+      fontSize: 20/375 * width,
+      fontFamily:'Lato-Regular',
+      paddingRight: 90/375 * width,
+      marginTop: 30/ 817 * height ,
+      paddingLeft: 20/375 * width,
+    },
+    collab:{
+      fontSize: 25/375 * width,
+      fontFamily:'Lato-Regular',
+    }
 
 });
