@@ -27,7 +27,8 @@ export default class InclusivityScreen extends React.Component {
             headerTitle: (
                 <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
                     <Image source={require('../../Images/TaskCategoryIcons/inclusivityIcon.png')}
-                        style={{ height: height * 0.0367, width: width * 0.065, marginRight: '8%' }} />
+                        style={{ height: height * 0.0367, width: width * 0.065, marginRight: '8%' }} 
+                        resizeMode='contain'/>
                     <Text style={InclusivityStyles.heading}>INCLUSIVITY</Text>
                 </View>
             ),
@@ -35,6 +36,7 @@ export default class InclusivityScreen extends React.Component {
             headerStyle: {
                 backgroundColor: homeScreenBackgroundColor(mood),
                 borderBottomWidth: 0,
+                height: height * 0.07,
             }
         };
     };
