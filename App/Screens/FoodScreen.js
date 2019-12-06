@@ -40,7 +40,8 @@ export default class FoodScreen extends React.Component {
             headerTitle: (
                 <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                     <Image source={require('../../Images/TaskCategoryIcons/foodIcon.png')}
-                        style={{ height: height * 0.0367, width: width * 0.076, marginRight: '8%' }} />
+                        style={{ height: height * 0.0367, width: width * 0.076, marginRight: '8%' }} 
+                        resizeMode='contain'/>
                     <Text style={FoodStyles.heading}>FOOD</Text>
                 </View>
             ),
@@ -76,7 +77,7 @@ export default class FoodScreen extends React.Component {
         return (
             <View style={FoodStyles.tasksContainer}>
                 <TouchableOpacity
-                    style={[FoodStyles.task, { justifyContent: 'center', marginTop: 20 }]}
+                    style={[FoodStyles.task, { justifyContent: 'center', marginTop: 20/817 * height }]}
                     onPress={() => { this.props.navigation.navigate('TasksWeeklyLunches', {mood: mood});}}
                 >
                     <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Weekly Team Lunches!</Text>

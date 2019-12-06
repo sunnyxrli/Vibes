@@ -56,47 +56,47 @@ export default class TasksScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
-	    headerRight: () => (
-	        <TouchableOpacity
-	          style={{
-	          	marginTop: 2,
-	            marginRight: 10,
-	          }}
-            onPress={() => {
-              const resetAction = StackActions.reset({
-                index: 0,
-                actions: [NavigationActions.navigate({ routeName: 'ThoughtsScreen' })],
-              });
-              navigation.dispatch(resetAction);
-            }}
-	        >
-	          <Text style={{
-	            fontFamily:'Lato-Regular',
-	            fontSize: 17,
-	            alignSelf: 'center',
-	            color: '#007AFF',
-	          }}>Cancel</Text>
-	        </TouchableOpacity>
-	    ),
-	    headerTintColor: 'black',
-    	headerStyle: {
-	        backgroundColor: 'white',
-	        borderBottomWidth: 0,
+      headerRight: () => (
+        <TouchableOpacity
+          style={{
+            marginTop: 2 / 817 * height,
+            marginRight: 10 / 375 * width,
+          }}
+          onPress={() => {
+            const resetAction = StackActions.reset({
+              index: 0,
+              actions: [NavigationActions.navigate({ routeName: 'ThoughtsScreen' })],
+            });
+            navigation.dispatch(resetAction);
+          }}
+        >
+          <Text style={{
+            fontFamily: 'Lato-Regular',
+            fontSize: 17 / 375 * width,
+            alignSelf: 'center',
+            color: '#007AFF',
+          }}>Cancel</Text>
+        </TouchableOpacity>
+      ),
+      headerTintColor: 'black',
+      headerStyle: {
+        backgroundColor: 'white',
+        borderBottomWidth: 0,
       },
     };
   };
 
   updateMood = () => {
-    if(!this.props.navigation) {
+    if (!this.props.navigation) {
       return;
     }
-    this.setState({mood: this.props.navigation.state.params.mood});
+    this.setState({ mood: this.props.navigation.state.params.mood });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     setInterval(() => (
       this.props.navigation.state.params.mood != accentColor(mood) ?
-      this.updateMood() : ""
+        this.updateMood() : ""
     ), 500);
   }
 
@@ -112,7 +112,7 @@ export default class TasksScreen extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <Text style={{
-          fontFamily:'Lato-Bold',
+          fontFamily: 'Lato-Bold',
           fontSize: height * 0.05,
           textAlign: 'left',
           marginTop: height * 0.01,
@@ -124,7 +124,7 @@ export default class TasksScreen extends React.Component {
           onPress={() => this.setShowTitle()}
         >
           <Image
-            source={ this.state.showTitle === true ? require('../Images/taskTitle.png') : require('../Images/emptyTaskTitle.png')}
+            source={this.state.showTitle === true ? require('../Images/taskTitle.png') : require('../Images/emptyTaskTitle.png')}
             style={styles.taskTitle}
             resizeMode='contain'
           />
@@ -134,7 +134,7 @@ export default class TasksScreen extends React.Component {
           onPress={() => this.setShowDes()}
         >
           <Image
-            source={ this.state.showDes === true ? require('../Images/taskDescription.png') : require('../Images/emptyTaskDescription.png')}
+            source={this.state.showDes === true ? require('../Images/taskDescription.png') : require('../Images/emptyTaskDescription.png')}
             style={styles.taskDes}
             resizeMode='contain'
           />
@@ -145,32 +145,31 @@ export default class TasksScreen extends React.Component {
             backgroundColor: accentColor(mood),
             opacity: 0.8,
             borderRadius: 7,
-            width: (196/375)*width,
-            height: (41/812)*height,
+            width: (196 / 375) * width,
+            height: (41 / 817) * height,
             alignSelf: 'center',
-            marginTop: (10/812)*height,
-    		flex: 1,
-    		justifyContent: 'center',
-    		alignItems: 'center'
+            marginTop: (10 / 817) * height,
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center'
           }}
-          onPress={() => { if (this.state.showTitle && this.state.showDes) {this.props.navigation.navigate('CreateTaskTwo', {mood: mood})}}}
+          onPress={() => { if (this.state.showTitle && this.state.showDes) { this.props.navigation.navigate('CreateTaskTwo', { mood: mood }) } }}
         >
           <Text style={{
-            fontFamily:'Lato-Bold',
-            fontSize: 20,
+            fontFamily: 'Lato-Bold',
+            fontSize: 20 / 375 * width,
             alignSelf: 'center',
             textAlign: 'center',
             color: '#FFFFFF',
-			lineHeight: 20,
           }}>NEXT</Text>
         </TouchableOpacity>
         <View style={styles.container}>
           <View style={{
-            width: 12,
-            height: 12,
-            borderRadius: 12/2,
-            marginLeft: 20,
-            marginRight: 10,
+            width: 12 / 375 * width,
+            height: 12 / 375 * width,
+            borderRadius: (12 / 375 * width) / 2,
+            marginLeft: 20 / 375 * width,
+            marginRight: 10 / 375 * width,
             backgroundColor: accentColor(mood),
           }}>
           </View>
@@ -190,34 +189,34 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 10
+    margin: 10 / 375 * width
   },
   CircleShapeView: {
-    width: 12,
-    height: 12,
-    borderRadius: 12/2,
+    width: 12 / 375 * width,
+    height: 12 / 375 * width,
+    borderRadius: (12 / 375 * width) / 2,
     backgroundColor: '#BDBDBD',
-    marginLeft: 20,
-    marginRight: 10,
+    marginLeft: 20 / 375 * width,
+    marginRight: 10 / 375 * width,
   },
   taskTitle: {
     height: height * 0.25,
     width: width * 0.95,
     padding: 0,
     margin: 0,
-    marginLeft: 10,
+    marginLeft: 10 / 375 * width,
   },
   pageIndicator: {
-    height: 20,
+    height: 20 / 817 * height,
     width: '20%',
     alignSelf: 'center',
-    marginTop: 40,
+    marginTop: 40 / 817 * height,
   },
   taskDes: {
     height: height * 0.30,
     width: width * 0.95,
     padding: 0,
     margin: 0,
-    marginLeft: 10,
+    marginLeft: 10 / 375 * width,
   },
 });
