@@ -17,6 +17,8 @@ var homeScreenBackgroundColor = (mood) => {
     }
 }
 
+
+
 export default class InclusivityScreen extends React.Component {
 
 
@@ -37,9 +39,16 @@ export default class InclusivityScreen extends React.Component {
         };
     };
 
+    updateMood = () => {
+      if(!this.props.navigation) {
+        return;
+      }
+      this.setState({mood: this.props.navigation.state.params.mood});
+    }
+
     componentDidMount(){
       this.colorTimer = setInterval(() => (
-        this.props.navigation.state.params.mood != accentColor(mood) ?
+        this.props.navigation.state.params.mood != homeScreenBackgroundColor(mood) ?
         this.updateMood() : ""
       ), 500);
     }
