@@ -45,6 +45,7 @@ export default class OffsitesScreen extends React.Component {
                     <Text style={OffsitesSyles.heading}>OFFSITES</Text>
                 </View>
             ),
+            headerTintColor: 'black',
             headerStyle: {
                 backgroundColor: homeScreenBackgroundColor(mood),
                 borderBottomWidth: 0,

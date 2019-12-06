@@ -74,7 +74,7 @@ export default class TasksScreen extends React.Component {
 	            fontFamily:'Lato-Regular',
 	            fontSize: 17,
 	            alignSelf: 'center',
-	            color: 'black',
+	            color: '#007AFF',
 	          }}>Cancel</Text>
 	        </TouchableOpacity>
 	    ),
@@ -82,7 +82,7 @@ export default class TasksScreen extends React.Component {
     	headerStyle: {
 	        backgroundColor: 'white',
 	        borderBottomWidth: 0,
-      	}
+      },
     };
   };
 
@@ -149,11 +149,11 @@ export default class TasksScreen extends React.Component {
             height: 41,
             alignSelf: 'center',
             marginTop: 10,
-    		    flex: 1,
-    		    justifyContent: 'center',
-    		    alignItems: 'center'
+    		flex: 1,
+    		justifyContent: 'center',
+    		alignItems: 'center'
           }}
-          onPress={() => {this.props.navigation.navigate('CreateTaskTwo', {mood: mood})}}
+          onPress={() => { if (this.state.showTitle && this.state.showDes) {this.props.navigation.navigate('CreateTaskTwo', {mood: mood})}}}
         >
           <Text style={{
             fontFamily:'Lato-Bold',

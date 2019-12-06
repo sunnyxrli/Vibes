@@ -43,6 +43,7 @@ export default class OfficeEventsScreen extends React.Component {
                     <Text style={OfficeEventsStyles.heading}>OFFICE EVENTS</Text>
                 </View>
             ),
+            headerTintColor: 'black',
             headerStyle: {
                 backgroundColor: homeScreenBackgroundColor(mood),
                 borderBottomWidth: 0,

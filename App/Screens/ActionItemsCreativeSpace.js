@@ -264,11 +264,11 @@ export default class ActionItemsCreativeSpace extends React.Component {
       <View style={{ borderColor: '#DADADA', borderWidth: 1, marginTop: 20, marginLeft: 20, marginRight: 20, flex: 1, marginBottom: 20, borderRadius: 15 }}>
         <View style={{ flexDirection: 'column' }}>
 
-        <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
-                        <View style={{ flexDirection: 'row', paddingTop: 15 }}>
+          <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
+            <View style={{ flexDirection: 'row', paddingTop: 15 }}>
               <TouchableOpacity
                 style={{
-                  borderColor: this.state.completedButton1 ? accentColor(mood) :'black',
+                  borderColor: this.state.completedButton1 ? accentColor(mood) : 'black',
                   backgroundColor: this.state.completedButton1 ? accentColor(mood) : 'white',
                   paddingTop: 18,
                   opacity: 0.7,
@@ -293,43 +293,45 @@ export default class ActionItemsCreativeSpace extends React.Component {
 
             <View style={{ flexDirection: 'row' }}>
               <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim1}</Text></View>
-              <TouchableOpacity
-                style={{
-                  borderColor: accentColor(mood),
-                  backgroundColor: this.state.button1 ? 'white' : accentColor(mood),
-                  opacity: 0.7,
-                  borderRadius: 11.5,
-                  justifyContent: "space-evenly",
-                  width: 95,
-                  height: 25,
-                  borderWidth: 1,
-                  marginLeft: 'auto',
-                  marginRight: 20,
-                  marginTop: 5,
-                  marginBottom:10
-                }}
-                onPress={() => {
-                  console.log("hey");
-                  this.updateChoice('button1');
-                  console.log("hey");
-                  // selected={this.state.button3}
-                }} >
-                <Text style={{
-                  color: this.state.button1 ? accentColor(mood) : 'white',
-                  fontSize: 13,
-                  textAlign: 'center',
-                  fontFamily: 'Lato-Regular',
-                }}>{this.state.textValue1}</Text>
-              </TouchableOpacity>
+              <View style={{ opacity: this.state.completedButton1 ? 0.0 : 1, marginLeft: "auto" }}>
+                <TouchableOpacity
+                  style={{
+                    borderColor: accentColor(mood),
+                    backgroundColor: this.state.button1 ? 'white' : accentColor(mood),
+                    opacity: 0.7,
+                    borderRadius: 11.5,
+                    justifyContent: "space-evenly",
+                    width: 95,
+                    height: 25,
+                    borderWidth: 1,
+                    marginLeft: 'auto',
+                    marginRight: 20,
+                    marginTop: 5,
+                    marginBottom: 10
+                  }}
+                  onPress={() => {
+                    console.log("hey");
+                    this.updateChoice('button1');
+                    console.log("hey");
+                    // selected={this.state.button3}
+                  }} >
+                  <Text style={{
+                    color: this.state.button1 ? accentColor(mood) : 'white',
+                    fontSize: 13,
+                    textAlign: 'center',
+                    fontFamily: 'Lato-Regular',
+                  }}>{this.state.textValue1}</Text>
+                </TouchableOpacity>
+              </View>
 
             </View>
           </View>
 
           <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
-                        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
+            <View style={{ flexDirection: 'row', paddingTop: 10 }}>
               <TouchableOpacity
                 style={{
-                  borderColor: this.state.completedButton2 ? accentColor(mood) :'black',
+                  borderColor: this.state.completedButton2 ? accentColor(mood) : 'black',
                   backgroundColor: this.state.completedButton2 ? accentColor(mood) : 'white',
                   paddingTop: 18,
                   opacity: 0.7,
@@ -354,43 +356,44 @@ export default class ActionItemsCreativeSpace extends React.Component {
 
             <View style={{ flexDirection: 'row' }}>
               <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim2}</Text></View>
-              <TouchableOpacity
-                style={{
-                  borderColor: accentColor(mood),
-                  backgroundColor: this.state.button2 ? 'white' : accentColor(mood),
-                  opacity: 0.7,
-                  borderRadius: 11.5,
-                  justifyContent: "space-evenly",
-                  width: 95,
-                  height: 25,
-                  borderWidth: 1,
-                  marginLeft: 'auto',
-                  marginRight: 20,
-                  marginTop: 5,
-                  marginBottom:10
-                }}
-                onPress={() => {
-                  console.log("hey");
-                  this.updateChoice('button2');
-                  console.log("hey");
-                  // selected={this.state.button3}
-                }} >
-                <Text style={{
-                  color: this.state.button2 ? accentColor(mood) : 'white',
-                  fontSize: 13,
-                  textAlign: 'center',
-                  fontFamily: 'Lato-Regular',
-                }}>{this.state.textValue2}</Text>
-              </TouchableOpacity>
-
+              <View style={{ opacity: this.state.completedButton2 ? 0.0 : 1, marginLeft: "auto" }}>
+                <TouchableOpacity
+                  style={{
+                    borderColor: accentColor(mood),
+                    backgroundColor: this.state.button2 ? 'white' : accentColor(mood),
+                    opacity: 0.7,
+                    borderRadius: 11.5,
+                    justifyContent: "space-evenly",
+                    width: 95,
+                    height: 25,
+                    borderWidth: 1,
+                    marginLeft: 'auto',
+                    marginRight: 20,
+                    marginTop: 5,
+                    marginBottom: 10
+                  }}
+                  onPress={() => {
+                    console.log("hey");
+                    this.updateChoice('button2');
+                    console.log("hey");
+                    // selected={this.state.button3}
+                  }} >
+                  <Text style={{
+                    color: this.state.button2 ? accentColor(mood) : 'white',
+                    fontSize: 13,
+                    textAlign: 'center',
+                    fontFamily: 'Lato-Regular',
+                  }}>{this.state.textValue2}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
           <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
-                        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
+            <View style={{ flexDirection: 'row', paddingTop: 10 }}>
 
               <TouchableOpacity
                 style={{
-                  borderColor: this.state.completedButton3 ? accentColor(mood) :'black',
+                  borderColor: this.state.completedButton3 ? accentColor(mood) : 'black',
                   backgroundColor: this.state.completedButton3 ? accentColor(mood) : '#FFFFFF',
                   paddingTop: 18,
                   opacity: 0.7,
@@ -415,41 +418,42 @@ export default class ActionItemsCreativeSpace extends React.Component {
 
             <View style={{ flexDirection: 'row' }}>
               <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim3}</Text></View>
-              <TouchableOpacity
-                style={{
-                  borderColor: accentColor(mood),
-                  backgroundColor: this.state.button3 ? 'white' : accentColor(mood),
-                  opacity: 0.7,
-                  borderRadius: 11.5,
-                  justifyContent: "space-evenly",
-                  width: 95,
-                  height: 25,
-                  borderWidth: 1,
-                  marginLeft: 'auto',
-                  marginRight: 20,
-                  marginTop: 5,
-                  marginBottom:10
-                }}
-                onPress={() => {
-                  console.log("hey");
-                  this.updateChoice('button3');
-                  console.log("hey");
-                  // selected={this.state.button3}
-                }} >
-                <Text style={{
-                  color: this.state.button3 ? accentColor(mood) : 'white',
-                  fontSize: 13,
-                  textAlign: 'center',
-                  fontFamily: 'Lato-Regular',
-                }}>{this.state.textValue3}</Text>
-              </TouchableOpacity>
-
+              <View style={{ opacity: this.state.completedButton3 ? 0.0 : 1, marginLeft: "auto" }}>
+                <TouchableOpacity
+                  style={{
+                    borderColor: accentColor(mood),
+                    backgroundColor: this.state.button3 ? 'white' : accentColor(mood),
+                    opacity: 0.7,
+                    borderRadius: 11.5,
+                    justifyContent: "space-evenly",
+                    width: 95,
+                    height: 25,
+                    borderWidth: 1,
+                    marginLeft: 'auto',
+                    marginRight: 20,
+                    marginTop: 5,
+                    marginBottom: 10
+                  }}
+                  onPress={() => {
+                    console.log("hey");
+                    this.updateChoice('button3');
+                    console.log("hey");
+                    // selected={this.state.button3}
+                  }} >
+                  <Text style={{
+                    color: this.state.button3 ? accentColor(mood) : 'white',
+                    fontSize: 13,
+                    textAlign: 'center',
+                    fontFamily: 'Lato-Regular',
+                  }}>{this.state.textValue3}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
 
 
           <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
-                        <View style={{ flexDirection: 'row', paddingTop: 10}}>
+            <View style={{ flexDirection: 'row', paddingTop: 10 }}>
               <TouchableOpacity
                 style={{
                   borderColor: accentColor(mood),
@@ -475,13 +479,13 @@ export default class ActionItemsCreativeSpace extends React.Component {
             </View>
 
             <View style={{ flexDirection: 'row' }}>
-              <View style={{ marginLeft: 33 , marginBottom:10}}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Sunny</Text></View>
+              <View style={{ marginLeft: 33, marginBottom: 10 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Sunny</Text></View>
             </View>
           </View>
 
 
           <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
-                        <View style={{ flexDirection: 'row', paddingTop: 10}}>
+            <View style={{ flexDirection: 'row', paddingTop: 10 }}>
               <TouchableOpacity
                 style={{
                   borderColor: 'black',
@@ -506,17 +510,17 @@ export default class ActionItemsCreativeSpace extends React.Component {
             </View>
 
             <View style={{ flexDirection: 'row' }}>
-              <View style={{ marginLeft: 33, marginBottom:10 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Misbah</Text></View>
+              <View style={{ marginLeft: 33, marginBottom: 10 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>Claimed by: Misbah</Text></View>
             </View>
           </View>
 
 
           <View style={{ flexDirection: 'column', height: "auto", width: 301, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center", opacity: this.state.hasHitAddButton ? 1 : 0 }}>
-                        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
+            <View style={{ flexDirection: 'row', paddingTop: 10 }}>
 
               <TouchableOpacity
                 style={{
-                  borderColor: this.state.completedButton4 ? accentColor(mood) :'black',
+                  borderColor: this.state.completedButton4 ? accentColor(mood) : 'black',
                   backgroundColor: this.state.completedButton4 ? accentColor(mood) : '#FFFFFF',
                   paddingTop: 18,
                   opacity: 0.7,
@@ -541,34 +545,35 @@ export default class ActionItemsCreativeSpace extends React.Component {
 
             <View style={{ flexDirection: 'row' }}>
               <View style={{ marginLeft: 33, paddingTop: 5 }}><Text style={{ color: accentColor(mood), fontSize: 15, fontFamily: "Lato-Italic" }}>{this.state.claim4}</Text></View>
-              <TouchableOpacity
-                style={{
-                  borderColor: accentColor(mood),
-                  backgroundColor: this.state.button4 ? 'white' : accentColor(mood),
-                  opacity: 0.7,
-                  borderRadius: 11.5,
-                  justifyContent: "space-evenly",
-                  width: 95,
-                  height: 25,
-                  borderWidth: 1,
-                  marginLeft: 'auto',
-                  marginRight: 20,
-                  marginTop: 5,
-                  marginBottom:10
-                }}
-                onPress={() => {
-                  console.log("hey");
-                  this.updateChoice('button4');
-                  console.log("hey");
-                }} >
-                <Text style={{
-                  color: this.state.button4 ? accentColor(mood) : 'white',
-                  fontSize: 13,
-                  textAlign: 'center',
-                  fontFamily: 'Lato-Regular',
-                }}>{this.state.textValue4}</Text>
-              </TouchableOpacity>
-
+              <View style={{ opacity: this.state.completedButton4 ? 0.0 : 1, marginLeft: "auto" }}>
+                <TouchableOpacity
+                  style={{
+                    borderColor: accentColor(mood),
+                    backgroundColor: this.state.button4 ? 'white' : accentColor(mood),
+                    opacity: 0.7,
+                    borderRadius: 11.5,
+                    justifyContent: "space-evenly",
+                    width: 95,
+                    height: 25,
+                    borderWidth: 1,
+                    marginLeft: 'auto',
+                    marginRight: 20,
+                    marginTop: 5,
+                    marginBottom: 10
+                  }}
+                  onPress={() => {
+                    console.log("hey");
+                    this.updateChoice('button4');
+                    console.log("hey");
+                  }} >
+                  <Text style={{
+                    color: this.state.button4 ? accentColor(mood) : 'white',
+                    fontSize: 13,
+                    textAlign: 'center',
+                    fontFamily: 'Lato-Regular',
+                  }}>{this.state.textValue4}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
