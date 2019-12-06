@@ -105,7 +105,7 @@ export default class TasksScreen extends React.Component {
               onPress={() => { this.props.navigation.navigate('TaskMiami', { mood: mood }) }}
             >
               <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Miami Trip</Text>
-              <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires in 1 day</Text>
+              <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires Dec 12, 2019</Text>
             </TouchableOpacity>
           </View>
 

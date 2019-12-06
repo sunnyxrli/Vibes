@@ -39,7 +39,8 @@ export default class OtherScreen extends React.Component {
       headerTitle: (
         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
           <Image source={require('../../Images/TaskCategoryIcons/otherIcon.png')}
-            style={{ height: height * 0.01, width: width * 0.1, marginRight: '8%' }} />
+            style={{ height: height * 0.01, width: width * 0.1, marginRight: '8%' }}
+            resizeMode='contain' />
           <Text style={OtherStyles.heading}>OTHER</Text>
         </View>
       ),
@@ -47,6 +48,7 @@ export default class OtherScreen extends React.Component {
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
+        height: height * 0.07,
       }
     };
   };

@@ -39,7 +39,8 @@ export default class OfficeEventsScreen extends React.Component {
             headerTitle: (
                 <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                     <Image source={require('../../Images/TaskCategoryIcons/eventIcon.png')}
-                        style={{ height: height * 0.0367, width: width * 0.077, marginRight: '6%' }} />
+                        style={{ height: height * 0.0367, width: width * 0.077, marginRight: '6%' }} 
+                        resizeMode='contain'/>
                     <Text style={OfficeEventsStyles.heading}>OFFICE EVENTS</Text>
                 </View>
             ),
@@ -47,6 +48,7 @@ export default class OfficeEventsScreen extends React.Component {
             headerStyle: {
                 backgroundColor: homeScreenBackgroundColor(mood),
                 borderBottomWidth: 0,
+                height: height * 0.07,
             }
         };
     };
@@ -79,7 +81,7 @@ export default class OfficeEventsScreen extends React.Component {
                     onPress={() => { this.props.navigation.navigate('TaskBday', { mood: mood }); }}
                 >
                     <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Misbah Bday Party</Text>
-                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires in 3 days</Text>
+                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires Dec 13, 2019</Text>
                 </TouchableOpacity>
             </View>
         );

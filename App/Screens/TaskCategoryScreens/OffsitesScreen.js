@@ -41,7 +41,8 @@ export default class OffsitesScreen extends React.Component {
             headerTitle: (
                 <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                     <Image source={require('../../Images/TaskCategoryIcons/offsiteIcon.png')}
-                        style={{ height: height * 0.0367, width: width * 0.112, marginRight: '8%' }} />
+                        style={{ height: height * 0.0367, width: width * 0.112, marginRight: '8%' }}
+                        resizeMode='contain' />
                     <Text style={OffsitesSyles.heading}>OFFSITES</Text>
                 </View>
             ),
@@ -49,6 +50,7 @@ export default class OffsitesScreen extends React.Component {
             headerStyle: {
                 backgroundColor: homeScreenBackgroundColor(mood),
                 borderBottomWidth: 0,
+                height: height * 0.07,
             }
         };
     };
@@ -81,7 +83,7 @@ export default class OffsitesScreen extends React.Component {
                     onPress={() => { this.props.navigation.navigate('TaskMiami', {mood: mood});}}
                 >
                     <Text style={{ left: width * 0.064, fontFamily: 'Lato-Regular', fontSize: width * 0.06 }}>Miami Trip</Text>
-                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires in 1 day</Text>
+                    <Text style={{ fontSize: width * 0.043, fontFamily: 'Lato-Italic', color: accentColor(mood), left: width * 0.065 }}>Expires Dec 12, 2019</Text>
                 </TouchableOpacity>
             </View>
         );

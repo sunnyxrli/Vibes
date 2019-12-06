@@ -156,7 +156,7 @@ export default class TaskBday extends React.Component {
         <ScrollView>
         <View style={{ }}>
           <Text style={TaskBdayStyle.TaskTitle}>Misbah Bday Party</Text>
-          <Text style={TaskBdayStyle.expirationDate}>Expires Dec 31st, 2019</Text>
+          <Text style={TaskBdayStyle.expirationDate}>Expires Dec 13, 2019</Text>
           <Text style={TaskBdayStyle.taskDetails}>Let’s all join together to plan a birthday party for our favorite engineer!</Text>
 
         </View>
