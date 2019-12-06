@@ -148,7 +148,7 @@ export default class TasksScreen extends React.Component {
             width: (196 / 375) * width,
             height: (41 / 817) * height,
             alignSelf: 'center',
-            marginTop: (10 / 817) * height, 
+            marginTop: (10 / 817) * height,
             justifyContent: 'center',
             alignItems: 'center'
           }}

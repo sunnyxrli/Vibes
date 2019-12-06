@@ -125,7 +125,7 @@ export default class TasksScreen extends React.Component {
     const { selectedStartDate } = this.state;
     const startDate = selectedStartDate ? selectedStartDate.toString() : '';
     return (
-      <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }}>
         <Text style={{
           fontFamily: 'Lato-Bold',
           fontSize: height * 0.05,
@@ -139,7 +139,7 @@ export default class TasksScreen extends React.Component {
           fontSize: 20 / 375 * width,
           textAlign: 'left',
           marginTop: 0,
-          marginBottom: 5 / 817 * height,
+          marginBottom: 60 / 817 * height,
           marginLeft: 20 / 375 * width,
         }}>Finish task by</Text>
         <CalendarPicker
@@ -156,7 +156,8 @@ export default class TasksScreen extends React.Component {
             width: (196 / 375) * width,
             height: (41 / 817) * height,
             alignSelf: 'center',
-            marginTop:(10 / 817) * height,
+            marginTop: 50 / 817 * height,
+            flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
           }}
@@ -186,7 +187,7 @@ export default class TasksScreen extends React.Component {
           <View style={styles.CircleShapeView}>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
