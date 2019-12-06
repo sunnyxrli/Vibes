@@ -145,10 +145,10 @@ export default class TasksScreen extends React.Component {
             backgroundColor: accentColor(mood),
             opacity: 0.8,
             borderRadius: 7,
-            width: 196,
-            height: 41,
+            width: (196/375)*width,
+            height: (41/812)*height,
             alignSelf: 'center',
-            marginTop: 10,
+            marginTop: (10/812)*height,
     		flex: 1,
     		justifyContent: 'center',
     		alignItems: 'center'

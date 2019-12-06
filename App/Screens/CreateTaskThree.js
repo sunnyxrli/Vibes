@@ -115,13 +115,13 @@ export default class TasksScreen extends React.Component {
   render() {
     return (
       <ScrollView style={{ flex: 1 }}>
-      	<Text style={{
+        <Text style={{
           fontFamily:'Lato-Bold',
-          fontSize: 40,
+          fontSize: height * 0.05,
           textAlign: 'left',
-          marginTop: 10,
-          marginBottom: 10,
-          marginLeft: 20,
+          marginTop: height * 0.01,
+          marginBottom: height * 0.02,
+          marginLeft: width * 0.053,
         }}>Create Task</Text>
         <Text style={{
           fontFamily:'Lato-Italic',
@@ -205,8 +205,8 @@ export default class TasksScreen extends React.Component {
             backgroundColor: accentColor(mood),
             opacity: 0.8,
             borderRadius: 7,
-            width: 196,
-            height: 41,
+            width: (196/375)*width,
+            height: (41/812)*height,
             alignSelf: 'center',
             marginTop: 45,
 		    flex: 1,
