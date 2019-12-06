@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, ScrollView, ColorPropType, Alert } from 'react-native';
 import { material } from 'react-native-typography';
 // import Feed from '../Components/Feed';
 import { AsyncStorage } from 'react-native';
@@ -184,35 +184,51 @@ export default class ActionItemsWeeklyLunches extends React.Component {
         }
     }
 
+    checkForTaskCompletion() {
+        if (this.state.completedButton1 && this.state.completedButton2  && (!this.state.hasHitAddButton || this.state.completedButton4)) {
+            Alert.alert(
+                'Completed Task',
+                "Congratulations you've completed Weekly Team Lunches!",
+                [
+                    { text: "Okay", onPress: () => this.props.navigation.navigate('TasksScreen', { mood: mood }) },
+                    { text: "Cancel", onPress: () => this.props.navigation.navigate('ActionItemsWeeklyLunches', { mood: mood }) },
+                ],
+                { cancelable: false },
+            );
+        }
+    }
+
     updateItemCompletionStatus(type) {
         switch (type) {
             case "completedButton1":
                 if (!this.state.button1) {
                     return;
                 }
-                this.setState({ completedButton1: !this.state[type] });
+                this.setState({ completedButton1: !this.state[type] }, function () { this.checkForTaskCompletion(); });
                 break;
             case "completedButton2":
                 if (!this.state.button2) {
                     return;
                 }
-                this.setState({ completedButton2: !this.state[type] });
+                this.setState({ completedButton2: !this.state[type] }, function () { this.checkForTaskCompletion(); });
                 break;
             case "completedButton3":
                 if (!this.state.button3) {
                     return;
                 }
-                this.setState({ completedButton3: !this.state[type] });
+                this.setState({ completedButton3: !this.state[type] }, function () { this.checkForTaskCompletion(); });
                 break;
             case "completedButton4":
                 if (!this.state.button4) {
                     return;
                 }
-                this.setState({ completedButton4: !this.state[type] });
+                this.setState({ completedButton4: !this.state[type] }, function () { this.checkForTaskCompletion(); });
                 break;
             default:
                 break;
         }
+
+
     }
 
 
@@ -346,7 +362,7 @@ export default class ActionItemsWeeklyLunches extends React.Component {
                                 fontFamily: 'Lato-Regular',
                                 paddingLeft: 10 / 375 * width,
                                 textDecorationLine: this.state.completedButton2 ? 'line-through' : 'none'
-                            }}>Poll team for weekday selection</Text>
+                            }}>Poll team for date selection</Text>
                         </View>
 
                         <View style={{ flexDirection: 'row' }}>
@@ -382,36 +398,6 @@ export default class ActionItemsWeeklyLunches extends React.Component {
                                 </TouchableOpacity>
                             </View>
 
-                        </View>
-                    </View>
-
-
-                    <View style={{ flexDirection: 'column', height: "auto", width: 301 / 375 * width, borderBottomWidth: 1, borderColor: '#DADADA', alignSelf: "center" }}>
-                        <View style={{ flexDirection: 'row', paddingTop: 10 / 817 * height }}>
-                            <TouchableOpacity
-                                style={{
-                                    borderColor: "black",
-                                    backgroundColor: "white",
-                                    opacity: 0.7,
-                                    borderRadius: (23/375 * width)/2,
-                                    width: 23 / 375 * width,
-                                    height: 23 / 375 * width,
-                                    borderWidth: 1,
-                                }}
-                                onPress={() => {
-                                    //this.updateItemCompletionStatus("completedButton2");
-                                }}
-                            >
-                            </TouchableOpacity>
-                            <Text style={{
-                                fontSize: 20 / 375 * width,
-                                fontFamily: 'Lato-Regular',
-                                paddingLeft: 10 / 375 * width,
-                            }}>Send out calendar alerts</Text>
-                        </View>
-
-                        <View style={{ flexDirection: 'row' }}>
-                            <View style={{ marginLeft: 33 / 375 * width, marginBottom: 10 / 817 * height }}><Text style={{ color: accentColor(mood), fontSize: 15 / 375 * width, fontFamily: "Lato-Italic" }}>Claimed by: Sunny</Text></View>
                         </View>
                     </View>
 
