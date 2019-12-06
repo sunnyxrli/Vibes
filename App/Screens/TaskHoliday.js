@@ -160,7 +160,7 @@ export default class TaskHoliday extends React.Component {
         <ScrollView>
         <View style={{ }}>
           <Text style={TaskStyle.TaskTitle}>Decorate for the Holidays</Text>
-          <Text style={TaskStyle.expirationDate}>Expires Jan 1st, 2020</Text>
+          <Text style={TaskStyle.expirationDate}>Expires Dec 20, 2020</Text>
           <Text style={TaskStyle.taskDetails}>Join us in making the office holiday ready!</Text>
 
         </View>

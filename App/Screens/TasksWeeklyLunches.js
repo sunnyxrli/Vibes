@@ -160,7 +160,7 @@ export default class TasksWeeklyLunches extends React.Component {
         <ScrollView>
         <View style={{ }}>
           <Text style={TasksWeekly.TaskTitle}>Weekly Team Lunches</Text>
-          <Text style={TasksWeekly.expirationDate}>Expires Dec 19th, 2019</Text>
+          <Text style={TasksWeekly.expirationDate}>Expires Dec 19, 2019</Text>
           <Text style={TasksWeekly.taskDetails}>Let’s organize weekly team lunches so everyone on the team can get to know each other better!</Text>
 
         </View>

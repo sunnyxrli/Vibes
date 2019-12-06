@@ -162,7 +162,7 @@ export default class TaskMiami extends React.Component {
 
         <View style={{}}>
           <Text style={TaskMiamiStyle.TaskTitle}>Miami Trip</Text>
-          <Text style={TaskMiamiStyle.expirationDate}>Expires Dec 31st, 2019</Text>
+          <Text style={TaskMiamiStyle.expirationDate}>Expires Dec 12, 2019</Text>
           <Text style={TaskMiamiStyle.taskDetails}>Let’s celebrate the successful launch of Vibes with an off-site!</Text>
 
         </View>
