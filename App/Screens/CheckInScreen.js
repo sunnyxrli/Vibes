@@ -138,27 +138,13 @@ export default class CheckInScreen extends React.Component {
   }
 
   moveToHome() {
-<<<<<<< HEAD
-    this.props.navigation.setParams({ firstCheckIn: true });
-    this.props.navigation.navigate("HomeScreen", { mood: this.state.mood });
-=======
     this.props.navigation.setParams({firstCheckIn: true});
     this.props.navigation.state = {params: {cartSum: true}};
     this.props.navigation.state.params = {cartSum: true};
     this.props.navigation.navigate("HomeScreen", {mood: this.state.mood});
->>>>>>> 891a81e5063faa1ae85f27733da004514b506bbb
   }
   render() {
     return (
-<<<<<<< HEAD
-      <LinearGradient
-        colors={this.getBackgroundColor()}
-        style={styles.root}
-      >
-        <SafeAreaView style={styles.container}>
-          <Text style={{ width: height * 0.4, fontFamily: 'Lato-Regular', fontSize: height * 0.04, textAlign: "center" }}>
-            How have you been feeling this morning?
-=======
         <LinearGradient
           colors={this.getBackgroundColor()}
           style={styles.root}
@@ -221,7 +207,6 @@ export default class CheckInScreen extends React.Component {
             </Overlay>
             <Text style={{ width: height * 0.4, fontFamily: 'Lato-Regular', fontSize: height * 0.04, textAlign: "center"}}>
               How have you been feeling this morning?
->>>>>>> 891a81e5063faa1ae85f27733da004514b506bbb
             </Text>
           <CircularSlider
             width={380}
