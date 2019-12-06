@@ -70,6 +70,7 @@ export default class TaskHoliday extends React.Component {
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
+        height: height * 0.07,
       }
     };
   };
@@ -252,7 +253,7 @@ const TaskStyle = StyleSheet.create({
   },
   heading: {
     fontFamily: 'Lato-Black',
-    fontSize: 22,
+    fontSize: height * 0.035,
     textAlign: "center"
   },
   expirationDate: {

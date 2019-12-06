@@ -48,6 +48,7 @@ export default class FoodScreen extends React.Component {
             headerStyle: {
                 backgroundColor: homeScreenBackgroundColor(mood),
                 borderBottomWidth: 0,
+                height: height * 0.07,
             }
         };
     };
@@ -89,7 +90,7 @@ export default class FoodScreen extends React.Component {
 const FoodStyles = StyleSheet.create({
     heading: {
         fontFamily: 'Lato-Black',
-        fontSize: width * 0.059,
+        fontSize: height * 0.035,
         textAlign: "center"
     },
     tasksContainer: {
