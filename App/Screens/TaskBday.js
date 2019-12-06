@@ -70,6 +70,7 @@ export default class TaskBday extends React.Component {
       headerStyle: {
         backgroundColor: homeScreenBackgroundColor(mood),
         borderBottomWidth: 0,
+        height: height * 0.07,
       }
     };
   };

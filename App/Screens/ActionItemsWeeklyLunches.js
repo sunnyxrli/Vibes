@@ -351,7 +351,7 @@ export default class ActionItemsWeeklyLunches extends React.Component {
 
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ marginLeft: 33 / 375 * width, paddingTop: 5 / 817 * height }}>
-                                <Text style={{ color: accentColor(mood), fontSize: 15 / 375 * height, fontFamily: "Lato-Italic" }}>{this.state.claim2}</Text>
+                                <Text style={{ color: accentColor(mood), fontSize: 15 / 375 * width, fontFamily: "Lato-Italic" }}>{this.state.claim2}</Text>
                             </View>
                             <View style={{ opacity: this.state.completedButton2 ? 0.0 : 1, marginLeft: "auto" }}>
                                 <TouchableOpacity
