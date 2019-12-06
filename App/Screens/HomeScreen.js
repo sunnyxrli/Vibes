@@ -83,7 +83,7 @@ export default class HomeScreen extends React.Component {
           <Text style={styles.checkintext}>Last team check-in a few seconds ago</Text>
           <Image
             source={FaceImages[mood]}
-            style={{ marginTop: 50, marginBottom: 20, height: height * 0.2, width: height * 0.2 }}
+            style={{ marginTop: 50/817 * height, marginBottom: 20/817 * height, height: height * 0.2, width: height * 0.2 }}
             resizeMode='contain'
           />
         </View>
@@ -115,7 +115,7 @@ export default class HomeScreen extends React.Component {
             windowBackgroundColor="rgba(0, 0, 0, 0)"
             onBackdropPress={() => this.setMoodsOverlayVisible(false)}
           >
-            <View style={{ flex: 1, marginHorizontal: 15/375 * width }}>
+            <View style={{ flex: 1, marginHorizontal: 15 / 375 * width }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 50 / 817 * height }}>
                 <Text style={{
                   fontFamily: 'Lato-Bold',
@@ -136,34 +136,32 @@ export default class HomeScreen extends React.Component {
 
               <Text style={{
                 fontFamily: 'Lato-Regular',
-                fontSize: 24/375 * width,
-                marginTop: 46/817 * height
+                fontSize: 24 / 375 * width,
+                marginTop: 46 / 817 * height
               }}>People are also feeling</Text>
               <View style={{ alignItems: 'center' }}>
                 <Image
                   source={OverlayMinority[mood]}
-                  style={{ height: 112 / 817 * height, width: 303 / 375 * width, marginTop: 27/817 * height}}
+                  style={{ height: 112 / 817 * height, width: 303 / 375 * width, marginTop: 27 / 817 * height }}
                   resizeMode='contain'
                 />
               </View>
 
               <Text style={{
                 fontFamily: 'Lato-Regular',
-                fontSize: 24/375 * width,
-                marginTop: 67/817 * height
+                fontSize: 24 / 375 * width,
+                marginTop: 67 / 817 * height
               }}>Recent Moods</Text>
               <View style={{ alignItems: 'center' }}>
                 <Image
                   source={OverlayGraph[mood]}
-                  style={{ height: 296 / 817 * height, width: 318 / 375 * width, marginTop: 31/817 * height}}
+                  style={{ height: 296 / 817 * height, width: 318 / 375 * width, marginTop: 31 / 817 * height }}
                   resizeMode='contain'
                 />
               </View>
-
-
             </View>
-
           </Overlay>
+
           <TouchableOpacity
             style={{
               backgroundColor: accentColor(mood),
@@ -172,7 +170,7 @@ export default class HomeScreen extends React.Component {
               width: width * 0.427,
               height: height * 0.08,
               justifyContent: 'center',
-              margin: height * 0.01,
+              margin: height * 0.015,
               marginTop: height * 0.012
             }}
             onPress={() => {
@@ -226,10 +224,10 @@ const styles = StyleSheet.create({
   buttonRow: {
     flexDirection: "row",
     justifyContent: "center",
-    margin: 25,
-    marginLeft: (height < 800 && height > 700) ? 45 : 25,
-    marginRight: (height < 800 && height > 700) ? 45 : 25,
-    marginBottom: 15,
+    margin: 25 / 375 * width,
+    marginLeft: (height < 800 && height > 700) ? 45 / 375 * width : 25 / 375 * width,
+    marginRight: (height < 800 && height > 700) ? 45 / 375 * width : 25 / 375 * width,
+    marginBottom: 15 / 817 * height,
   },
   tasksColumn: {
     flex: 1,
