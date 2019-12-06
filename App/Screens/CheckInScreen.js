@@ -143,13 +143,7 @@ export default class CheckInScreen extends React.Component {
     this.props.navigation.state.params = {cartSum: true};
     this.props.navigation.navigate("HomeScreen", {mood: this.state.mood});
   }
-
-  componentDidMount() {
-    console.log(this.props.navigation.state);
-  }
-
   render() {
-    console.log(this.props.navigation.state);
     return (
         <LinearGradient
           colors={this.getBackgroundColor()}

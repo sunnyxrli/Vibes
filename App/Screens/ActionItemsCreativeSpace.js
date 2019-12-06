@@ -75,7 +75,6 @@ export default class ActionItemsCreativeSpace extends React.Component {
   async componentDidMount() {
     this._isMounted = true;
     try {
-      console.log("yup");
       this.setState({ button1: ((await AsyncStorage.getItem('Creativebutton1') || false) === "true") });
       this.setState({ button2: ((await AsyncStorage.getItem('Creativebutton2') || false) === "true") });
       this.setState({ button3: ((await AsyncStorage.getItem('Creativebutton3') || false) === "true") });
@@ -112,7 +111,6 @@ export default class ActionItemsCreativeSpace extends React.Component {
     this._isMounted = false;
     clearInterval(this.colorTimer);
     try {
-      console.log("saving bros");
       await AsyncStorage.setItem('Creativebutton1', this.state.button1.toString());
       await AsyncStorage.setItem('Creativebutton2', this.state.button2.toString());
       await AsyncStorage.setItem('Creativebutton3', this.state.button3.toString());
@@ -152,7 +150,6 @@ export default class ActionItemsCreativeSpace extends React.Component {
     this.setState({ hasHitAddButton: true });
   }
   updateChoice(type) {
-    console.log(type);
     switch (type) {
       case "button1":
         this.setState({ button1: !this.state.button1 }, function () {
@@ -188,7 +185,6 @@ export default class ActionItemsCreativeSpace extends React.Component {
   }
 
   updateItemCompletionStatus(type) {
-    console.log("toggle3");
     switch (type) {
       case "completedButton1":
         if (!this.state.button1) {
@@ -310,9 +306,7 @@ export default class ActionItemsCreativeSpace extends React.Component {
                     marginBottom: 10
                   }}
                   onPress={() => {
-                    console.log("hey");
                     this.updateChoice('button1');
-                    console.log("hey");
                     // selected={this.state.button3}
                   }} >
                   <Text style={{
@@ -373,9 +367,7 @@ export default class ActionItemsCreativeSpace extends React.Component {
                     marginBottom: 10
                   }}
                   onPress={() => {
-                    console.log("hey");
                     this.updateChoice('button2');
-                    console.log("hey");
                     // selected={this.state.button3}
                   }} >
                   <Text style={{
@@ -435,9 +427,7 @@ export default class ActionItemsCreativeSpace extends React.Component {
                     marginBottom: 10
                   }}
                   onPress={() => {
-                    console.log("hey");
                     this.updateChoice('button3');
-                    console.log("hey");
                     // selected={this.state.button3}
                   }} >
                   <Text style={{
@@ -562,9 +552,7 @@ export default class ActionItemsCreativeSpace extends React.Component {
                     marginBottom: 10
                   }}
                   onPress={() => {
-                    console.log("hey");
                     this.updateChoice('button4');
-                    console.log("hey");
                   }} >
                   <Text style={{
                     color: this.state.button4 ? accentColor(mood) : 'white',
