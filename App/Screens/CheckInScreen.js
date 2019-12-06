@@ -135,47 +135,47 @@ export default class CheckInScreen extends React.Component {
   }
 
   moveToHome() {
-    this.props.navigation.setParams({firstCheckIn: true});
-    this.props.navigation.navigate("HomeScreen", {mood: this.state.mood});
+    this.props.navigation.setParams({ firstCheckIn: true });
+    this.props.navigation.navigate("HomeScreen", { mood: this.state.mood });
   }
 
   render() {
     return (
-        <LinearGradient
-          colors={this.getBackgroundColor()}
-          style={styles.root}
-        >
-          <SafeAreaView style={styles.container}>
-            <Text style={{ width: height * 0.4, fontFamily: 'Lato-Regular', fontSize: height * 0.04, textAlign: "center"}}>
-              How have you been feeling this morning?
+      <LinearGradient
+        colors={this.getBackgroundColor()}
+        style={styles.root}
+      >
+        <SafeAreaView style={styles.container}>
+          <Text style={{ width: height * 0.4, fontFamily: 'Lato-Regular', fontSize: height * 0.04, textAlign: "center" }}>
+            How have you been feeling this morning?
             </Text>
-              <CircularSlider
-                width={380}
-                height={380}
-                meterColor={this.getMoodColor()}
-                textColor='black'
-                value={this.state.slider1}
-                moodFace={this.getMoodImage()}
-                holeColors={this.getHoleColors()}
-                mouthW={this.getMouthW()}
-                mouthHOffset={this.getMouthHOffset()}
-                onValueChange={(value) => this.setMood(value)}>
-              </CircularSlider>
-              <Text style={{ fontFamily: 'Lato-Black', fontSize: 45, textAlign: 'center', top: -20}}>
-                {this.state.mood}
-              </Text>
+          <CircularSlider
+            width={380}
+            height={380}
+            meterColor={this.getMoodColor()}
+            textColor='black'
+            value={this.state.slider1}
+            moodFace={this.getMoodImage()}
+            holeColors={this.getHoleColors()}
+            mouthW={this.getMouthW()}
+            mouthHOffset={this.getMouthHOffset()}
+            onValueChange={(value) => this.setMood(value)}>
+          </CircularSlider>
+          <Text style={{ fontFamily: 'Lato-Black', fontSize: width * 0.12, textAlign: 'center', top: -height * 0.024 }}>
+            {this.state.mood}
+          </Text>
 
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => {
-                  this.moveToHome()
-                }}
-                >
-                <Text style={styles.buttonText}> Check In </Text>
-              </TouchableOpacity>
-          </SafeAreaView>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.moveToHome()
+            }}
+          >
+            <Text style={styles.buttonText}> Check In </Text>
+          </TouchableOpacity>
+        </SafeAreaView>
 
-        </LinearGradient>
+      </LinearGradient>
     )
   };
 }
