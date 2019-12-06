@@ -52,12 +52,11 @@ var accentColor = (mood) => {
 export default class TaskMiami extends React.Component {
 
   state = {
-    joined: false,
-    joinedText: "Join",
+    joined: true,
+    joinedText: "UnJoin",
   }
   constructor(props) {
     super(props);
-    console.log("got to misbah bday");
 
   }
 
@@ -88,14 +87,14 @@ export default class TaskMiami extends React.Component {
     try {
       const joinedValue = await AsyncStorage.getItem('JoinedMiami');
       if (joinedValue === null){
-        this.setState({ joined: false });
+        this.setState({ joined: true });
       }else {
         this.setState({ joined:  joinedValue=== "true" });
       }
 
       const joinedTextValue = await AsyncStorage.getItem('JoinedMiamiText');
       if (joinedTextValue === null || joinedTextValue === ""){
-        this.setState({ joinedText: "Join" });
+        this.setState({ joinedText: "Unjoin" });
       }else{
         this.setState({ joinedText: joinedTextValue});
       }
@@ -125,8 +124,6 @@ export default class TaskMiami extends React.Component {
 
   joinTheEvent() {
     this.setState({ joined: !this.state.joined }, function () {
-      console.log("new joined");
-      console.log(this.state.joined);
 
       if (this.state.joined) {
 

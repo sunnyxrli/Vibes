@@ -56,7 +56,6 @@ export default class TaskBday extends React.Component {
   }
     constructor(props){
       super(props);
-      console.log("got to misbah bday");
 
       }
 
@@ -124,8 +123,6 @@ export default class TaskBday extends React.Component {
 
   joinTheEvent() {
     this.setState({ joined: !this.state.joined }, function () {
-      console.log("new joined");
-      console.log(this.state.joined);
 
       if (this.state.joined) {
 

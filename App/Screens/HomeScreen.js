@@ -76,18 +76,6 @@ export default class HomeScreen extends React.Component {
     }
     return (
       <ScrollView style={{ flex: 1, backgroundColor: homeScreenBackgroundColor(mood) }}>
-        {/* <TouchableOpacity
-          style={{
-          }}
-          onPress={() => this.setMoodsOverlayVisible(true)}
-        >
-          <Image
-            source={require('../Images/ProfileImages/charlie.png')}
-            style={{ height: width * 0.08, width: width * 0.08, alignSelf: 'flex-end', marginRight: width * 0.029}}
-            resizeMode='contain'
-          />
-        </TouchableOpacity> */}
-
         <View style={styles.faceimage}>
           <Text style={{ fontSize: height * 0.03, fontFamily: 'Lato-Regular', paddingTop: height * 0.0367 }}>Your team feels</Text>
           <Text style={{ fontSize: width * 0.11, fontFamily: 'Lato-Black', color: accentColor(mood) }}>{mood}</Text>
