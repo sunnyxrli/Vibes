@@ -51,8 +51,8 @@ var accentColor = (mood) => {
 
 export default class TasksWeeklyLunches extends React.Component {
   state = {
-    joined: false,
-    joinedText: "Join",
+    joined: true,
+    joinedText: "Unjoin",
   }
     constructor(props){
       super(props);
@@ -87,14 +87,14 @@ export default class TasksWeeklyLunches extends React.Component {
     try {
       const joinedValue = await AsyncStorage.getItem('JoinedWeeklyLunches');
       if (joinedValue === null){
-        this.setState({ joined: false });
+        this.setState({ joined: true });
       }else {
         this.setState({ joined:  joinedValue=== "true" });
       }
 
       const joinedTextValue = await AsyncStorage.getItem('JoinedWeeklyLunchesText');
       if (joinedTextValue === null || joinedTextValue === ""){
-        this.setState({ joinedText: "Join" });
+        this.setState({ joinedText: "Unjoin" });
       }else{
         this.setState({ joinedText: joinedTextValue});
       }
@@ -217,7 +217,7 @@ export default class TasksWeeklyLunches extends React.Component {
         </View>
         <View style={{flex:1, alignItems:"center", justifyContent:"space-evenly"}}>
           <Image
-              source={require("../Images/collabButton2.png")}
+              source={require("../Images/collabButton.png")}
               resizeMode='contain'
               style={{height: height * 0.3, width: height * 0.4}}
           />
