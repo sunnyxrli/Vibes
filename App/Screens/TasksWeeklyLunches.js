@@ -228,11 +228,13 @@ export default class TasksWeeklyLunches extends React.Component {
 }
 
 const TasksWeekly = StyleSheet.create({
+
   TaskTitle: {
     fontFamily: 'Lato-Bold',
     fontSize: 50/375 * width,
-    paddingTop: 25/817 * height,
+    paddingTop: 25/ 817 * height ,
     paddingLeft: 20/375 * width,
+    paddingRight: 20/375 * width
   },
   heading: {
     fontFamily: 'Lato-Black',
@@ -241,15 +243,15 @@ const TasksWeekly = StyleSheet.create({
   },
   expirationDate: {
     fontSize: 20/375 * width,
-    paddingTop: 10/817 * height,
+    paddingTop: 10/ 817 * height ,
     paddingLeft: 20/375 * width,
     fontFamily:'Lato-Italic'
   },
   taskDetails:{
     fontSize: 20/375 * width,
     fontFamily:'Lato-Regular',
-    paddingRight: 50/375 * width,
-    marginTop: 30/817 * height,
+    paddingRight: 90/375 * width,
+    marginTop: 30/ 817 * height ,
     paddingLeft: 20/375 * width,
   },
   collab:{
